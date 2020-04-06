@@ -20,8 +20,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="index">
-        
-    </div>
+    <div id="index"></div>
+     
 </body>
 </html>
