@@ -1,5 +1,6 @@
 import React from 'react';
 import Login from './Login';
+import Register from './Register';
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -10,6 +11,7 @@ class Navbar extends React.Component {
     return (
       <div>
         <Login />
+        <Register />
         <nav id="navIndex" className="navbar sticky-top navbar-expand-sm navbar-light">
           <a className="navbar-brand" href="#">
             <img className="ico" src="images/logo.svg" alt="logo2" id="brand" />
@@ -38,7 +40,7 @@ class Navbar extends React.Component {
                 </a>
                 <div className="dropdown-menu dropdown-menu-right" aria-labelledby="user">
                   <a className="dropdown-item" href="#" data-toggle="modal" data-target="#loginModal">Iniciar Sesión</a>
-                  <a className="dropdown-item" href="registro.html">Registro</a>
+                  <a className="dropdown-item" href="#" data-toggle="modal" data-target="#registerModal">Registro</a>
                   <a className="dropdown-item" href="#">Editar Perfil</a>
                 </div>
               </div>

@@ -15,7 +15,6 @@ function Index() {
             <Carrousel />
             <Cards />
             <FooterAll />
-            <Login />
         </div>
     );
 }
