@@ -1,0 +1,568 @@
+/*---------------------
+  Logo Section
+-----------------------*/
+#logo {
+	max-height: 150px;
+	width: 100%;
+
+}
+
+#icoEnano {
+	max-height: 20px;
+}
+
+/*---------------------
+  Nav Section
+-----------------------*/
+
+.navbar {
+	background-color: white;
+}
+
+.navbar-brand {
+	position: relative;
+	transition: opacity 400ms ease 100ms;
+	opacity: 0;
+}
+
+.scrolled .navbar-brand {
+	opacity: 1;
+}
+
+#brand {
+	max-height: 40px;
+}
+
+#marca {
+	max-height: 40px;
+}
+
+/*---------------------
+ Fondos del dropdown del navbar
+-----------------------*/
+
+.dropdown-menu {
+	background-color: rgba(255, 255, 255, 0.9);
+}
+
+.dropdown-item:focus {
+	background-color: rgb(250, 195, 250)
+}
+
+.dropdown-item:hover {
+	background-color: rgb(250, 195, 250)
+}
+
+/*---------------------
+FORMULARIO
+-----------------------*/
+
+.form {
+	padding: 1em;
+	border: 1px solid #ccc;
+	border-radius: .5em;
+	margin: 1em;
+	box-shadow: .25em .25em 0 #ccc;
+}
+
+/*foto*/
+
+.imagePreview {
+	width: 100%;
+	height: 180px;
+	background-position: center;
+	background-color: #fff;
+	background-size: contain;
+	background-repeat: no-repeat;
+	display: inline-block;
+}
+
+.btn-primary {
+	display: block;
+	border-radius: 0px;
+	box-shadow: 0px 4px 6px 2px rgba(128, 128, 128, 0.39);
+	margin-top: -5px;
+}
+
+.imgUp {
+	margin-bottom: 15px;
+}
+
+.del {
+	position: absolute;
+	top: 0px;
+	right: 15px;
+	width: 30px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	cursor: pointer;
+}
+
+.imgAdd {
+	width: 30px;
+	height: 30px;
+	color: black;
+	text-align: center;
+	line-height: 30px;
+	margin-top: 0px;
+	cursor: pointer;
+	font-size: 15px;
+}
+
+/*---------------------
+  Animación de aparición del dropdown-menu más fluida
+-----------------------*/
+
+.dropdown-menu {
+	opacity: 0;
+	visibility: hidden;
+	transform-origin: top;
+	animation-fill-mode: forwards;
+	transform: scale(0.9, 0.7) translateY(-20px);
+	display: block;
+	transition: all 300ms ease;
+	/* Cambiar los milisegundos para que sea más rápida o más lenta la aparición y desaparición */
+}
+
+.show>.dropdown-menu {
+	transform: scale(1, 1) translateY(0);
+	opacity: 1;
+	visibility: visible;
+}
+
+/*---------------------
+  Footer 
+-----------------------*/
+
+footer h6 {
+	color: grey;
+}
+
+hr {
+	border: 1px dotted grey;
+}
+
+#copyright {
+	color: grey;
+	font-size: 15px;
+}
+
+/*---------------------
+  Enlaces 
+-----------------------*/
+
+a:link {
+	color: rgb(58, 58, 58);
+}
+
+/* visited link */
+a:visited {
+	color: rgb(58, 58, 58);
+	text-decoration: none;
+}
+
+/* mouse over link */
+a:hover {
+	color: rgb(250, 195, 250);
+	text-decoration: none;
+}
+
+/* selected link */
+a:active {
+	color: rgb(250, 195, 250);
+	text-decoration: underline;
+}
+
+
+/*---------------------
+  Banner Section
+-----------------------*/
+.banner-section {
+	padding: 0px 50px;
+}
+
+.single-banner {
+	position: relative;
+	z-index: 1;
+}
+
+.single-banner:hover::before {
+	-webkit-transform: scale(1);
+	-ms-transform: scale(1);
+	transform: scale(1);
+}
+
+.single-banner::before {
+	position: absolute;
+	left: 0px;
+	/*35px;*/
+	top: 0px;
+	/*30px;*/
+	border: 13px solid #f3ade4;
+	content: "";
+	opacity: 0.6;
+	/*0.3;*/
+	width: 100%;
+	/*calc(100%-70px);*/
+	height: 100%;
+	/*calc(100%-60px);*/
+	-webkit-transform: scale(0);
+	-ms-transform: scale(0);
+	transform: scale(0);
+	-webkit-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	transition: all 0.5s;
+}
+
+.single-banner img {
+	min-width: 100%;
+	max-width: 80%;
+}
+
+.single-banner .inner-text {
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	width: 100%;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	height: 100%;
+}
+
+/*---------------------
+  Banner Section Button
+-----------------------*/
+
+.boton {
+	background-color: rgba(255, 255, 255, 0.7);
+	letter-spacing: 0.2em;
+	font-size: 1.5rem;
+	color: #585858;
+	margin: 1rem .5rem;
+	padding: .325rem 1.25rem;
+	border: none;
+	line-height: 2em;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-weight: bold;
+	display: inline-block;
+	text-transform: uppercase;
+	overflow: hidden;
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+	-webkit-transition: all 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+	transition: all 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+	cursor: pointer;
+}
+
+.boton:after {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 0;
+	background: #ffffff;
+
+	content: '';
+	z-index: -1;
+	-webkit-transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+	transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+	will-change: width;
+
+}
+
+.boton:hover:after {
+	width: 100%;
+}
+
+.boton:hover {
+	color: #ffafff;
+	outline: none;
+}
+
+/*---------------------
+Propiedades del botón del banner
+-----------------------*/
+
+.boton:active {
+	outline: none;
+	border: none;
+}
+
+.boton:focus {
+	outline: 0;
+}
+
+/*---------------------
+  Efecto anime en logo
+-----------------------*/
+
+figure {
+	position: relative;
+}
+
+figure::before {
+	position: absolute;
+	top: 0;
+	left: -75%;
+	z-index: 2;
+	display: block;
+	content: '';
+	width: 50%;
+	height: 100%;
+	background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .3) 100%);
+	background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .3) 100%);
+	-webkit-transform: skewX(-25deg);
+	transform: skewX(-25deg);
+}
+
+figure:hover::before {
+	-webkit-animation: shine .9s;
+	animation: shine .9s;
+}
+
+@-webkit-keyframes shine {
+	100% {
+		left: 125%;
+	}
+}
+
+@keyframes shine {
+	100% {
+		left: 125%;
+	}
+}
+
+/* Estilos para retagers*/
+
+.retager img {
+	width: 350px;
+	border: solid 2px;
+	box-shadow: 10px 10px 10px rgb(128, 128, 128);
+	transition: box-shadow .3s ease-in-out;
+}
+
+.retager img:hover {
+	box-shadow: 10px 10px 10px rgb(58, 58, 58);
+}
+
+.like {
+	position: absolute;
+	background-color: rgba(0, 0, 0, 0.2);
+}
+
+.like .fas {
+	color: rgb(253, 200, 255);
+	transition: color .7s;
+}
+
+.like .fas:hover {
+	color: rgb(249, 87, 255);
+}
+
+.nombre {
+	color: rgb(58, 58, 58);
+	font-weight: bold;
+	font-size: 1.5rem;
+
+
+}
+
+.likes {
+	font-weight: bold;
+	color: rgb(250, 195, 250);
+
+}
+
+.contenido {
+	box-shadow: 1px 1px 10px 10px rgb(148, 148, 148);
+
+}
+
+/*---------------------
+Boton secundario
+-----------------------*/
+
+.boton-secundario {
+	background-color: rgba(255, 255, 255, 0.7);
+	letter-spacing: 0.2em;
+	background-color: #ffffff;
+	color: #ffafff;
+	margin: 1rem .5rem;
+	padding: .325rem 1.25rem;
+	border: solid 1px #585858;
+	line-height: 2em;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-weight: bold;
+	display: inline-block;
+	text-transform: uppercase;
+	overflow: hidden;
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+	-webkit-transition: all 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+	transition: all 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+	cursor: pointer;
+}
+
+.boton-secundario:after {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 0;
+	background: #777777;
+	content: '';
+	z-index: -1;
+	-webkit-transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+	transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+	will-change: width;
+
+}
+
+.boton-secundario:hover:after {
+	width: 100%;
+}
+
+.boton-secundario:hover {
+	color: #ffafff;
+
+}
+
+.boton-secundario:active {
+	outline: none;
+	border: none;
+}
+
+.boton-secundario:focus {
+	outline: 0;
+}
+
+/*---------------------
+Inputs
+-----------------------*/
+
+input[type="text"],
+.form-control {
+
+	background-color: #dddddd;
+	border: none;
+	border-radius: 0px;
+
+}
+
+input[type="text"]:focus,
+.form-control:focus {
+
+	outline: none !important;
+	outline-width: 0 !important;
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	border: solid 1px;
+}
+
+.fixed {
+
+	position: fixed;
+
+	bottom: 0;
+	width: 100%;
+}
+
+
+
+.foto img {
+	height: 300px;
+	border: solid 2px;
+	box-shadow: 10px 10px 10px rgb(128, 128, 128);
+
+	transition: box-shadow .3s ease-in-out;
+}
+
+.foto img:hover {
+	box-shadow: 10px 10px 10px rgb(58, 58, 58);
+
+}
+
+.nombre-producto {
+	color: rgb(58, 58, 58);
+	font-weight: 600;
+	font-size: 1.5rem;
+}
+
+.precio-producto {
+	color: #ff89ff;
+
+	font-weight: 600;
+	font-size: 1.5rem;
+	border-bottom: solid 1px;
+
+}
+
+
+
+
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+	height: 100px;
+	width: 100px;
+	outline: black;
+	background-size: 100%, 100%;
+	background-image: none;
+}
+
+.carousel-control-next-icon:after {
+	content: '>';
+	font-size: 55px;
+	color: #ff89ff;
+}
+
+.carousel-control-prev-icon:after {
+	content: '<';
+	font-size: 55px;
+	color: #ff89ff;
+}
+
+.descripcion {
+	color: #585858;
+	font-size: 1.3rem;
+	font-weight: 600;
+}
+
+.texto-descripcion {
+	font-weight: 300;
+}
+
+.vendedor img {
+	height: 200px;
+	border: solid 1px;
+
+
+}
+
+.boton-terciario {
+	text-decoration: none;
+	background-image: linear-gradient(#ff89ff, #ff89ff);
+	background-position: 0% 100%;
+	background-repeat: no-repeat;
+	background-size: 0% 2px;
+	transition: background-size .3s;
+	font-size: 1.2rem;
+	font-weight: 600;
+	color: rgb(58, 58, 58);
+}
+
+.boton-terciario:hover,
+.boton-terciario:focus {
+	text-decoration: none;
+	background-size: 100% 2px;
+	color: rgb(58, 58, 58);
+}
