@@ -82029,6 +82029,7 @@ var Register = /*#__PURE__*/function (_React$Component) {
       width: 230,
       height: 350
     };
+    _this.editor = react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();
     _this.handleNewImage = _this.handleNewImage.bind(_assertThisInitialized(_this));
     _this.handleScale = _this.handleScale.bind(_assertThisInitialized(_this));
     _this.handlePositionChange = _this.handlePositionChange.bind(_assertThisInitialized(_this));
@@ -82038,9 +82039,15 @@ var Register = /*#__PURE__*/function (_React$Component) {
   _createClass(Register, [{
     key: "handleNewImage",
     value: function handleNewImage(e) {
-      this.setState({
-        image: e.target.files[0]
-      });
+      if (e.target.files[0]) {
+        this.setState({
+          image: e.target.files[0]
+        });
+      } else {
+        this.setState({
+          image: 'images/retager2.jpeg'
+        });
+      }
     }
   }, {
     key: "handleScale",
@@ -82062,14 +82069,16 @@ var Register = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
+      var SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Formik"], {
         initialValues: {
-          name: '',
-          email: '',
-          password: '',
-          password_confirmation: '',
-          zip_code: '',
-          acepto_politica: false
+          name: 'Tamara',
+          email: 'tami_noeps@hotmail.com',
+          password: '1234abcd',
+          password_confirmation: '1234abcd',
+          zip_code: '28760',
+          acepto_politica: true,
+          file: undefined
         },
         validationSchema: yup__WEBPACK_IMPORTED_MODULE_2__["object"]({
           name: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().max(255, 'Nombre demasiado largo.').required('Debes rellenar este campo.'),
@@ -82078,10 +82087,17 @@ var Register = /*#__PURE__*/function (_React$Component) {
           password_confirmation: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().required('Debes rellenar este campo.').oneOf([yup__WEBPACK_IMPORTED_MODULE_2__["ref"]('password'), null], 'La contraseña no coincide.'),
           zip_code: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().min(5, 'El código postal debe tener 5 dígitos.').max(5, 'El código postal debe tener 5 dígitos.').required('Debes rellenar este campo.'),
           acepto_politica: yup__WEBPACK_IMPORTED_MODULE_2__["boolean"]().oneOf([true], 'Debes aceptar nuestra política para registrarte.')
+        }).shape({
+          file: yup__WEBPACK_IMPORTED_MODULE_2__["mixed"]().required('Debes rellenar este campo.').test("fileFormat", "Unsupported Format", function (value) {
+            return value && SUPPORTED_FORMATS.includes(value.type);
+          })
         }),
         onSubmit: function onSubmit(values, _ref) {
           var setSubmitting = _ref.setSubmitting,
               setErrors = _ref.setErrors;
+
+          var imgURL = _this2.editor.current.getImageScaledToCanvas().toDataURL();
+
           axios.get('/sanctum/csrf-cookie').then(function (response) {
             axios.post('/api/login', values).then(function (response) {
               console.log(response.data);
@@ -82169,7 +82185,7 @@ var Register = /*#__PURE__*/function (_React$Component) {
           className: "form-group"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Repite la Contrase\xF1a"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "input-group",
-          id: "show_hide_password"
+          id: "show_hide_password2"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
           type: "password",
           className: formik.errors.password_confirmation ? "form-control is-invalid" : "form-control",
@@ -82208,11 +82224,24 @@ var Register = /*#__PURE__*/function (_React$Component) {
           position: _this2.state.position,
           onPositionChange: _this2.handlePositionChange,
           image: _this2.state.image,
-          className: "editor-canvas"
+          className: "editor-canvas",
+          ref: _this2.editor
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          name: "newImage",
+          id: "file",
+          name: "file",
           type: "file",
-          onChange: _this2.handleNewImage
+          onChange: function onChange(event) {
+            formik.setFieldValue("file", event.currentTarget.files[0]);
+
+            _this2.handleNewImage(event);
+          },
+          className: formik.errors.file ? "form-control is-invalid" : "form-control"
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["ErrorMessage"], {
+          name: "file"
+        }, function (msg) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "invalid-feedback"
+          }, msg);
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           name: "scale",
           type: "range",
@@ -82241,8 +82270,13 @@ var Register = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           type: "submit",
           className: "btn btn-default boton-secundario",
-          id: "registrarse"
-        }, "Registrarse")))))))));
+          id: "registrarse",
+          disabled: formik.isSubmitting
+        }, "Registrarse", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: formik.isSubmitting ? "spinner-border spinner-border-sm" : "spinner-border spinner-border-sm d-none",
+          role: "status",
+          "aria-hidden": "true"
+        }))))))))));
       });
     }
   }]);

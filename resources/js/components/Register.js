@@ -15,13 +15,19 @@ class Register extends React.Component {
             width: 230,
             height: 350,
         }
+        this.editor = React.createRef();
         this.handleNewImage = this.handleNewImage.bind(this);
         this.handleScale = this.handleScale.bind(this);
         this.handlePositionChange = this.handlePositionChange.bind(this);
     }
 
     handleNewImage(e) {
-        this.setState({ image: e.target.files[0] })
+        if (e.target.files[0]) {
+            this.setState({ image: e.target.files[0] })
+        }
+        else {
+            this.setState({ image: 'images/retager2.jpeg' })
+        }
     }
 
     handleScale(e) {
@@ -34,9 +40,15 @@ class Register extends React.Component {
     }
 
     render() {
+        const SUPPORTED_FORMATS = [
+            "image/jpg",
+            "image/jpeg",
+            "image/gif",
+            "image/png"
+        ];
         return (
             <Formik
-                initialValues={{ name: '', email: '', password: '', password_confirmation: '', zip_code: '', acepto_politica: false, }}
+                initialValues={{ name: 'Tamara', email: 'tami_noeps@hotmail.com', password: '1234abcd', password_confirmation: '1234abcd', zip_code: '28760', acepto_politica: true, file: undefined }}
                 validationSchema={Yup.object({
 
                     name: Yup.string()
@@ -65,8 +77,17 @@ class Register extends React.Component {
                     acepto_politica: Yup.boolean()
                         .oneOf([true], 'Debes aceptar nuestra política para registrarte.'),
 
+                }).shape({
+                    file: Yup.mixed()
+                        .required('Debes rellenar este campo.')
+                        .test(
+                            "fileFormat",
+                            "Unsupported Format",
+                            value => value && SUPPORTED_FORMATS.includes(value.type)
+                        ),
                 })}
                 onSubmit={(values, { setSubmitting, setErrors }) => {
+                    const imgURL = this.editor.current.getImageScaledToCanvas().toDataURL();
                     axios.get('/sanctum/csrf-cookie').then(response => {
                         axios.post('/api/login', values)
                             .then(function (response) {
@@ -116,7 +137,7 @@ class Register extends React.Component {
 
                                                 <div className="form-group">
                                                     <label>Repite la Contraseña</label>
-                                                    <div className="input-group" id="show_hide_password">
+                                                    <div className="input-group" id="show_hide_password2">
                                                         <Field type="password" className={formik.errors.password_confirmation ? "form-control is-invalid" : "form-control"} name="password_confirmation" />
                                                         <div className="input-group-addon ml-2">
                                                             <a href=""><i className="fa fa-eye-slash" aria-hidden="true"></i></a>
@@ -141,9 +162,15 @@ class Register extends React.Component {
                                                     onPositionChange={this.handlePositionChange}
                                                     image={this.state.image}
                                                     className="editor-canvas"
+                                                    ref={this.editor}
                                                 />
 
-                                                <input name="newImage" type="file" onChange={this.handleNewImage} />
+                                                <input id="file" name="file" type="file" onChange={(event) => {
+                                                    formik.setFieldValue("file", event.currentTarget.files[0]);
+                                                    this.handleNewImage(event);
+                                                }} className={formik.errors.file ? "form-control is-invalid" : "form-control"} />
+                                                <ErrorMessage name="file">{msg => <div className="invalid-feedback">{msg}</div>}</ErrorMessage>
+
                                                 <br />
                                                 <input
                                                     name="scale"
@@ -163,7 +190,10 @@ class Register extends React.Component {
                                                 </div>
                                                 <br />
                                                 <div className="col text-center">
-                                                    <button type="submit" className="btn btn-default boton-secundario" id="registrarse">Registrarse</button>
+                                                    <button type="submit" className="btn btn-default boton-secundario" id="registrarse" disabled={(formik.isSubmitting)}>
+                                                        Registrarse
+                                                        <span className={formik.isSubmitting ? "spinner-border spinner-border-sm" : "spinner-border spinner-border-sm d-none"} role="status" aria-hidden="true"></span>
+                                                    </button>
                                                 </div>
                                             </Form>
                                         </div>
