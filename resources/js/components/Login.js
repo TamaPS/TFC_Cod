@@ -64,7 +64,7 @@ class Login extends React.Component {
                         <a href="">Registrarse</a>
                       </div>
                       <div className="col text-center">
-                        <button type="submit" className="btn btn-default boton-secundario" id="logearse" disabled={(formik.isSubmitting)}>
+                        <button type="submit" className="boton-secundario" id="logearse" disabled={(formik.isSubmitting)}>
                           Iniciar sesión
                           <span className={formik.isSubmitting ? "spinner-border spinner-border-sm" : "spinner-border spinner-border-sm d-none"} role="status" aria-hidden="true"></span>
                         </button>

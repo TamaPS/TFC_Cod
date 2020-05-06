@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Header from './Header'
 import Navbar from './Navbar'
-import Carrousel from './Carrousel'
+import Carrousel from './Carrousel/Carrousel'
 import Cards from './cards/Cards'
 import Copyright from './footers/Copyright'
 import Login from './Login'

@@ -190,7 +190,7 @@ class Register extends React.Component {
                                                 </div>
                                                 <br />
                                                 <div className="col text-center">
-                                                    <button type="submit" className="btn btn-default boton-secundario" id="registrarse" disabled={(formik.isSubmitting)}>
+                                                    <button type="submit" className="boton-secundario" id="registrarse" disabled={(formik.isSubmitting)}>
                                                         Registrarse
                                                         <span className={formik.isSubmitting ? "spinner-border spinner-border-sm" : "spinner-border spinner-border-sm d-none"} role="status" aria-hidden="true"></span>
                                                     </button>
