@@ -4,7 +4,7 @@ import Header from './Header'
 import Navbar from './Navbar'
 import Carrousel from './Carrousel'
 import Cards from './cards/Cards'
-import FooterAll from './footers/FooterAll'
+import Copyright from './footers/Copyright'
 import Login from './Login'
 
 function Index() {
@@ -14,7 +14,7 @@ function Index() {
             <Navbar />
             <Carrousel />
             <Cards />
-            <FooterAll />
+            <Copyright />
         </div>
     );
 }

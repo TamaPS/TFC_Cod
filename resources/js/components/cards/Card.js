@@ -12,7 +12,7 @@ class Card extends React.Component {
                     <img src={this.props.image} alt={this.props.alt} />
                     <div className="inner-text">
                         <a href="#" className="btn btn-default" role="button">
-                            <button className="boton" onClick={`location.href="${this.props.route}"`}>{this.props.text}</button>
+                            <button className="boton" onClick={location.href="${this.props.route}"}>{this.props.text}</button>
                         </a>
                     </div>
                 </div>
