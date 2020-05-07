@@ -1,4 +1,8 @@
 import React from 'react';
+import {
+    BrowserRouter as Router,
+    Link
+  } from "react-router-dom";
 
 class FooterAll extends React.Component {
     constructor(props) {
@@ -7,6 +11,7 @@ class FooterAll extends React.Component {
 
     render() {
         return (
+            <Router>
             <div>
                 <hr />
                 {/* Footer */}
@@ -18,7 +23,7 @@ class FooterAll extends React.Component {
                             {/* Grid column */}
                             <div className="col-lg-4 col-sm-12 mx-auto mt-3">
                                 <h6 className="text-uppercase mb-4 font-weight-bold">SOBRE RETAGED</h6>
-                                <a href="historia.html">Historia</a><br />
+                                <Link to="/footer"> <a href="historia.html">Historia</a></Link><br />
                                 <a href="mAmbiente.html">Medio Ambiente</a><br />
                                 <br />
                                 <h6 className="text-uppercase mb-4 font-weight-bold">COMPRA VENTA</h6>
@@ -53,6 +58,7 @@ class FooterAll extends React.Component {
                 {/*Copyright*/}
                 <p className="text-center" id="copyright">© 2020 Retaged</p>
             </div>
+            </Router>
         )
     }
 }

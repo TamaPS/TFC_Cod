@@ -4,18 +4,35 @@ import Header from './Header'
 import Navbar from './Navbar'
 import Carrousel from './Carrousel/Carrousel'
 import Cards from './cards/Cards'
-import Copyright from './footers/Copyright'
-import Login from './Login'
+import FooterAll from './footers/FooterAll'
+import {
+    BrowserRouter as Router,
+    Switch,
+    Link,
+    Route
+  } from "react-router-dom";
 
 function Index() {
     return (
-        <div>
-            <Header />
-            <Navbar />
-            <Carrousel />
-            <Cards />
-            <Copyright />
-        </div>
+        <Router>
+            <div>
+            <Link to="/footer">Footer</Link>
+                <Switch>
+                
+                <Route path="/footer">
+                    <Header />
+                </Route>
+                <Route path="/">
+                <Header />
+                <Navbar />
+                <Carrousel />
+                <Cards />
+                <FooterAll />
+            </Route>
+
+                </Switch>
+            </div>
+        </Router>
     );
 }
 
