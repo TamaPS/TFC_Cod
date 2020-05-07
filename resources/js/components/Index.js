@@ -6,7 +6,7 @@ import Carrousel from './Carrousel/Carrousel'
 import Cards from './cards/Cards'
 import FooterAll from './footers/FooterAll'
 import {
-    BrowserRouter,
+    HashRouter as Router,
     Switch,
     Link,
     Route
@@ -15,10 +15,12 @@ import {
 
 function Index() {
     return (
-        <BrowserRouter basename="#">
-        <Link to="/hola">hola</Link>
-            <Route exact path="/hola" component={Header} />
-        </BrowserRouter>
+        <Router>
+        
+            <Route exact path="/" component={FooterAll} />
+            <Route exact path="/hola" component={Carrousel} />
+
+        </Router>
     );
 }
 
