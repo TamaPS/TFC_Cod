@@ -6,33 +6,19 @@ import Carrousel from './Carrousel/Carrousel'
 import Cards from './cards/Cards'
 import FooterAll from './footers/FooterAll'
 import {
-    BrowserRouter as Router,
+    BrowserRouter,
     Switch,
     Link,
     Route
+    
   } from "react-router-dom";
 
 function Index() {
     return (
-        <Router>
-            <div>
-            <Link to="/footer">Footer</Link>
-                <Switch>
-                
-                <Route path="/footer">
-                    <Header />
-                </Route>
-                <Route path="/">
-                <Header />
-                <Navbar />
-                <Carrousel />
-                <Cards />
-                <FooterAll />
-            </Route>
-
-                </Switch>
-            </div>
-        </Router>
+        <BrowserRouter basename="#">
+        <Link to="/hola">hola</Link>
+            <Route exact path="/hola" component={Header} />
+        </BrowserRouter>
     );
 }
 
