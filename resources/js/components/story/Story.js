@@ -7,15 +7,15 @@ class Story extends React.Component{
 
     render(){
         return(
-            <div class="container text-center">
+            <div className="container text-center">
             <br />
-            <p> Somos Tamara y Mario, <img class="icoEnano" src="images/logo.svg" alt="logo2" id="icoEnano" /> nace como nuestro proyecto de TFC del ciclo de desarrollo de aplicaciones web.</p>
+            <p> Somos Tamara y Mario, <img className="icoEnano" src="images/logo.svg" alt="logo2" id="icoEnano" /> nace como nuestro proyecto de TFC del ciclo de desarrollo de aplicaciones web.</p>
             <br />
-            <div class="text-center">
-              <img src="images/start.jpeg" class="rounded mx-auto d-block img-fluid" alt="us" />
+            <div className="text-center">
+              <img src="images/start.jpeg" className="rounded mx-auto d-block img-fluid" alt="us" />
             </div>
             <br />
-            <p class="pb-3"> 
+            <p className="pb-3"> 
               Queremos fomentar a los pequeños sastres o diseñadores locales para dar una segunda
               vida a las prendas que ya tenemos o compartirlas
               con otros usuarios, creemos en reconvertir las prendas

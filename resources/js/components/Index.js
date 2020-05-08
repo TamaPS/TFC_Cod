@@ -7,6 +7,7 @@ import Legal from './Informacion-legal'
 import mAmbiente from './Medio-ambiente'
 import pCookies from './Politica-de-cookies'
 import pPrivacidad from './Politica-de-privacidad'
+import Productos from './Productos'
 import {
     HashRouter as Router,
     Switch,
@@ -26,6 +27,7 @@ function Index() {
             <Route exact path="/legal" component={Legal} />
             <Route exact path="/politica-de-cookies" component={pCookies} />
             <Route exact path="/politica-de-privacidad" component={pPrivacidad} />
+            <Route exact path="/productos" component={Productos} />
 
         </Router>
     );

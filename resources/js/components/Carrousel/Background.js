@@ -1,4 +1,7 @@
 import React from 'react';
+import {
+  Link
+} from "react-router-dom";
 
 
 class Background extends React.Component {
@@ -9,7 +12,7 @@ class Background extends React.Component {
   render() {
     return (
       <div className="view">
-          <a href="productos.html"> <img className="d-block w-100" src={this.props.image} alt={this.props.alt} /></a>
+          <Link to="/productos"> <img className="d-block w-100" src={this.props.image} alt={this.props.alt} /></Link>
           <div className="mask rgba-black-light"></div>
       </div>
     )

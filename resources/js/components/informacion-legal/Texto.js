@@ -7,7 +7,7 @@ class Texto extends React.Component{
 
     render(){
         return(
-          <div class="container my-5 ">
+          <div className="container my-5 ">
           <p>En cumplimiento del artículo 10 de la Ley 34 / 2002, de 11 de julio, de Servicios de la Sociedad de la
             Información y Comercio Electrónico, el Titular expone sus datos de contacto. </p>
           <ul>

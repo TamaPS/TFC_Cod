@@ -7,7 +7,7 @@ class Privacidad extends React.Component{
 
     render(){
         return(
-            <div class="container my-5">
+            <div className="container my-5">
             <p>Retaged te informa sobre su Política de Privacidad respecto del tratamiento y protección de los datos de carácter
               personal de los usuarios y clientes que puedan ser recabados por la navegación o contratación de servicios a
               través del sitio Web http://www.retaged.com/.</p>

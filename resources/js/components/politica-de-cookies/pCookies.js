@@ -7,7 +7,7 @@ class Cookies extends React.Component{
 
     render(){
         return(
-            <div class="container my-5 ">
+            <div className="container my-5 ">
             <p>En cumplimiento con lo dispuesto en el artículo 22.2 de la Ley 34/2002, de 11 de julio, de Servicios de la
               Sociedad de la Información y de Comercio Electrónico, esta página web le informa, en esta sección, sobre la
               política de recogida y tratamiento de cookies. </p>
