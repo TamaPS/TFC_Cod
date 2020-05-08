@@ -1,6 +1,6 @@
 import React from 'react';
-import Login from './Login';
-import Register from './Register';
+import Login from '../login/Login';
+import Register from '../register/Register';
 
 class Navbar extends React.Component {
   constructor(props) {
