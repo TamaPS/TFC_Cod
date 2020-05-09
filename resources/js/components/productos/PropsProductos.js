@@ -1,4 +1,7 @@
 import React from 'react';
+import {
+  Link
+} from "react-router-dom";
 
 class PropsProductos extends React.Component {
   constructor(props) {
@@ -10,10 +13,10 @@ class PropsProductos extends React.Component {
         <div className="col mr-5 d-flex justify-content-center mb-5">
             <div className="producto">
                 <div className="foto d-flex justify-content-end mb-2">
-                    <a href="pProducto.html"><img src={this.props.image} alt={this.props.nombre} /></a>
+                    <Link to="/producto"><img src={this.props.image} alt={this.props.nombre} /></Link>
                 </div>
                 <div className="text-center nombre-producto">
-                    <a href="pProducto.html">{this.props.nombre}</a> 
+                    <Link to="/producto">{this.props.nombre}</Link> 
                 </div>
                 <div className="precio-producto text-center">
                     {this.props.precio}€  

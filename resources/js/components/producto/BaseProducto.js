@@ -1,5 +1,6 @@
 import React from 'react';
-import PropsProducto from './PropsProducto';
+import CompraProducto from './CompraProducto';
+import DescripcionProducto from './DescripcionProducto';
 
 class BaseProducto extends React.Component {
   constructor(props) {
@@ -8,14 +9,25 @@ class BaseProducto extends React.Component {
 
   render() {
     return (
-        <div class="container">
-            <div class="row mb-3">
+        <div className="container">
+            <div className="row mb-3">
             
+              <CompraProducto 
+                nombre = "Camiseta"
+                precio = "49.99"
+                vendedor = "images/retager1.jpeg"
+                nombreVendedor = "Vendedor 1"                
+              />
                     
             </div>
                 
-            <div class="row mb-5">
+            <div className="row mb-5">
             
+              <DescripcionProducto 
+                descripcion = "kjfkldjsflkjdslkfjdskljflksdjfklsjdgkgjfdljgflsdfsdfhgdgjdkjgdfjkgjdfgjdfgjdfgjkdfjgdjflkjglkdjflgkjdfljgfdjgdfjgjdfgjdgdjfkjkljgkkjgdfljgdlgjlkfjgkldfgj"
+                talla = "M"
+              />
+
             </div>
       </div>
     )
