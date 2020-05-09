@@ -9,12 +9,10 @@ import pCookies from './Politica-de-cookies'
 import pPrivacidad from './Politica-de-privacidad'
 import Productos from './Productos'
 import Producto from './Producto'
+import Retagers from './Retagers'
 import {
     HashRouter as Router,
-    Switch,
-    Link,
     Route
-    
   } from "react-router-dom";
 
 function Index() {
@@ -30,6 +28,7 @@ function Index() {
             <Route exact path="/politica-de-privacidad" component={pPrivacidad} />
             <Route exact path="/productos" component={Productos} />
             <Route exact path="/producto" component={Producto} />
+            <Route exact path="/retagers" component={Retagers} />
 
         </Router>
     );
