@@ -35,8 +35,8 @@ class FooterAll extends React.Component {
                             <div className="col-lg-4 col-sm-12 mx-auto mt-3">
                                 <h6 className="text-uppercase mb-4 font-weight-bold">Legal</h6>
                                 <Link to="/legal">Aviso legal</Link><br />
-                                <Link to="politica-de-cookies">Política de cookies</Link><br />
-                                <Link to="politica-de-privacidad">Política de privacidad</Link><br />
+                                <Link to="/politica-de-cookies">Política de cookies</Link><br />
+                                <Link to="/politica-de-privacidad">Política de privacidad</Link><br />
                                 <br />
                             </div>
                             {/* Grid column */}

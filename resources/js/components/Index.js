@@ -10,6 +10,8 @@ import PoliticaDePrivacidad from './PoliticaDePrivacidad'
 import Productos from './Productos'
 import Producto from './Producto'
 import Retagers from './Retagers'
+import Login from './login/Login'
+import Register from './register/Register'
 import {
     HashRouter as Router,
     Route
@@ -18,6 +20,8 @@ import {
 function Index() {
     return (
         <Router>
+            <Login />
+            <Register />
             <Route exact path="/" component={Principal} />
             <Route exact path="/history" component={History} />
             <Route exact path="/medio-ambiente" component={MedioAmbiente} />
