@@ -5,7 +5,8 @@ import Navbar from './Navbar'
 import Carrousel from './Carrousel'
 import Cards from './cards/Cards'
 import FooterAll from './footers/FooterAll'
-import Login from './Login'
+import Login from './Login';
+import Register from './Register';
 
 function Index() {
     return (
@@ -15,6 +16,8 @@ function Index() {
             <Carrousel />
             <Cards />
             <FooterAll />
+            <Login />
+            <Register />
         </div>
     );
 }

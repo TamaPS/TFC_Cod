@@ -81627,6 +81627,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _cards_Cards__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./cards/Cards */ "./resources/js/components/cards/Cards.js");
 /* harmony import */ var _footers_FooterAll__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./footers/FooterAll */ "./resources/js/components/footers/FooterAll.js");
 /* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Login */ "./resources/js/components/Login.js");
+/* harmony import */ var _Register__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Register */ "./resources/js/components/Register.js");
+
 
 
 
@@ -81637,7 +81639,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Index() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Header__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Navbar__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Carrousel__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_cards_Cards__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_footers_FooterAll__WEBPACK_IMPORTED_MODULE_6__["default"], null));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Header__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Navbar__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Carrousel__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_cards_Cards__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_footers_FooterAll__WEBPACK_IMPORTED_MODULE_6__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Login__WEBPACK_IMPORTED_MODULE_7__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Register__WEBPACK_IMPORTED_MODULE_8__["default"], null));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (Index);
@@ -81824,8 +81826,6 @@ var Login = /*#__PURE__*/function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Login */ "./resources/js/components/Login.js");
-/* harmony import */ var _Register__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Register */ "./resources/js/components/Register.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -81850,8 +81850,6 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-
-
 var Navbar = /*#__PURE__*/function (_React$Component) {
   _inherits(Navbar, _React$Component);
 
@@ -81866,7 +81864,7 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
   _createClass(Navbar, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Login__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Register__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
         id: "navIndex",
         className: "navbar sticky-top navbar-expand-sm navbar-light"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
@@ -81954,7 +81952,7 @@ var Navbar = /*#__PURE__*/function (_React$Component) {
       }, "A\xF1adir Producto"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "dropdown-item",
         href: "#"
-      }, "Mis Productos")))))));
+      }, "Mis Productos"))))));
     }
   }]);
 
@@ -82078,17 +82076,17 @@ var Register = /*#__PURE__*/function (_React$Component) {
           password_confirmation: '1234abcd',
           zip_code: '28760',
           acepto_politica: true,
-          file: undefined
+          image: undefined
         },
         validationSchema: yup__WEBPACK_IMPORTED_MODULE_2__["object"]({
-          name: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().max(255, 'Nombre demasiado largo.').required('Debes rellenar este campo.'),
+          name: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().max(30, 'Nombre demasiado largo.').required('Debes rellenar este campo.'),
           email: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().max(255, 'Email demasiado largo.').email('Introduce un email válido.').required('Debes rellenar este campo.'),
           password: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().matches(/^(?=.*\d)(?=.*[a-zA-Z])[\w~@#$%^&*+=`|{}:;!.?\"()\[\]-]{8,30}$/, 'La contraseña debe tener entre 8 y 30 caracteres, al menos un dígito, y letras.').required('Debes rellenar este campo.'),
           password_confirmation: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().required('Debes rellenar este campo.').oneOf([yup__WEBPACK_IMPORTED_MODULE_2__["ref"]('password'), null], 'La contraseña no coincide.'),
           zip_code: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().min(5, 'El código postal debe tener 5 dígitos.').max(5, 'El código postal debe tener 5 dígitos.').required('Debes rellenar este campo.'),
           acepto_politica: yup__WEBPACK_IMPORTED_MODULE_2__["boolean"]().oneOf([true], 'Debes aceptar nuestra política para registrarte.')
         }).shape({
-          file: yup__WEBPACK_IMPORTED_MODULE_2__["mixed"]().required('Debes rellenar este campo.').test("fileFormat", "Unsupported Format", function (value) {
+          image: yup__WEBPACK_IMPORTED_MODULE_2__["mixed"]().required('Debes rellenar este campo.').test("fileFormat", "Selecciona una imágen.", function (value) {
             return value && SUPPORTED_FORMATS.includes(value.type);
           })
         }),
@@ -82096,18 +82094,21 @@ var Register = /*#__PURE__*/function (_React$Component) {
           var setSubmitting = _ref.setSubmitting,
               setErrors = _ref.setErrors;
 
-          var imgURL = _this2.editor.current.getImageScaledToCanvas().toDataURL();
+          var imageURL = _this2.editor.current.getImageScaledToCanvas().toDataURL();
 
-          axios.get('/sanctum/csrf-cookie').then(function (response) {
-            axios.post('/api/login', values).then(function (response) {
-              console.log(response.data);
-            })["catch"](function (error) {
-              setErrors({
-                email: error.response.data.errors.email,
-                password: error.response.data.errors.password
-              });
-              setSubmitting(false);
+          values.image = imageURL;
+          console.log(values);
+          axios.post('/api/register', values).then(function (response) {
+            console.log(response);
+          })["catch"](function (error) {
+            setErrors({
+              name: error.response.data.errors.name,
+              email: error.response.data.errors.email,
+              password: error.response.data.errors.password,
+              password_confirmation: error.response.data.errors.password_confirmation,
+              zip_code: error.response.data.errors.zip_code
             });
+            setSubmitting(false);
           });
         }
       }, function (formik) {
@@ -82227,17 +82228,17 @@ var Register = /*#__PURE__*/function (_React$Component) {
           className: "editor-canvas",
           ref: _this2.editor
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          id: "file",
-          name: "file",
+          id: "image",
+          name: "image",
           type: "file",
           onChange: function onChange(event) {
-            formik.setFieldValue("file", event.currentTarget.files[0]);
+            formik.setFieldValue("image", event.currentTarget.files[0]);
 
             _this2.handleNewImage(event);
           },
-          className: formik.errors.file ? "form-control is-invalid" : "form-control"
+          className: formik.errors.image ? "form-control is-invalid" : "form-control"
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["ErrorMessage"], {
-          name: "file"
+          name: "image"
         }, function (msg) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "invalid-feedback"

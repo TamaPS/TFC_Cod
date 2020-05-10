@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
