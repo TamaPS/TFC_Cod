@@ -14,6 +14,8 @@ class Register extends React.Component {
             preview: null,
             width: 230,
             height: 350,
+            error: '',
+            success: '',
         }
         this.editor = React.createRef();
         this.handleNewImage = this.handleNewImage.bind(this);
@@ -48,15 +50,45 @@ class Register extends React.Component {
         ];
         return (
             <Formik
-                initialValues={{ name: 'Tamara', email: 'tami_noeps@hotmail.com', password: '1234abcd', password_confirmation: '1234abcd', zip_code: '28760', acepto_politica: true, image: undefined }}
+                initialValues={{ name: '', email: '', password: '', password_confirmation: '', zip_code: '', acepto_politica: false, image: undefined }}
                 validationSchema={Yup.object({
                     name: Yup.string()
                         .max(30, 'Nombre demasiado largo.')
-                        .required('Debes rellenar este campo.'),
+                        .required('Debes rellenar este campo.')
+                        .test(
+                            "checkName",
+                            "Ya existe un Retager con este nombre.",
+                            value => {
+                                return new Promise((resolve, reject) => {
+                                    let name = { name: value };
+                                    axios.post('/api/register/name', name)
+                                        .then(function (response) {
+                                            resolve(true);
+                                        }).catch(() => {
+                                            resolve(false);
+                                        });
+                                })
+                            }
+                        ),
                     email: Yup.string()
                         .max(255, 'Email demasiado largo.')
                         .email('Introduce un email válido.')
-                        .required('Debes rellenar este campo.'),
+                        .required('Debes rellenar este campo.')
+                        .test(
+                            "checkEmail",
+                            "Ya existe un Retager con este email.",
+                            value => {
+                                return new Promise((resolve, reject) => {
+                                    let email = { email: value };
+                                    axios.post('/api/register/email', email)
+                                        .then(function (response) {
+                                            resolve(true);
+                                        }).catch(() => {
+                                            resolve(false);
+                                        });
+                                })
+                            }
+                        ),
                     password: Yup.string()
                         .matches(/^(?=.*\d)(?=.*[a-zA-Z])[\w~@#$%^&*+=`|{}:;!.?\"()\[\]-]{8,30}$/,
                             'La contraseña debe tener entre 8 y 30 caracteres, al menos un dígito, y letras.')
@@ -79,13 +111,16 @@ class Register extends React.Component {
                             value => value && SUPPORTED_FORMATS.includes(value.type)
                         ),
                 })}
-                onSubmit={(values, { setSubmitting, setErrors }) => {
+                onSubmit={(values, { setSubmitting, setErrors, resetForm }) => {
+                    let sel = this;
                     const imageURL = this.editor.current.getImageScaledToCanvas().toDataURL();
                     values.image = imageURL;
                     console.log(values);
                     axios.post('/api/register', values)
                         .then(function (response) {
-                            console.log(response);
+                            sel.setState({ success: `${values.name} revisa tu email para confirmar tu registro.` });
+                            resetForm();
+                            setSubmitting(false);
                         })
                         .catch(function (error) {
                             setErrors({
@@ -95,6 +130,7 @@ class Register extends React.Component {
                                 password_confirmation: error.response.data.errors.password_confirmation,
                                 zip_code: error.response.data.errors.zip_code,
                             });
+                            sel.setState({ error: 'El formulario tiene errores.' });
                             setSubmitting(false);
                         });
                 }}
@@ -185,6 +221,13 @@ class Register extends React.Component {
                                                     <ErrorMessage name="acepto_politica">{msg => <div className="invalid-feedback">{msg}</div>}</ErrorMessage>
                                                 </div>
                                                 <br />
+                                                {this.state.error && <div className="alert alert-danger" role="alert">{this.state.error}</div>}
+                                                {this.state.success &&
+                                                    <div className="alert alert-success alert-dismissible fade show" role="alert">{this.state.success}
+                                                        <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>}
                                                 <div className="col text-center">
                                                     <button type="submit" className="boton-secundario" id="registrarse" disabled={(formik.isSubmitting)}>
                                                         Registrarse

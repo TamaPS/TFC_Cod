@@ -1,13 +1,15 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-
+import { withRouter } from "react-router";
+import { userContext } from '../login/userContext';
 class Login extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
+    const { history } = this.props;
     return (
       <Formik
         initialValues={{ email: '', password: '' }}
@@ -23,6 +25,9 @@ class Login extends React.Component {
             axios.post('/api/login', values)
               .then(function (response) {
                 console.log(response.data);
+                $('#loginModal').modal('hide');
+                history.push('/');
+                window.location.href = '/';
               })
               .catch(function (error) {
                 setErrors({
@@ -81,4 +86,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default withRouter(Login);
