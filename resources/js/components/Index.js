@@ -1,5 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+<<<<<<< HEAD
+import Header from './Header'
+import Navbar from './Navbar'
+import Carrousel from './Carrousel'
+import Cards from './cards/Cards'
+import FooterAll from './footers/FooterAll'
+import Login from './Login';
+import Register from './Register';
+
+function Index() {
+    return (
+        <div>
+            <Header />
+            <Navbar />
+            <Carrousel />
+            <Cards />
+            <FooterAll />
+            <Login />
+            <Register />
+        </div>
+=======
 import Principal from './Principal'
 import History from './History'
 import Condiciones from './Condiciones'
@@ -31,6 +52,7 @@ function Index() {
             <Route exact path="/retagers" component={Retagers} />
 
         </Router>
+>>>>>>> master
     );
 }
 

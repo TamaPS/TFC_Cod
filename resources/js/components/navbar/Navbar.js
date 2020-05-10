@@ -1,7 +1,4 @@
 import React from 'react';
-import Login from '../login/Login';
-import Register from '../register/Register';
-
 class Navbar extends React.Component {
   constructor(props) {
     super(props);
@@ -9,9 +6,6 @@ class Navbar extends React.Component {
 
   render() {
     return (
-      <div>
-        <Login />
-        <Register />
         <nav id="navIndex" className="navbar sticky-top navbar-expand-sm navbar-light">
           <a className="navbar-brand" href="#">
             <img className="ico" src="images/logo.svg" alt="logo2" id="brand" />
@@ -70,7 +64,6 @@ class Navbar extends React.Component {
             </ul>
           </div>
         </nav>
-      </div>
     )
   }
 }

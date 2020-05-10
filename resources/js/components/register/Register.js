@@ -48,59 +48,55 @@ class Register extends React.Component {
         ];
         return (
             <Formik
-                initialValues={{ name: 'Tamara', email: 'tami_noeps@hotmail.com', password: '1234abcd', password_confirmation: '1234abcd', zip_code: '28760', acepto_politica: true, file: undefined }}
+                initialValues={{ name: 'Tamara', email: 'tami_noeps@hotmail.com', password: '1234abcd', password_confirmation: '1234abcd', zip_code: '28760', acepto_politica: true, image: undefined }}
                 validationSchema={Yup.object({
-
                     name: Yup.string()
-                        .max(255, 'Nombre demasiado largo.')
+                        .max(30, 'Nombre demasiado largo.')
                         .required('Debes rellenar este campo.'),
-
                     email: Yup.string()
                         .max(255, 'Email demasiado largo.')
                         .email('Introduce un email válido.')
                         .required('Debes rellenar este campo.'),
-
                     password: Yup.string()
                         .matches(/^(?=.*\d)(?=.*[a-zA-Z])[\w~@#$%^&*+=`|{}:;!.?\"()\[\]-]{8,30}$/,
                             'La contraseña debe tener entre 8 y 30 caracteres, al menos un dígito, y letras.')
                         .required('Debes rellenar este campo.'),
-
                     password_confirmation: Yup.string()
                         .required('Debes rellenar este campo.')
                         .oneOf([Yup.ref('password'), null], 'La contraseña no coincide.'),
-
                     zip_code: Yup.string()
                         .min(5, 'El código postal debe tener 5 dígitos.')
                         .max(5, 'El código postal debe tener 5 dígitos.')
                         .required('Debes rellenar este campo.'),
-
                     acepto_politica: Yup.boolean()
                         .oneOf([true], 'Debes aceptar nuestra política para registrarte.'),
-
                 }).shape({
-                    file: Yup.mixed()
+                    image: Yup.mixed()
                         .required('Debes rellenar este campo.')
                         .test(
                             "fileFormat",
-                            "Unsupported Format",
+                            "Selecciona una imágen.",
                             value => value && SUPPORTED_FORMATS.includes(value.type)
                         ),
                 })}
                 onSubmit={(values, { setSubmitting, setErrors }) => {
-                    const imgURL = this.editor.current.getImageScaledToCanvas().toDataURL();
-                    axios.get('/sanctum/csrf-cookie').then(response => {
-                        axios.post('/api/login', values)
-                            .then(function (response) {
-                                console.log(response.data);
-                            })
-                            .catch(function (error) {
-                                setErrors({
-                                    email: error.response.data.errors.email,
-                                    password: error.response.data.errors.password,
-                                });
-                                setSubmitting(false);
+                    const imageURL = this.editor.current.getImageScaledToCanvas().toDataURL();
+                    values.image = imageURL;
+                    console.log(values);
+                    axios.post('/api/register', values)
+                        .then(function (response) {
+                            console.log(response);
+                        })
+                        .catch(function (error) {
+                            setErrors({
+                                name: error.response.data.errors.name,
+                                email: error.response.data.errors.email,
+                                password: error.response.data.errors.password,
+                                password_confirmation: error.response.data.errors.password_confirmation,
+                                zip_code: error.response.data.errors.zip_code,
                             });
-                    });
+                            setSubmitting(false);
+                        });
                 }}
             >
                 {formik => (
@@ -165,11 +161,11 @@ class Register extends React.Component {
                                                     ref={this.editor}
                                                 />
 
-                                                <input id="file" name="file" type="file" onChange={(event) => {
-                                                    formik.setFieldValue("file", event.currentTarget.files[0]);
+                                                <input id="image" name="image" type="file" onChange={(event) => {
+                                                    formik.setFieldValue("image", event.currentTarget.files[0]);
                                                     this.handleNewImage(event);
-                                                }} className={formik.errors.file ? "form-control is-invalid" : "form-control"} />
-                                                <ErrorMessage name="file">{msg => <div className="invalid-feedback">{msg}</div>}</ErrorMessage>
+                                                }} className={formik.errors.image ? "form-control is-invalid" : "form-control"} />
+                                                <ErrorMessage name="image">{msg => <div className="invalid-feedback">{msg}</div>}</ErrorMessage>
 
                                                 <br />
                                                 <input
