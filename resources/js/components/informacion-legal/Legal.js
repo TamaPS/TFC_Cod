@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Texto extends React.Component{
+class Legal extends React.Component{
     constructor(props){
         super(props);
     }
@@ -132,4 +132,4 @@ class Texto extends React.Component{
     }
 }
 
-export default Texto;
+export default Legal;

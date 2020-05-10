@@ -1,9 +1,9 @@
 import React from 'react';
 import Navbar from './navbar/Navbar'
-import Ambiente from './medio-ambiente/mAmbiente'
+import Privacidad from './politica-de-privacidad/Privacidad'
 import Copyright from './footers/Copyright'
 
-class mAmbiente extends React.Component{
+class PoliticaDePrivacidad extends React.Component{
     constructor(props){
         super(props);
     }
@@ -12,11 +12,11 @@ class mAmbiente extends React.Component{
         return(
            <div>
                 <Navbar />
-                <Ambiente />
+                <Privacidad />
                 <Copyright />
            </div>
         )
     }
 }
 
-export default mAmbiente;
+export default PoliticaDePrivacidad;

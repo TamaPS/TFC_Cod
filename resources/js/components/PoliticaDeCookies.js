@@ -1,9 +1,9 @@
 import React from 'react';
 import Navbar from './navbar/Navbar'
-import Texto from './informacion-legal/Texto'
+import Cookies from './politica-de-cookies/Cookies'
 import Copyright from './footers/Copyright'
 
-class Legal extends React.Component{
+class PoliticaDeCookies extends React.Component{
     constructor(props){
         super(props);
     }
@@ -12,11 +12,11 @@ class Legal extends React.Component{
         return(
            <div>
                 <Navbar />
-                <Texto />
+                <Cookies />
                 <Copyright />
            </div>
         )
     }
 }
 
-export default Legal;
+export default PoliticaDeCookies;
