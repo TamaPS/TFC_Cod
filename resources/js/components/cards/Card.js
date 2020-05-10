@@ -1,4 +1,7 @@
 import React from 'react';
+import {
+    Link
+  } from "react-router-dom";
 
 class Card extends React.Component {
     constructor(props) {
@@ -11,9 +14,9 @@ class Card extends React.Component {
                 <div className="single-banner">
                     <img src={this.props.image} alt={this.props.alt} />
                     <div className="inner-text">
-                        <a href="#" className="btn btn-default" role="button">
-                            <button className="boton" onClick={`location.href="${this.props.route}"`}>{this.props.text}</button>
-                        </a>
+                        <Link to="/retagers" className="btn btn-default" role="button">
+                            <button className="boton">{this.props.text}</button>
+                        </Link>
                     </div>
                 </div>
             </div>
