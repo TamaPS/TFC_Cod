@@ -41,7 +41,6 @@ class Index extends React.Component {
         axios.get('/api/user')
             .then(function (response) {
                 self.setState({ user: response.data })
-                console.log(self.state.user);
             })
             .catch(function (error) {
                 console.log(error);
