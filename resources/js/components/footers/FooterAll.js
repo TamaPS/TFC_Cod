@@ -1,4 +1,7 @@
 import React from 'react';
+import {
+    Link
+  } from "react-router-dom";
 
 class FooterAll extends React.Component {
     constructor(props) {
@@ -7,6 +10,7 @@ class FooterAll extends React.Component {
 
     render() {
         return (
+            
             <div>
                 <hr />
                 {/* Footer */}
@@ -18,11 +22,11 @@ class FooterAll extends React.Component {
                             {/* Grid column */}
                             <div className="col-lg-4 col-sm-12 mx-auto mt-3">
                                 <h6 className="text-uppercase mb-4 font-weight-bold">SOBRE RETAGED</h6>
-                                <a href="historia.html">Historia</a><br />
-                                <a href="mAmbiente.html">Medio Ambiente</a><br />
+                                <Link to="/history">Historia</Link><br />
+                                <Link to="/medio-ambiente">Medio Ambiente</Link><br />
                                 <br />
                                 <h6 className="text-uppercase mb-4 font-weight-bold">COMPRA VENTA</h6>
-                                <a href="cUso.html">Condiciones</a><br />
+                                <Link to="condiciones">Condiciones</Link><br />
                                 <br />
                             </div>
                             {/* Grid column */}
@@ -30,9 +34,9 @@ class FooterAll extends React.Component {
                             {/* Grid column */}
                             <div className="col-lg-4 col-sm-12 mx-auto mt-3">
                                 <h6 className="text-uppercase mb-4 font-weight-bold">Legal</h6>
-                                <a href="legal.html">Aviso legal</a><br />
-                                <a href="cookie.html">Política de cookies</a><br />
-                                <a href="privacidad.html">Política de privacidad</a><br />
+                                <Link to="/legal">Aviso legal</Link><br />
+                                <Link to="politica-de-cookies">Política de cookies</Link><br />
+                                <Link to="politica-de-privacidad">Política de privacidad</Link><br />
                                 <br />
                             </div>
                             {/* Grid column */}
@@ -53,6 +57,7 @@ class FooterAll extends React.Component {
                 {/*Copyright*/}
                 <p className="text-center" id="copyright">© 2020 Retaged</p>
             </div>
+            
         )
     }
 }

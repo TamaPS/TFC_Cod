@@ -11,7 +11,7 @@
   --blue: #3490dc;
   --indigo: #6574cd;
   --purple: #9561e2;
-  --pink: #f66d9b;
+  --pink: #ff81ff;
   --red: #e3342f;
   --orange: #f6993f;
   --yellow: #ffed4a;
@@ -535,7 +535,7 @@ mark,
 
 code {
   font-size: 87.5%;
-  color: #f66d9b;
+  color: #ff81ff;
   word-wrap: break-word;
 }
 
@@ -10926,7 +10926,8 @@ a.text-dark:focus {
 -----------------------*/
 
 .dropdown-menu {
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: white;
+  opacity: 0.9;
 }
 
 .dropdown-item:focus {
@@ -10943,10 +10944,10 @@ FORMULARIO
 
 .form {
   padding: 1em;
-  border: 1px solid #ccc;
+  border: 1px solid #d8d8d8;
   border-radius: 0.5em;
   margin: 1em;
-  box-shadow: 0.25em 0.25em 0 #ccc;
+  box-shadow: 0.25em 0.25em 0 #d8d8d8;
 }
 
 /*foto*/
@@ -10955,7 +10956,7 @@ FORMULARIO
   width: 100%;
   height: 180px;
   background-position: center;
-  background-color: #fff;
+  background-color: white;
   background-size: contain;
   background-repeat: no-repeat;
   display: inline-block;
@@ -11085,7 +11086,7 @@ a:active {
   /*35px;*/
   top: 0px;
   /*30px;*/
-  border: 13px solid #f3ade4;
+  border: 13px solid #fac3fa;
   content: "";
   opacity: 0.6;
   /*0.3;*/
@@ -11118,10 +11119,11 @@ a:active {
 -----------------------*/
 
 .boton {
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: white;
+  opacity: 0.7;
   letter-spacing: 0.2em;
   font-size: 1.5rem;
-  color: #585858;
+  color: #3a3a3a;
   margin: 1rem 0.5rem;
   padding: 0.325rem 1.25rem;
   border: none;
@@ -11142,7 +11144,7 @@ a:active {
   left: 0;
   height: 100%;
   width: 0;
-  background: #ffffff;
+  background: white;
   content: "";
   z-index: -1;
   transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
@@ -11154,7 +11156,7 @@ a:active {
 }
 
 .boton:hover {
-  color: #ffafff;
+  color: #fac3fa;
   outline: none;
 }
 
@@ -11214,7 +11216,7 @@ figure:hover::before {
 .retager img {
   width: 350px;
   border: solid 2px;
-  box-shadow: 10px 10px 10px gray;
+  box-shadow: 10px 10px 10px rgba(128, 128, 128, 0.39);
   transition: box-shadow 0.3s ease-in-out;
 }
 
@@ -11224,16 +11226,17 @@ figure:hover::before {
 
 .like {
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: black;
+  opacity: 0.2;
 }
 
 .like .fas {
-  color: #fdc8ff;
+  color: #fac3fa;
   transition: color 0.7s;
 }
 
 .like .fas:hover {
-  color: #f957ff;
+  color: #ff81ff;
 }
 
 .nombre {
@@ -11258,8 +11261,8 @@ Boton secundario
 .boton-secundario {
   background-color: rgba(255, 255, 255, 0.7);
   letter-spacing: 0.2em;
-  background-color: #ffffff;
-  color: #ffafff;
+  background-color: white;
+  color: #fac3fa;
   margin: 1rem 0.5rem;
   padding: 0.325rem 1.25rem;
   border: solid 1px #585858;
@@ -11280,7 +11283,7 @@ Boton secundario
   left: 0;
   height: 100%;
   width: 0;
-  background: #777777;
+  background: #3a3a3a;
   content: "";
   z-index: -1;
   transition: all 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
@@ -11292,7 +11295,7 @@ Boton secundario
 }
 
 .boton-secundario:hover {
-  color: #ffafff;
+  color: #fac3fa;
 }
 
 .boton-secundario:active {
@@ -11349,7 +11352,7 @@ input[type=text]:focus,
 }
 
 .precio-producto {
-  color: #ff89ff;
+  color: #ff81ff;
   font-weight: 600;
   font-size: 1.5rem;
   border-bottom: solid 1px;
@@ -11367,17 +11370,17 @@ input[type=text]:focus,
 .carousel-control-next-icon:after {
   content: ">";
   font-size: 55px;
-  color: #ff89ff;
+  color: #ff81ff;
 }
 
 .carousel-control-prev-icon:after {
   content: "<";
   font-size: 55px;
-  color: #ff89ff;
+  color: #ff81ff;
 }
 
 .descripcion {
-  color: #585858;
+  color: #3a3a3a;
   font-size: 1.3rem;
   font-weight: 600;
 }
@@ -11393,7 +11396,7 @@ input[type=text]:focus,
 
 .boton-terciario {
   text-decoration: none;
-  background-image: linear-gradient(#ff89ff, #ff89ff);
+  background-image: linear-gradient(#ff81ff, #ff81ff);
   background-position: 0% 100%;
   background-repeat: no-repeat;
   background-size: 0% 2px;
