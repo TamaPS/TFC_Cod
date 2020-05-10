@@ -18,7 +18,6 @@ import {
 function Index() {
     return (
         <Router>
-        
             <Route exact path="/" component={Principal} />
             <Route exact path="/history" component={History} />
             <Route exact path="/medio-ambiente" component={MedioAmbiente} />
@@ -29,7 +28,6 @@ function Index() {
             <Route exact path="/productos" component={Productos} />
             <Route exact path="/producto" component={Producto} />
             <Route exact path="/retagers" component={Retagers} />
-
         </Router>
     );
 }
