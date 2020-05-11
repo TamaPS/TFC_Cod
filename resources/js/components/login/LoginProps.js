@@ -8,6 +8,10 @@ class LoginProps extends React.Component {
     super(props);
   }
 
+  openRegister(){
+    $('#loginModal').modal('hide');
+  }
+
   render() {
     const { value } = this.props;
     return (
@@ -67,7 +71,7 @@ class LoginProps extends React.Component {
                         </div>
                       </div>
                       <div className="col text-center mt-4">
-                        <Link to="">Registrarse</Link>
+                        <Link to="/register" onClick={this.openRegister}>Registrarse</Link>
                       </div>
                       <div className="col text-center">
                         <button type="submit" className="boton-secundario" id="logearse" disabled={(formik.isSubmitting)}>

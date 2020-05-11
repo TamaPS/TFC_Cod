@@ -9,10 +9,10 @@ class NavbarProps extends React.Component {
 
     render() {
         return (
-            <nav id="navIndex" className="navbar sticky-top navbar-expand-sm navbar-light">
-                <a className="navbar-brand" href="/">
+            <nav id="navIndex" className={`navbar sticky-top navbar-expand-sm navbar-light ${this.props.class}`}>
+                <Link className="navbar-brand" to="/">
                     <img className="ico" src="images/logo.svg" alt="logo2" id="brand" />
-                </a>
+                </Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -36,7 +36,7 @@ class NavbarProps extends React.Component {
                                 {this.props.value.user.id && <Link className="dropdown-item" to="/" onClick={this.props.value.logoutUser}>Cerrar Sesión</Link>}
                                 {this.props.value.user.id && <a className="dropdown-item" href="">Editar Perfil</a>}
                                 {!this.props.value.user.id && <a className="dropdown-item" href="" data-toggle="modal" data-target="#loginModal">Iniciar Sesión</a>}
-                                {!this.props.value.user.id && <a className="dropdown-item" href="" data-toggle="modal" data-target="#registerModal">Registro</a>}
+                                {!this.props.value.user.id && <Link className="dropdown-item" to="/register">Registro</Link>}
                             </div>
                         </div>
                         {/*Fin de User*/}

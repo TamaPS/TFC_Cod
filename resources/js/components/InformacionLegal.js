@@ -1,7 +1,7 @@
 import React from 'react';
-import Navbar from './navbar/Navbar'
 import Legal from './informacion-legal/Legal'
 import Copyright from './footers/Copyright'
+import NavbarShown from './navbar/NavbarShown';
 
 class InformacionLegal extends React.Component{
     constructor(props){
@@ -11,7 +11,7 @@ class InformacionLegal extends React.Component{
     render(){
         return(
            <div>
-                <Navbar />
+                <NavbarShown />
                 <Legal />
                 <Copyright />
            </div>

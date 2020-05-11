@@ -1,7 +1,7 @@
 import React from 'react';
-import Navbar from './navbar/Navbar'
 import Privacidad from './politica-de-privacidad/Privacidad'
 import Copyright from './footers/Copyright'
+import NavbarShown from './navbar/NavbarShown';
 
 class PoliticaDePrivacidad extends React.Component{
     constructor(props){
@@ -11,7 +11,7 @@ class PoliticaDePrivacidad extends React.Component{
     render(){
         return(
            <div>
-                <Navbar />
+                <NavbarShown />
                 <Privacidad />
                 <Copyright />
            </div>

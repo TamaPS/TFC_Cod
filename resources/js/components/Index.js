@@ -11,7 +11,7 @@ import Productos from './Productos'
 import Producto from './Producto'
 import Retagers from './Retagers'
 import Login from './login/Login'
-import Register from './register/Register'
+import Register from './Register'
 import {
     BrowserRouter as Router,
     Route,
@@ -62,7 +62,6 @@ class Index extends React.Component {
             <Router>
                 <userContext.Provider value={value}>
                     <Login />
-                    <Register />
                     <Switch>
                         <Route exact path="/" component={Principal} />
                         <Route exact path="/history" component={History} />
@@ -74,6 +73,7 @@ class Index extends React.Component {
                         <Route exact path="/productos" component={Productos} />
                         <Route exact path="/producto" component={Producto} />
                         <Route exact path="/retagers" component={Retagers} />
+                        <Route exact path="/register" component={Register} />
                     </Switch>
                 </userContext.Provider>
             </Router>

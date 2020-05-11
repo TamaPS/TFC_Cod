@@ -1,7 +1,7 @@
 import React from 'react';
-import Navbar from './navbar/Navbar'
 import Story from './story/Story'
 import Copyright from './footers/Copyright'
+import NavbarShown from './navbar/NavbarShown';
 
 class History extends React.Component{
     constructor(props){
@@ -11,7 +11,7 @@ class History extends React.Component{
     render(){
         return(
            <div>
-                <Navbar />
+                <NavbarShown />
                 <Story />
                 <Copyright />
            </div>

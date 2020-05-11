@@ -4,9 +4,9 @@
 $(window).scroll(function () {
     var $this = $(this);
     if ($this.scrollTop() >= 150) {
-        $(".navbar").addClass("scrolled");
+        $(".navScrolled").addClass("scrolled");
     } else {
-        $(".navbar").removeClass("scrolled");
+        $(".navScrolled").removeClass("scrolled");
     };
 });
 
