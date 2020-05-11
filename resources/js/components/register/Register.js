@@ -112,13 +112,13 @@ class Register extends React.Component {
                         ),
                 })}
                 onSubmit={(values, { setSubmitting, setErrors, resetForm }) => {
-                    let sel = this;
+                    let self = this;
                     const imageURL = this.editor.current.getImageScaledToCanvas().toDataURL();
                     values.image = imageURL;
                     console.log(values);
                     axios.post('/api/register', values)
                         .then(function (response) {
-                            sel.setState({ success: `${values.name} revisa tu email para confirmar tu registro.` });
+                            self.setState({ success: `${values.name} revisa tu email para confirmar tu registro.` });
                             resetForm();
                             setSubmitting(false);
                         })
@@ -130,7 +130,7 @@ class Register extends React.Component {
                                 password_confirmation: error.response.data.errors.password_confirmation,
                                 zip_code: error.response.data.errors.zip_code,
                             });
-                            sel.setState({ error: 'El formulario tiene errores.' });
+                            self.setState({ error: 'El formulario tiene errores.' });
                             setSubmitting(false);
                         });
                 }}

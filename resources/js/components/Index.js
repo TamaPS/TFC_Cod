@@ -26,6 +26,7 @@ class Index extends React.Component {
             user: {}
         };
         this.handleLogout = this.handleLogout.bind(this);
+        this.handleLogin = this.handleLogin.bind(this);
     }
 
     handleLogout() {
@@ -36,7 +37,7 @@ class Index extends React.Component {
             });
     }
 
-    componentDidMount() {
+    handleLogin() {
         let self = this;
         axios.get('/api/user')
             .then(function (response) {
@@ -47,10 +48,15 @@ class Index extends React.Component {
             });
     }
 
+    componentDidMount() {
+        this.handleLogin();
+    }
+
     render() {
         const value = {
             user: this.state.user,
-            logoutUser: this.handleLogout
+            logoutUser: this.handleLogout,
+            loginUser: this.handleLogin
         }
         return (
             <Router>

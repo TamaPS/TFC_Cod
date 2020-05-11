@@ -1,5 +1,7 @@
 import React from 'react';
-
+import {
+    Link
+  } from "react-router-dom";
 class NavbarProps extends React.Component {
     constructor(props) {
         super(props);
@@ -31,7 +33,7 @@ class NavbarProps extends React.Component {
                                 <i className="far fa-user fa-lg"></i> {/* uses regular style */}
                             </a>
                             <div className="dropdown-menu dropdown-menu-right" aria-labelledby="user">
-                                {this.props.value.user.id && <a className="dropdown-item" href="/" onClick={this.props.value.logoutUser}>Cerrar Sesión</a>}
+                                {this.props.value.user.id && <Link className="dropdown-item" to="/" onClick={this.props.value.logoutUser}>Cerrar Sesión</Link>}
                                 {this.props.value.user.id && <a className="dropdown-item" href="">Editar Perfil</a>}
                                 {!this.props.value.user.id && <a className="dropdown-item" href="" data-toggle="modal" data-target="#loginModal">Iniciar Sesión</a>}
                                 {!this.props.value.user.id && <a className="dropdown-item" href="" data-toggle="modal" data-target="#registerModal">Registro</a>}
