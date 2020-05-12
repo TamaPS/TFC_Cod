@@ -1,7 +1,7 @@
 import React from 'react';
-import Navbar from './navbar/Navbar'
 import Conditions from './condiciones/Conditions'
 import Copyright from './footers/Copyright'
+import NavbarShown from './navbar/NavbarShown';
 
 class Condiciones extends React.Component{
     constructor(props){
@@ -11,7 +11,7 @@ class Condiciones extends React.Component{
     render(){
         return(
            <div>
-                <Navbar />
+                <NavbarShown />
                 <Conditions />
                 <Copyright />
            </div>

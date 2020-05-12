@@ -1,7 +1,7 @@
 import React from 'react';
-import Navbar from './navbar/Navbar'
 import Ambiente from './medio-ambiente/Ambiente'
 import Copyright from './footers/Copyright'
+import NavbarShown from './navbar/NavbarShown';
 
 class MedioAmbiente extends React.Component{
     constructor(props){
@@ -11,7 +11,7 @@ class MedioAmbiente extends React.Component{
     render(){
         return(
            <div>
-                <Navbar />
+                <NavbarShown />
                 <Ambiente />
                 <Copyright />
            </div>

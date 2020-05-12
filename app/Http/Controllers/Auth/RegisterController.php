@@ -8,8 +8,10 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\Response;
 
 class RegisterController extends Controller
 {
@@ -24,7 +26,27 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers;
+    //use RegistersUsers;
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        if ($response = $this->registered($request, $user)) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+                    ? new Response('', 201)
+                    : redirect($this->redirectPath());
+    }
+
+    protected function registered(Request $request, $user)
+    {
+        //
+    }
 
     /**
      * Where to redirect users after registration.
@@ -81,5 +103,19 @@ class RegisterController extends Controller
             'zip_code' => $data['zip_code'],
             'image' => $imageName,
         ]);
+    }
+
+    protected function checkName(Request $request)
+    {
+        if (User::where('name', '=', $request["name"])->exists()) {
+            return response()->json(['message' => 'Ya existe un Retager con este nombre.'], 404);
+        }
+    }
+
+    protected function checkEmail(Request $request)
+    {
+        if (User::where('email', '=', $request["email"])->exists()) {
+            return response()->json(['message' => 'Ya existe un Retager con este email.'], 404);
+        }
     }
 }

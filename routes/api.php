@@ -16,10 +16,12 @@ use Illuminate\Support\Facades\Auth;
 */
 Auth::routes(['verify' => true]);
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('/register/name', 'Auth\RegisterController@checkName');
+Route::post('/register/email', 'Auth\RegisterController@checkEmail');
 
 //Route::apiResource('/products', 'API\ProductController');
 Route::get('/products', 'API\ProductController@index');
