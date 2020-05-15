@@ -16,7 +16,7 @@ class LoginProps extends React.Component {
     this.state.password ? this.setState({ password: false }) : this.setState({ password: true })
   }
 
-  openRegister() {
+  closeModal() {
     $('#loginModal').modal('hide');
   }
 
@@ -75,11 +75,11 @@ class LoginProps extends React.Component {
                           <ErrorMessage name="password">{msg => <div className="invalid-feedback">{msg}</div>}</ErrorMessage>
                         </div>
                         <div className="col text-center mt-4">
-                          <Link to="">Olvidé la contraseña</Link>
+                          <Link to="/password-email" onClick={this.closeModal}>Olvidé la contraseña</Link>
                         </div>
                       </div>
                       <div className="col text-center mt-4">
-                        <Link to="/register" onClick={this.openRegister}>Registrarse</Link>
+                        <Link to="/register" onClick={this.closeModal}>Registrarse</Link>
                       </div>
                       <div className="col text-center">
                         <button type="submit" className="boton-secundario" id="logearse" disabled={(formik.isSubmitting)}>

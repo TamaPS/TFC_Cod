@@ -1,5 +1,4 @@
 import React from 'react';
-import { userContext } from './login/userContext';
 import {
     withRouter,
     Redirect
@@ -13,21 +12,12 @@ class Throw extends React.Component {
         const locationFrom = this.props.location;
         const to = this.props.to;
         return (
-            <userContext.Consumer>
-                {
-                    function (user) {
-                        return (
-                            <Redirect to=
-                                {{
-                                    pathname: to,
-                                    locationFrom: locationFrom,
-                                    user: user,
-                                }}
-                            />
-                        );
-                    }
-                }
-            </userContext.Consumer>
+            <Redirect to=
+                {{
+                    pathname: to,
+                    locationFrom: locationFrom,
+                }}
+            />
         )
     }
 }

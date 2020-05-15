@@ -1,8 +1,10 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import AvatarEditor from 'react-avatar-editor'
-
+import AvatarEditor from 'react-avatar-editor';
+import {
+    withRouter
+} from "react-router-dom";
 class BaseRegister extends React.Component {
     constructor(props) {
         super(props);
@@ -25,6 +27,17 @@ class BaseRegister extends React.Component {
         this.handlePositionChange = this.handlePositionChange.bind(this);
         this.handlePaswordShow = this.handlePaswordShow.bind(this);
         this.handlePaswordConfirmationShow = this.handlePaswordConfirmationShow.bind(this);
+    }
+
+    componentDidUpdate(prevProps) {
+        const { history } = this.props;
+        if (this.props !== prevProps) {
+            if (this.props.userData) {
+                if (this.props.userData.user.id) {
+                    history.push("/");
+                }
+            }
+        }
     }
 
     handlePaswordShow() {
@@ -256,4 +269,4 @@ class BaseRegister extends React.Component {
     }
 }
 
-export default BaseRegister;
+export default withRouter(BaseRegister);

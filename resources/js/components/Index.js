@@ -14,6 +14,7 @@ import Login from './login/Login'
 import Register from './Register'
 import Throw from './Throw'
 import Verify from './Verify';
+import PasswordEmail from './PasswordEmail';
 import {
     BrowserRouter as Router,
     Route,
@@ -78,6 +79,10 @@ class Index extends React.Component {
                         <Route exact path="/retagers" component={Retagers} />
                         <Route exact path="/register" component={Register} />
                         <Route exact path="/verify" component={Verify} />
+                        <Route exact path="/passwordemail" component={PasswordEmail} />
+                        <Route exact path="/password-email">
+                            <Throw to="/passwordemail" />
+                        </Route>
                         <Route exact path="/account-activation" >
                             <Throw to="/verify" />
                         </Route>

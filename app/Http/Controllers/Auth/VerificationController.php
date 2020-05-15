@@ -9,22 +9,18 @@ use App\User;
 class VerificationController extends Controller
 {
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
+        $this->middleware('guest');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
     }
 
     public function verify(Request $request)
     {
-        $token = substr($request->token, 7);
+        $token = substr($request->rememberToken, 7);
         $user = User::where('remember_token', $token)->first();
 
-        if($user){
+        if ($user) {
             $user->email_verified_at = now();
             $user->remember_token = null;
             $user->active = true;
