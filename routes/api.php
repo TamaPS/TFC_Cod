@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Auth::routes(['verify' => true]);
+Auth::routes();
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -25,3 +25,5 @@ Route::post('/register/email', 'Auth\RegisterController@checkEmail');
 
 //Route::apiResource('/products', 'API\ProductController');
 Route::get('/products', 'API\ProductController@index');
+
+Route::post('/account-activation', 'Auth\VerificationController@verify');

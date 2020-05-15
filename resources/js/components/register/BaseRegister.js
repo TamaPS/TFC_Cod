@@ -16,11 +16,23 @@ class BaseRegister extends React.Component {
             height: 350,
             error: '',
             success: '',
+            password: true,
+            passwordConfirmation: true,
         }
         this.editor = React.createRef();
         this.handleNewImage = this.handleNewImage.bind(this);
         this.handleScale = this.handleScale.bind(this);
         this.handlePositionChange = this.handlePositionChange.bind(this);
+        this.handlePaswordShow = this.handlePaswordShow.bind(this);
+        this.handlePaswordConfirmationShow = this.handlePaswordConfirmationShow.bind(this);
+    }
+
+    handlePaswordShow() {
+        this.state.password ? this.setState({ password: false }) : this.setState({ password: true })
+    }
+
+    handlePaswordConfirmationShow() {
+        this.state.passwordConfirmation ? this.setState({ passwordConfirmation: false }) : this.setState({ passwordConfirmation: true })
     }
 
     handleNewImage(e) {
@@ -154,10 +166,10 @@ class BaseRegister extends React.Component {
 
                                     <div className="form-group">
                                         <label>Contraseña</label>
-                                        <div className="input-group" id="show_hide_password">
-                                            <Field type="password" className={formik.errors.password ? "form-control is-invalid" : "form-control"} name="password" />
+                                        <div className="input-group">
+                                            <Field type={this.state.password ? "password" : "text"} className={formik.errors.password ? "form-control is-invalid" : "form-control"} name="password" />
                                             <div className="input-group-addon ml-2">
-                                                <a href=""><i className="fa fa-eye-slash" aria-hidden="true"></i></a>
+                                                <a href="#" onClick={this.handlePaswordShow}><i className={`fa ${this.state.password ? "fa-eye-slash" : "fa-eye"}`} aria-hidden="true"></i></a>
                                             </div>
                                             <ErrorMessage name="password">{msg => <div className="invalid-feedback">{msg}</div>}</ErrorMessage>
                                         </div>
@@ -165,10 +177,10 @@ class BaseRegister extends React.Component {
 
                                     <div className="form-group">
                                         <label>Repite la Contraseña</label>
-                                        <div className="input-group" id="show_hide_password2">
-                                            <Field type="password" className={formik.errors.password_confirmation ? "form-control is-invalid" : "form-control"} name="password_confirmation" />
+                                        <div className="input-group">
+                                            <Field type={this.state.passwordConfirmation ? "password" : "text"} className={formik.errors.password_confirmation ? "form-control is-invalid" : "form-control"} name="password_confirmation" />
                                             <div className="input-group-addon ml-2">
-                                                <a href=""><i className="fa fa-eye-slash" aria-hidden="true"></i></a>
+                                            <a href="#" onClick={this.handlePaswordConfirmationShow}><i className={`fa ${this.state.passwordConfirmation ? "fa-eye-slash" : "fa-eye"}`} aria-hidden="true"></i></a>
                                             </div>
                                             <ErrorMessage name="password_confirmation">{msg => <div className="invalid-feedback">{msg}</div>}</ErrorMessage>
                                         </div>

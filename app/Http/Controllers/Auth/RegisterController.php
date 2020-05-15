@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Response;
+use App\Notifications\AccountActivation;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -37,6 +39,10 @@ class RegisterController extends Controller
         if ($response = $this->registered($request, $user)) {
             return $response;
         }
+
+        //$invoice['id']= $user->id;
+
+        $user->notify(new AccountActivation($user));
 
         return $request->wantsJson()
                     ? new Response('', 201)
@@ -96,11 +102,14 @@ class RegisterController extends Controller
         $imageName = 'avatars/' . $data['name'] . '.png';
         Storage::put($imageName, base64_decode($image));
 
+        $random = Str::random(40);
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'zip_code' => $data['zip_code'],
+            'remember_token' => sha1($data['email'].$random),
             'image' => $imageName,
         ]);
     }

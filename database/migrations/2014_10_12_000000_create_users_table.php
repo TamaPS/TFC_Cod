@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('zip_code', 5);
             $table->string('image');
+            $table->boolean('active')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
