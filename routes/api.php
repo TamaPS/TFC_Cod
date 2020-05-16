@@ -11,9 +11,12 @@ Route::post('/register/email', 'Auth\RegisterController@checkEmail');
 Route::post('/account-activation', 'Auth\VerificationController@verify');
 Route::post('/password-email', 'Auth\ForgotPasswordController@sendPassword');
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::middleware('auth:sanctum')->get('/user', 'Auth\UserController@show');
+Route::middleware('auth:sanctum')->put('/user/edit/data', 'Auth\UserController@updateData');
+Route::middleware('auth:sanctum')->put('/user/edit/password', 'Auth\UserController@updatePassword');
+Route::middleware('auth:sanctum')->put('/user/edit/image', 'Auth\UserController@updateImage');
+Route::middleware('auth:sanctum')->post('/user/name', 'Auth\UserController@checkName');
+
 
 //Route::apiResource('/products', 'API\ProductController');
 Route::get('/products', 'API\ProductController@index');

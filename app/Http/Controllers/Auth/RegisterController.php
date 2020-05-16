@@ -59,7 +59,7 @@ class RegisterController extends Controller
         $image = str_replace('data:image/png;base64,', '', $image);
         $image = str_replace(' ', '+', $image);
         $imageName = 'avatars/' . $data['name'] . '.png';
-        Storage::put($imageName, base64_decode($image));
+        Storage::put('public/'.$imageName, base64_decode($image));
 
         $random = Str::random(40);
 
@@ -69,7 +69,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'zip_code' => $data['zip_code'],
             'remember_token' => sha1($data['email'].$random),
-            'image' => $imageName,
+            'image' => 'storage/'.$imageName,
         ]);
     }
     
@@ -78,6 +78,8 @@ class RegisterController extends Controller
         if (User::where('name', '=', $request["name"])->exists()) {
             return response()->json(['message' => 'Ya existe un Retager con este nombre.'], 404);
         }
+
+        return response()->json(['message' => 'Bien.'], 201);
     }
 
     protected function checkEmail(Request $request)

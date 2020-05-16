@@ -21,6 +21,7 @@ import {
     Switch
 } from "react-router-dom";
 import { userContext } from './login/userContext';
+import EditProfile from './EditProfile';
 
 
 class Index extends React.Component {
@@ -80,6 +81,7 @@ class Index extends React.Component {
                         <Route exact path="/register" component={Register} />
                         <Route exact path="/verify" component={Verify} />
                         <Route exact path="/passwordemail" component={PasswordEmail} />
+                        <Route exact path="/edit-profile" component={EditProfile} />
                         <Route exact path="/password-email">
                             <Throw to="/passwordemail" />
                         </Route>
