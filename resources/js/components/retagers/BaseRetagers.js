@@ -13,11 +13,17 @@ class BaseRetagers extends React.Component {
             to: null,
             total: null,
         }
+        this.takeData = this.takeData.bind(this);
     }
 
     componentDidMount() {
+        this.takeData(1);
+    }
+
+    takeData(page) {
         const self = this;
-        axios.get('/api/retagers?page=' + this.state.current_page)
+        let zip_code = '';
+        axios.get('/api/retagers?page=' + page + '&zip_code=' + zip_code)
             .then(function (response) {
                 console.log(response.data);
                 const retagerComponents = response.data.data.map(retager =>
@@ -27,7 +33,14 @@ class BaseRetagers extends React.Component {
                         image={retager.image}
                         nombre={retager.name}
                     />);
-                self.setState({ retagerComponents });
+                self.setState({
+                    retagerComponents: retagerComponents,
+                    current_page: response.data.current_page,
+                    last_page: response.data.last_page,
+                    per_page: response.data.per_page,
+                    to: response.data.to,
+                    total: response.data.total,
+                });
             })
             .catch(function (error) {
 
@@ -43,12 +56,23 @@ class BaseRetagers extends React.Component {
                     per_page={this.state.per_page}
                     to={this.state.to}
                     total={this.state.total}
+                    refresh={this.takeData}
                 />
                 <div className="container-fluid d-flex justify-content-center mt-5">
                     <div className="row ">
                         {this.state.retagerComponents}
                     </div>
                 </div>
+                <br />
+                <Pagination
+                    current_page={this.state.current_page}
+                    last_page={this.state.last_page}
+                    per_page={this.state.per_page}
+                    to={this.state.to}
+                    total={this.state.total}
+                    refresh={this.takeData}
+                />
+                <br />
             </div>
         )
     }

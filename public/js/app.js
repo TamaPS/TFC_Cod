@@ -85387,38 +85387,43 @@ var Pagination = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(Pagination, [{
+    key: "refresh",
+    value: function refresh(page) {
+      var paginaInicial = this.props.current_page + page;
+      if (paginaInicial < 1) paginaInicial = 1;
+      this.props.refresh(paginaInicial);
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this = this;
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
         "aria-label": "Page navigation example"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-        className: "pagination"
+        className: "pagination justify-content-center",
+        id: "paginacion"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "page-item"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        className: this.props.current_page > 1 ? 'page-item' : 'page-item disabled'
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "page-link",
-        href: "#"
-      }, "Previous")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "page-item"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        onClick: function onClick() {
+          return _this.refresh(-1);
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        "class": "fas fa-backward"
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "page-link"
+      }, this.props.current_page + '/' + this.props.last_page)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: this.props.current_page < this.props.last_page ? 'page-item' : 'page-item disabled'
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "page-link",
-        href: "#"
-      }, "1")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "page-item"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        className: "page-link",
-        href: "#"
-      }, "2")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "page-item"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        className: "page-link",
-        href: "#"
-      }, "3")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "page-item"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        className: "page-link",
-        href: "#"
-      }, "Next"))));
+        onClick: function onClick() {
+          return _this.refresh(1);
+        }
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        "class": "fas fa-forward"
+      })))));
     }
   }]);
 
@@ -89635,14 +89640,21 @@ var BaseRetagers = /*#__PURE__*/function (_React$Component) {
       to: null,
       total: null
     };
+    _this.takeData = _this.takeData.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(BaseRetagers, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      this.takeData(1);
+    }
+  }, {
+    key: "takeData",
+    value: function takeData(page) {
       var self = this;
-      axios.get('/api/retagers?page=' + this.state.current_page).then(function (response) {
+      var zip_code = '';
+      axios.get('/api/retagers?page=' + page + '&zip_code=' + zip_code).then(function (response) {
         console.log(response.data);
         var retagerComponents = response.data.data.map(function (retager) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PropsRetagers__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -89653,7 +89665,12 @@ var BaseRetagers = /*#__PURE__*/function (_React$Component) {
           });
         });
         self.setState({
-          retagerComponents: retagerComponents
+          retagerComponents: retagerComponents,
+          current_page: response.data.current_page,
+          last_page: response.data.last_page,
+          per_page: response.data.per_page,
+          to: response.data.to,
+          total: response.data.total
         });
       })["catch"](function (error) {});
     }
@@ -89665,12 +89682,20 @@ var BaseRetagers = /*#__PURE__*/function (_React$Component) {
         last_page: this.state.last_page,
         per_page: this.state.per_page,
         to: this.state.to,
-        total: this.state.total
+        total: this.state.total,
+        refresh: this.takeData
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container-fluid d-flex justify-content-center mt-5"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row "
-      }, this.state.retagerComponents)));
+      }, this.state.retagerComponents)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Pagination__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        current_page: this.state.current_page,
+        last_page: this.state.last_page,
+        per_page: this.state.per_page,
+        to: this.state.to,
+        total: this.state.total,
+        refresh: this.takeData
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null));
     }
   }]);
 
