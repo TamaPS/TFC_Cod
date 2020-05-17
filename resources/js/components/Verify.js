@@ -5,7 +5,6 @@ import FooterAll from './footers/FooterAll';
 import Header from './header/Header';
 import Carrousel from './carrousel/Carrousel';
 import Cards from './cards/Cards';
-import { userContext } from './login/userContext';
 
 class Verify extends React.Component {
     constructor(props) {

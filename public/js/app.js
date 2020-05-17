@@ -85165,9 +85165,15 @@ var Index = /*#__PURE__*/function (_React$Component) {
         component: _Producto__WEBPACK_IMPORTED_MODULE_10__["default"]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__["Route"], {
         exact: true,
-        path: "/retagers",
-        component: _Retagers__WEBPACK_IMPORTED_MODULE_11__["default"]
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__["Route"], {
+        path: "/retagers"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Retagers__WEBPACK_IMPORTED_MODULE_11__["default"], {
+        from: ""
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__["Route"], {
+        exact: true,
+        path: "/retagers-cerca"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Retagers__WEBPACK_IMPORTED_MODULE_11__["default"], {
+        from: "cerca"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_17__["Route"], {
         exact: true,
         path: "/register",
         component: _Register__WEBPACK_IMPORTED_MODULE_13__["default"]
@@ -85411,7 +85417,7 @@ var Pagination = /*#__PURE__*/function (_React$Component) {
           return _this.refresh(-1);
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        "class": "fas fa-backward"
+        className: "fas fa-backward"
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "page-link"
       }, this.props.current_page + '/' + this.props.last_page)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
@@ -85422,7 +85428,7 @@ var Pagination = /*#__PURE__*/function (_React$Component) {
           return _this.refresh(1);
         }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        "class": "fas fa-forward"
+        className: "fas fa-forward"
       })))));
     }
   }]);
@@ -85933,6 +85939,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _navbar_Navbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./navbar/Navbar */ "./resources/js/components/navbar/Navbar.js");
 /* harmony import */ var _retagers_BaseRetagers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./retagers/BaseRetagers */ "./resources/js/components/retagers/BaseRetagers.js");
 /* harmony import */ var _footers_Copyright__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./footers/Copyright */ "./resources/js/components/footers/Copyright.js");
+/* harmony import */ var _login_userContext__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./login/userContext */ "./resources/js/components/login/userContext.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -85961,6 +85968,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var Retagers = /*#__PURE__*/function (_React$Component) {
   _inherits(Retagers, _React$Component);
 
@@ -85975,7 +85983,13 @@ var Retagers = /*#__PURE__*/function (_React$Component) {
   _createClass(Retagers, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_header_Header__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_navbar_Navbar__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_retagers_BaseRetagers__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_footers_Copyright__WEBPACK_IMPORTED_MODULE_4__["default"], null));
+      var from = this.props.from;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_header_Header__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_navbar_Navbar__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_login_userContext__WEBPACK_IMPORTED_MODULE_5__["userContext"].Consumer, null, function (userData) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_retagers_BaseRetagers__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          userData: userData,
+          from: from
+        });
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_footers_Copyright__WEBPACK_IMPORTED_MODULE_4__["default"], null));
     }
   }]);
 
@@ -86072,7 +86086,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _header_Header__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./header/Header */ "./resources/js/components/header/Header.js");
 /* harmony import */ var _carrousel_Carrousel__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./carrousel/Carrousel */ "./resources/js/components/carrousel/Carrousel.js");
 /* harmony import */ var _cards_Cards__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./cards/Cards */ "./resources/js/components/cards/Cards.js");
-/* harmony import */ var _login_userContext__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./login/userContext */ "./resources/js/components/login/userContext.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -86094,7 +86107,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
 
 
 
@@ -86193,7 +86205,7 @@ var Card = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "inner-text"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/retagers",
+        to: this.props.route,
         className: "btn btn-default",
         role: "button"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -86269,7 +86281,7 @@ var Cards = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Card__WEBPACK_IMPORTED_MODULE_1__["default"], {
         image: "images/retager1.jpeg",
         alt: "cerca",
-        route: "/retagers",
+        route: "/retagers-cerca",
         text: "RETAGERS CERCA"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Card__WEBPACK_IMPORTED_MODULE_1__["default"], {
         image: "images/retager2.jpeg",
@@ -89638,24 +89650,51 @@ var BaseRetagers = /*#__PURE__*/function (_React$Component) {
       last_page: null,
       per_page: null,
       to: null,
-      total: null
+      total: null,
+      alert: false,
+      zip_code: ''
     };
     _this.takeData = _this.takeData.bind(_assertThisInitialized(_this));
+    _this.zip_code = '';
     return _this;
   }
 
   _createClass(BaseRetagers, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      this.alerta();
       this.takeData(1);
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (this.props !== prevProps) {
+        this.alerta();
+        this.takeData(this.props.current_page);
+      }
+    }
+  }, {
+    key: "alerta",
+    value: function alerta() {
+      if (this.props.from == 'cerca') {
+        if (!this.props.userData.user.id) {
+          this.setState({
+            alert: true
+          });
+          this.zip_code = '';
+        } else {
+          this.setState({
+            alert: false
+          });
+          this.zip_code = this.props.userData.user.zip_code;
+        }
+      }
     }
   }, {
     key: "takeData",
     value: function takeData(page) {
       var self = this;
-      var zip_code = '';
-      axios.get('/api/retagers?page=' + page + '&zip_code=' + zip_code).then(function (response) {
-        console.log(response.data);
+      axios.get('/api/retagers?page=' + page + '&zip_code=' + this.zip_code).then(function (response) {
         var retagerComponents = response.data.data.map(function (retager) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PropsRetagers__WEBPACK_IMPORTED_MODULE_1__["default"], {
             key: retager.id,
@@ -89677,7 +89716,17 @@ var BaseRetagers = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Pagination__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.alert && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "alert alert-dark alert-dismissible fade show",
+        role: "alert"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Para ver los retagers cerca de ti, inicia sesi\xF3n."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "button",
+        className: "close",
+        "data-dismiss": "alert",
+        "aria-label": "Close"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        "aria-hidden": "true"
+      }, "\xD7"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Pagination__WEBPACK_IMPORTED_MODULE_2__["default"], {
         current_page: this.state.current_page,
         last_page: this.state.last_page,
         per_page: this.state.per_page,
