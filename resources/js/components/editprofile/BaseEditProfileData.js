@@ -12,7 +12,7 @@ class BaseEditProfileData extends React.Component {
             success: '',
         }
     }
-    
+
     componentDidUpdate(prevProps) {
         const { history } = this.props;
         if (this.props !== prevProps) {
@@ -30,7 +30,7 @@ class BaseEditProfileData extends React.Component {
                 initialValues={{ name: this.props.userData.user.name, zip_code: this.props.userData.user.zip_code }}
                 validationSchema={Yup.object({
                     name: Yup.string()
-                        .max(30, 'Nombre demasiado largo.')
+                        .max(20, 'Nombre demasiado largo.')
                         .required('Debes rellenar este campo.')
                         .test(
                             "checkName",
@@ -91,7 +91,12 @@ class BaseEditProfileData extends React.Component {
                                     </div>
                                 </div>
                                 <div className="col-12 mx-auto">
-                                    {this.state.error && <div className="alert alert-danger" role="alert">{this.state.error}</div>}
+                                    {this.state.error &&
+                                        <div className="alert alert-danger alert-dismissible fade show" role="alert">{this.state.error}
+                                            <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>}
                                     {this.state.success &&
                                         <div className="alert alert-success alert-dismissible fade show" role="alert">{this.state.success}
                                             <button type="button" className="close" data-dismiss="alert" aria-label="Close">

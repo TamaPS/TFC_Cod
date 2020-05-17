@@ -12,10 +12,10 @@ class BaseEditProfile extends React.Component {
             image: this.props.userData.user.image,
             allowZoomOut: false,
             position: { x: 0.5, y: 0.5 },
-            scale: 1.2,
+            scale: 1,
             preview: null,
-            width: 230,
-            height: 350,
+            width: 350,
+            height: 490,
             error: '',
             success: '',
         }
@@ -86,7 +86,7 @@ class BaseEditProfile extends React.Component {
                             <div className="row form">
                                 <div className="col-lg-12 col-sm-12">
                                     <br />
-                                    <div className="mx-auto" style={{ width: '230px' }}>
+                                    <div className="mx-auto" style={{ width: '350px' }}>
                                         <AvatarEditor
                                             scale={parseFloat(this.state.scale)}
                                             width={this.state.width}
@@ -104,10 +104,10 @@ class BaseEditProfile extends React.Component {
                                             type="range"
                                             onChange={this.handleScale}
                                             min={this.state.allowZoomOut ? '0.1' : '1'}
-                                            max="3"
+                                            max="4"
                                             step="0.01"
-                                            defaultValue="1"
-                                            style={{ width: '230px', color: 'pink' }}
+                                            defaultValue="0"
+                                            style={{ width: '352px', color: 'pink' }}
                                         />
                                     </div>
                                     <br />
@@ -118,7 +118,13 @@ class BaseEditProfile extends React.Component {
                                     <ErrorMessage name="image">{msg => <div className="invalid-feedback">{msg}</div>}</ErrorMessage>
                                 </div>
                                 <div className="col-12 mx-auto">
-                                    {this.state.error && <div className="alert alert-danger" role="alert">{this.state.error}</div>}
+                                    <br />
+                                    {this.state.error &&
+                                        <div className="alert alert-danger alert-dismissible fade show" role="alert">{this.state.error}
+                                            <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>}
                                     {this.state.success &&
                                         <div className="alert alert-success alert-dismissible fade show" role="alert">{this.state.success}
                                             <button type="button" className="close" data-dismiss="alert" aria-label="Close">

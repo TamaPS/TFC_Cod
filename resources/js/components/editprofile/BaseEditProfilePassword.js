@@ -83,7 +83,12 @@ class BaseEditProfilePassword extends React.Component {
                                     </div>
                                 </div>
                                 <div className="col-12 mx-auto">
-                                    {this.state.error && <div className="alert alert-danger" role="alert">{this.state.error}</div>}
+                                    {this.state.error &&
+                                        <div className="alert alert-danger alert-dismissible fade show" role="alert">{this.state.error}
+                                            <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>}
                                     {this.state.success &&
                                         <div className="alert alert-success alert-dismissible fade show" role="alert">{this.state.success}
                                             <button type="button" className="close" data-dismiss="alert" aria-label="Close">
