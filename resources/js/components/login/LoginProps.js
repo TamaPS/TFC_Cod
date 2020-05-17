@@ -47,6 +47,7 @@ class LoginProps extends React.Component {
                   email: error.response.data.errors.email,
                   password: error.response.data.errors.password,
                 });
+                values.password = '';
                 setSubmitting(false);
               });
           });

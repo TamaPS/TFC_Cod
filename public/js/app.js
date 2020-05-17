@@ -86759,9 +86759,16 @@ var BaseEditProfileData = /*#__PURE__*/function (_React$Component) {
         }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "col-12 mx-auto"
         }, _this2.state.error && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "alert alert-danger",
+          className: "alert alert-danger alert-dismissible fade show",
           role: "alert"
-        }, _this2.state.error), _this2.state.success && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, _this2.state.error, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          type: "button",
+          className: "close",
+          "data-dismiss": "alert",
+          "aria-label": "Close"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          "aria-hidden": "true"
+        }, "\xD7"))), _this2.state.success && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "alert alert-success alert-dismissible fade show",
           role: "alert"
         }, _this2.state.success, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -86854,7 +86861,7 @@ var BaseEditProfile = /*#__PURE__*/function (_React$Component) {
         x: 0.5,
         y: 0.5
       },
-      scale: 1.2,
+      scale: 1,
       preview: null,
       width: 230,
       height: 350,
@@ -86962,9 +86969,9 @@ var BaseEditProfile = /*#__PURE__*/function (_React$Component) {
           type: "range",
           onChange: _this2.handleScale,
           min: _this2.state.allowZoomOut ? '0.1' : '1',
-          max: "3",
+          max: "4",
           step: "0.01",
-          defaultValue: "1",
+          defaultValue: "0",
           style: {
             width: '230px',
             color: 'pink'
@@ -86987,10 +86994,17 @@ var BaseEditProfile = /*#__PURE__*/function (_React$Component) {
           }, msg);
         })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "col-12 mx-auto"
-        }, _this2.state.error && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "alert alert-danger",
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), _this2.state.error && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "alert alert-danger alert-dismissible fade show",
           role: "alert"
-        }, _this2.state.error), _this2.state.success && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, _this2.state.error, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          type: "button",
+          className: "close",
+          "data-dismiss": "alert",
+          "aria-label": "Close"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          "aria-hidden": "true"
+        }, "\xD7"))), _this2.state.success && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "alert alert-success alert-dismissible fade show",
           role: "alert"
         }, _this2.state.success, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -87191,9 +87205,16 @@ var BaseEditProfilePassword = /*#__PURE__*/function (_React$Component) {
         })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "col-12 mx-auto"
         }, _this2.state.error && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "alert alert-danger",
+          className: "alert alert-danger alert-dismissible fade show",
           role: "alert"
-        }, _this2.state.error), _this2.state.success && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, _this2.state.error, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          type: "button",
+          className: "close",
+          "data-dismiss": "alert",
+          "aria-label": "Close"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          "aria-hidden": "true"
+        }, "\xD7"))), _this2.state.success && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "alert alert-success alert-dismissible fade show",
           role: "alert"
         }, _this2.state.success, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -87706,6 +87727,7 @@ var LoginProps = /*#__PURE__*/function (_React$Component) {
                 email: error.response.data.errors.email,
                 password: error.response.data.errors.password
               });
+              values.password = '';
               setSubmitting(false);
             });
           });
@@ -89111,7 +89133,7 @@ var BaseRegister = /*#__PURE__*/function (_React$Component) {
         x: 0.5,
         y: 0.5
       },
-      scale: 1.2,
+      scale: 1,
       preview: null,
       width: 230,
       height: 350,
@@ -89383,9 +89405,9 @@ var BaseRegister = /*#__PURE__*/function (_React$Component) {
           type: "range",
           onChange: _this2.handleScale,
           min: _this2.state.allowZoomOut ? '0.1' : '1',
-          max: "3",
+          max: "4",
           step: "0.01",
-          defaultValue: "1",
+          defaultValue: "0",
           style: {
             width: '230px',
             color: 'pink'
@@ -89424,9 +89446,16 @@ var BaseRegister = /*#__PURE__*/function (_React$Component) {
             className: "invalid-feedback"
           }, msg);
         })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), _this2.state.error && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "alert alert-danger",
+          className: "alert alert-danger alert-dismissible fade show",
           role: "alert"
-        }, _this2.state.error), _this2.state.success && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, _this2.state.error, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          type: "button",
+          className: "close",
+          "data-dismiss": "alert",
+          "aria-label": "Close"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          "aria-hidden": "true"
+        }, "\xD7"))), _this2.state.success && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "alert alert-success alert-dismissible fade show",
           role: "alert"
         }, _this2.state.success, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -89870,8 +89899,8 @@ function changeColor(x) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Torre\Desktop\TFC_Cod\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Torre\Desktop\TFC_Cod\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\tperez\Desktop\Gits\TFC_Cod\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\tperez\Desktop\Gits\TFC_Cod\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

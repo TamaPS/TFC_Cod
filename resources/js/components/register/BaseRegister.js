@@ -12,7 +12,7 @@ class BaseRegister extends React.Component {
             image: 'images/retager2.jpeg',
             allowZoomOut: false,
             position: { x: 0.5, y: 0.5 },
-            scale: 1.2,
+            scale: 1,
             preview: null,
             width: 230,
             height: 350,
@@ -193,7 +193,7 @@ class BaseRegister extends React.Component {
                                         <div className="input-group">
                                             <Field type={this.state.passwordConfirmation ? "password" : "text"} className={formik.errors.password_confirmation ? "form-control is-invalid" : "form-control"} name="password_confirmation" />
                                             <div className="input-group-addon ml-2">
-                                            <a href="#" onClick={this.handlePaswordConfirmationShow}><i className={`fa ${this.state.passwordConfirmation ? "fa-eye-slash" : "fa-eye"}`} aria-hidden="true"></i></a>
+                                                <a href="#" onClick={this.handlePaswordConfirmationShow}><i className={`fa ${this.state.passwordConfirmation ? "fa-eye-slash" : "fa-eye"}`} aria-hidden="true"></i></a>
                                             </div>
                                             <ErrorMessage name="password_confirmation">{msg => <div className="invalid-feedback">{msg}</div>}</ErrorMessage>
                                         </div>
@@ -225,9 +225,9 @@ class BaseRegister extends React.Component {
                                             type="range"
                                             onChange={this.handleScale}
                                             min={this.state.allowZoomOut ? '0.1' : '1'}
-                                            max="3"
+                                            max="4"
                                             step="0.01"
-                                            defaultValue="1"
+                                            defaultValue="0"
                                             style={{ width: '230px', color: 'pink' }}
                                         />
                                     </div>
@@ -246,7 +246,12 @@ class BaseRegister extends React.Component {
                                         <ErrorMessage name="acepto_politica">{msg => <div className="invalid-feedback">{msg}</div>}</ErrorMessage>
                                     </div>
                                     <br />
-                                    {this.state.error && <div className="alert alert-danger" role="alert">{this.state.error}</div>}
+                                    {this.state.error &&
+                                        <div className="alert alert-danger alert-dismissible fade show" role="alert">{this.state.error}
+                                            <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>}
                                     {this.state.success &&
                                         <div className="alert alert-success alert-dismissible fade show" role="alert">{this.state.success}
                                             <button type="button" className="close" data-dismiss="alert" aria-label="Close">
