@@ -11,7 +11,7 @@ class PropsRetagers extends React.Component {
             <div className="col retager d-flex justify-content-end">
                 <a className="nav-link like" href="#">
                     <span className="likes">{this.props.likes}</span>
-                    <i className="fas fa-heart fa-lg " onClick='changeColor(this)'></i>
+                    <i className="fas fa-heart fa-lg"></i>
                 </a>
                 <a href="#"><img src={this.props.image} alt={this.props.nombre} /></a>
             </div>

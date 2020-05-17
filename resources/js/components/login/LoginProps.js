@@ -71,7 +71,7 @@ class LoginProps extends React.Component {
                         <div className="input-group">
                           <Field name="password" className={formik.errors.password ? "form-control is-invalid" : "form-control"} type={this.state.password ? "password" : "text"} />
                           <div className="input-group-addon ml-2">
-                          <a href="#" onClick={this.handlePaswordShow}><i className={`fa ${this.state.password ? "fa-eye-slash" : "fa-eye"}`} aria-hidden="true"></i></a>
+                            <a href="#" onClick={this.handlePaswordShow}><i className={`fa ${this.state.password ? "fa-eye-slash" : "fa-eye"}`} aria-hidden="true"></i></a>
                           </div>
                           <ErrorMessage name="password">{msg => <div className="invalid-feedback">{msg}</div>}</ErrorMessage>
                         </div>

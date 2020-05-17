@@ -14,8 +14,8 @@ class BaseRegister extends React.Component {
             position: { x: 0.5, y: 0.5 },
             scale: 1,
             preview: null,
-            width: 230,
-            height: 350,
+            width: 350,
+            height: 490,
             error: '',
             success: '',
             password: true,
@@ -78,7 +78,7 @@ class BaseRegister extends React.Component {
                 initialValues={{ name: '', email: '', password: '', password_confirmation: '', zip_code: '', acepto_politica: false, image: undefined }}
                 validationSchema={Yup.object({
                     name: Yup.string()
-                        .max(30, 'Nombre demasiado largo.')
+                        .max(20, 'Nombre demasiado largo.')
                         .required('Debes rellenar este campo.')
                         .test(
                             "checkName",
@@ -204,10 +204,16 @@ class BaseRegister extends React.Component {
                                         <Field type="text" className={formik.errors.zip_code ? "form-control is-invalid" : "form-control"} name="zip_code" />
                                         <ErrorMessage name="zip_code">{msg => <div className="invalid-feedback">{msg}</div>}</ErrorMessage>
                                     </div>
+
+                                    <div className="form-check">
+                                        <Field type="checkbox" className={formik.errors.acepto_politica ? "form-check-input is-invalid" : "form-check-input"} name="acepto_politica" />
+                                        <label htmlFor="acepto_politica" className="form-check-label">Acepto la política de privacidad</label>
+                                        <ErrorMessage name="acepto_politica">{msg => <div className="invalid-feedback">{msg}</div>}</ErrorMessage>
+                                    </div>
                                 </div>
                                 <div className="col-lg-6 col-sm-12">
                                     <br />
-                                    <div className="mx-auto" style={{ width: '230px' }}>
+                                    <div className="mx-auto" style={{ width: '350px' }}>
                                         <AvatarEditor
                                             scale={parseFloat(this.state.scale)}
                                             width={this.state.width}
@@ -228,7 +234,7 @@ class BaseRegister extends React.Component {
                                             max="4"
                                             step="0.01"
                                             defaultValue="0"
-                                            style={{ width: '230px', color: 'pink' }}
+                                            style={{ width: '352px', color: 'pink' }}
                                         />
                                     </div>
                                     <br />
@@ -240,11 +246,6 @@ class BaseRegister extends React.Component {
 
                                 </div>
                                 <div className="col-12 mx-auto">
-                                    <div className="form-check">
-                                        <Field type="checkbox" className={formik.errors.acepto_politica ? "form-check-input is-invalid" : "form-check-input"} name="acepto_politica" />
-                                        <label htmlFor="acepto_politica" className="form-check-label">Acepto la política de privacidad</label>
-                                        <ErrorMessage name="acepto_politica">{msg => <div className="invalid-feedback">{msg}</div>}</ErrorMessage>
-                                    </div>
                                     <br />
                                     {this.state.error &&
                                         <div className="alert alert-danger alert-dismissible fade show" role="alert">{this.state.error}

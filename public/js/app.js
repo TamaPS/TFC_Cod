@@ -85340,6 +85340,95 @@ var MedioAmbiente = /*#__PURE__*/function (_React$Component) {
 
 /***/ }),
 
+/***/ "./resources/js/components/Pagination.js":
+/*!***********************************************!*\
+  !*** ./resources/js/components/Pagination.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var Pagination = /*#__PURE__*/function (_React$Component) {
+  _inherits(Pagination, _React$Component);
+
+  var _super = _createSuper(Pagination);
+
+  function Pagination(props) {
+    _classCallCheck(this, Pagination);
+
+    return _super.call(this, props);
+  }
+
+  _createClass(Pagination, [{
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
+        "aria-label": "Page navigation example"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "pagination"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "page-item"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        className: "page-link",
+        href: "#"
+      }, "Previous")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "page-item"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        className: "page-link",
+        href: "#"
+      }, "1")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "page-item"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        className: "page-link",
+        href: "#"
+      }, "2")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "page-item"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        className: "page-link",
+        href: "#"
+      }, "3")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "page-item"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        className: "page-link",
+        href: "#"
+      }, "Next"))));
+    }
+  }]);
+
+  return Pagination;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Pagination);
+
+/***/ }),
+
 /***/ "./resources/js/components/PasswordEmail.js":
 /*!**************************************************!*\
   !*** ./resources/js/components/PasswordEmail.js ***!
@@ -86676,7 +86765,7 @@ var BaseEditProfileData = /*#__PURE__*/function (_React$Component) {
           zip_code: this.props.userData.user.zip_code
         },
         validationSchema: yup__WEBPACK_IMPORTED_MODULE_2__["object"]({
-          name: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().max(30, 'Nombre demasiado largo.').required('Debes rellenar este campo.').test("checkName", "Ya existe un Retager con este nombre.", function (value) {
+          name: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().max(20, 'Nombre demasiado largo.').required('Debes rellenar este campo.').test("checkName", "Ya existe un Retager con este nombre.", function (value) {
             return new Promise(function (resolve, reject) {
               var name = {
                 name: value
@@ -86863,8 +86952,8 @@ var BaseEditProfile = /*#__PURE__*/function (_React$Component) {
       },
       scale: 1,
       preview: null,
-      width: 230,
-      height: 350,
+      width: 350,
+      height: 490,
       error: '',
       success: ''
     };
@@ -86952,7 +87041,7 @@ var BaseEditProfile = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "mx-auto",
           style: {
-            width: '230px'
+            width: '350px'
           }
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_avatar_editor__WEBPACK_IMPORTED_MODULE_3__["default"], {
           scale: parseFloat(_this2.state.scale),
@@ -86973,7 +87062,7 @@ var BaseEditProfile = /*#__PURE__*/function (_React$Component) {
           step: "0.01",
           defaultValue: "0",
           style: {
-            width: '230px',
+            width: '352px',
             color: 'pink'
           }
         })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -89135,8 +89224,8 @@ var BaseRegister = /*#__PURE__*/function (_React$Component) {
       },
       scale: 1,
       preview: null,
-      width: 230,
-      height: 350,
+      width: 350,
+      height: 490,
       error: '',
       success: '',
       password: true,
@@ -89227,7 +89316,7 @@ var BaseRegister = /*#__PURE__*/function (_React$Component) {
           image: undefined
         },
         validationSchema: yup__WEBPACK_IMPORTED_MODULE_2__["object"]({
-          name: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().max(30, 'Nombre demasiado largo.').required('Debes rellenar este campo.').test("checkName", "Ya existe un Retager con este nombre.", function (value) {
+          name: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().max(20, 'Nombre demasiado largo.').required('Debes rellenar este campo.').test("checkName", "Ya existe un Retager con este nombre.", function (value) {
             return new Promise(function (resolve, reject) {
               var name = {
                 name: value
@@ -89383,12 +89472,27 @@ var BaseRegister = /*#__PURE__*/function (_React$Component) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "invalid-feedback"
           }, msg);
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-check"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+          type: "checkbox",
+          className: formik.errors.acepto_politica ? "form-check-input is-invalid" : "form-check-input",
+          name: "acepto_politica"
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          htmlFor: "acepto_politica",
+          className: "form-check-label"
+        }, "Acepto la pol\xEDtica de privacidad"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["ErrorMessage"], {
+          name: "acepto_politica"
+        }, function (msg) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "invalid-feedback"
+          }, msg);
         }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "col-lg-6 col-sm-12"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "mx-auto",
           style: {
-            width: '230px'
+            width: '350px'
           }
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_avatar_editor__WEBPACK_IMPORTED_MODULE_3__["default"], {
           scale: parseFloat(_this2.state.scale),
@@ -89409,7 +89513,7 @@ var BaseRegister = /*#__PURE__*/function (_React$Component) {
           step: "0.01",
           defaultValue: "0",
           style: {
-            width: '230px',
+            width: '352px',
             color: 'pink'
           }
         })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -89430,22 +89534,7 @@ var BaseRegister = /*#__PURE__*/function (_React$Component) {
           }, msg);
         })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "col-12 mx-auto"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "form-check"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
-          type: "checkbox",
-          className: formik.errors.acepto_politica ? "form-check-input is-invalid" : "form-check-input",
-          name: "acepto_politica"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-          htmlFor: "acepto_politica",
-          className: "form-check-label"
-        }, "Acepto la pol\xEDtica de privacidad"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["ErrorMessage"], {
-          name: "acepto_politica"
-        }, function (msg) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "invalid-feedback"
-          }, msg);
-        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), _this2.state.error && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), _this2.state.error && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "alert alert-danger alert-dismissible fade show",
           role: "alert"
         }, _this2.state.error, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -89500,6 +89589,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _PropsRetagers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PropsRetagers */ "./resources/js/components/retagers/PropsRetagers.js");
+/* harmony import */ var _Pagination__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Pagination */ "./resources/js/components/Pagination.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -89525,41 +89615,62 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var BaseRetagers = /*#__PURE__*/function (_React$Component) {
   _inherits(BaseRetagers, _React$Component);
 
   var _super = _createSuper(BaseRetagers);
 
   function BaseRetagers(props) {
+    var _this;
+
     _classCallCheck(this, BaseRetagers);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.state = {
+      retagerComponents: [],
+      current_page: 1,
+      last_page: null,
+      per_page: null,
+      to: null,
+      total: null
+    };
+    return _this;
   }
 
   _createClass(BaseRetagers, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var self = this;
+      axios.get('/api/retagers?page=' + this.state.current_page).then(function (response) {
+        console.log(response.data);
+        var retagerComponents = response.data.data.map(function (retager) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PropsRetagers__WEBPACK_IMPORTED_MODULE_1__["default"], {
+            key: retager.id,
+            likes: 5,
+            image: retager.image,
+            nombre: retager.name
+          });
+        });
+        self.setState({
+          retagerComponents: retagerComponents
+        });
+      })["catch"](function (error) {});
+    }
+  }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Pagination__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        current_page: this.state.current_page,
+        last_page: this.state.last_page,
+        per_page: this.state.per_page,
+        to: this.state.to,
+        total: this.state.total
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container-fluid d-flex justify-content-center mt-5"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row "
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PropsRetagers__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        likes: "1234324",
-        image: "images/modelo1.jpeg",
-        nombre: "Retager 1"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PropsRetagers__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        likes: "1234324",
-        image: "images/modelo2.jpg",
-        nombre: "Retager 2"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PropsRetagers__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        likes: "1234324",
-        image: "images/modelo3.jpg",
-        nombre: "Retager 3"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PropsRetagers__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        likes: "1234324",
-        image: "images/modelo4.jpg",
-        nombre: "Retager 4"
-      })));
+      }, this.state.retagerComponents)));
     }
   }]);
 
@@ -89629,8 +89740,7 @@ var PropsRetagers = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "likes"
       }, this.props.likes), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "fas fa-heart fa-lg ",
-        onClick: "changeColor(this)"
+        className: "fas fa-heart fa-lg"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: "#"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {

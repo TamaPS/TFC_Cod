@@ -14,5 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/', 'index');
+Route::view('/retagers', 'index');
 Route::view('/register', 'index')->middleware('guest');
 Route::view('/account-activation', 'index')->middleware('guest');

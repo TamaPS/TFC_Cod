@@ -14,8 +14,8 @@ class BaseEditProfile extends React.Component {
             position: { x: 0.5, y: 0.5 },
             scale: 1,
             preview: null,
-            width: 230,
-            height: 350,
+            width: 350,
+            height: 490,
             error: '',
             success: '',
         }
@@ -86,7 +86,7 @@ class BaseEditProfile extends React.Component {
                             <div className="row form">
                                 <div className="col-lg-12 col-sm-12">
                                     <br />
-                                    <div className="mx-auto" style={{ width: '230px' }}>
+                                    <div className="mx-auto" style={{ width: '350px' }}>
                                         <AvatarEditor
                                             scale={parseFloat(this.state.scale)}
                                             width={this.state.width}
@@ -107,7 +107,7 @@ class BaseEditProfile extends React.Component {
                                             max="4"
                                             step="0.01"
                                             defaultValue="0"
-                                            style={{ width: '230px', color: 'pink' }}
+                                            style={{ width: '352px', color: 'pink' }}
                                         />
                                     </div>
                                     <br />

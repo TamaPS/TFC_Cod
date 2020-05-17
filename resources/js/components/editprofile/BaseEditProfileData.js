@@ -30,7 +30,7 @@ class BaseEditProfileData extends React.Component {
                 initialValues={{ name: this.props.userData.user.name, zip_code: this.props.userData.user.zip_code }}
                 validationSchema={Yup.object({
                     name: Yup.string()
-                        .max(30, 'Nombre demasiado largo.')
+                        .max(20, 'Nombre demasiado largo.')
                         .required('Debes rellenar este campo.')
                         .test(
                             "checkName",

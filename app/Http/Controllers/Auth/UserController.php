@@ -60,7 +60,7 @@ class UserController extends Controller
     protected function validator(array $data, User $user)
     {
         return Validator::make($data, [
-            'name' => ['string', 'max:30', 'unique:users,name,' . $user->id],
+            'name' => ['string', 'max:20', 'unique:users,name,' . $user->id],
             'password' => ['string', 'min:8', 'confirmed'],
             'zip_code' => ['string', 'min:5', 'max:5'],
         ]);
