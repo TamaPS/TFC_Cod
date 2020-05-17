@@ -1,9 +1,9 @@
 import React from 'react';
-import BaseRegister from './register/BaseRegister';
+import BaseEditProfile from './editprofile/BaseEditProfile';
 import Copyright from './footers/Copyright';
 import NavbarShown from './navbar/NavbarShown';
 import { userContext } from './login/userContext';
-class Register extends React.Component {
+class EditProfile extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -16,7 +16,8 @@ class Register extends React.Component {
                     {
                         function (userData) {
                             return (
-                                <BaseRegister userData={userData} />);
+                                <BaseEditProfile userData={userData}/>
+                            )
                         }
                     }
                 </userContext.Consumer>
@@ -26,4 +27,4 @@ class Register extends React.Component {
     }
 }
 
-export default Register;
+export default EditProfile;

@@ -12,12 +12,17 @@ import Producto from './Producto'
 import Retagers from './Retagers'
 import Login from './login/Login'
 import Register from './Register'
+import Throw from './Throw'
+import Verify from './Verify';
+import PasswordEmail from './PasswordEmail';
 import {
     BrowserRouter as Router,
     Route,
     Switch
 } from "react-router-dom";
 import { userContext } from './login/userContext';
+import EditProfile from './EditProfile';
+
 
 class Index extends React.Component {
     constructor(props) {
@@ -74,6 +79,15 @@ class Index extends React.Component {
                         <Route exact path="/producto" component={Producto} />
                         <Route exact path="/retagers" component={Retagers} />
                         <Route exact path="/register" component={Register} />
+                        <Route exact path="/verify" component={Verify} />
+                        <Route exact path="/passwordemail" component={PasswordEmail} />
+                        <Route exact path="/edit-profile" component={EditProfile} />
+                        <Route exact path="/password-email">
+                            <Throw to="/passwordemail" />
+                        </Route>
+                        <Route exact path="/account-activation" >
+                            <Throw to="/verify" />
+                        </Route>
                     </Switch>
                 </userContext.Provider>
             </Router>

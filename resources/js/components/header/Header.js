@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class Header extends React.Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class Header extends React.Component {
       <section className="container-fluid">
         <br />
         <div className="d-flex justify-content-center">
-          <a href="/"><figure><img src="images/logo.svg" id="logo" /></figure></a>
+          <Link to="/"><figure><img src="images/logo.svg" id="logo" /></figure></Link>
         </div>
       </section>
     )

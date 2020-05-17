@@ -6,9 +6,17 @@ import { Link } from 'react-router-dom';
 class LoginProps extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      password: true,
+    }
+    this.handlePaswordShow = this.handlePaswordShow.bind(this);
   }
 
-  openRegister(){
+  handlePaswordShow() {
+    this.state.password ? this.setState({ password: false }) : this.setState({ password: true })
+  }
+
+  closeModal() {
     $('#loginModal').modal('hide');
   }
 
@@ -59,19 +67,19 @@ class LoginProps extends React.Component {
                       </div>
                       <div className="form-group">
                         <label>Contraseña</label>
-                        <div className="input-group" id="show_hide_password">
-                          <Field name="password" className={formik.errors.password ? "form-control is-invalid" : "form-control"} type="password" />
+                        <div className="input-group">
+                          <Field name="password" className={formik.errors.password ? "form-control is-invalid" : "form-control"} type={this.state.password ? "password" : "text"} />
                           <div className="input-group-addon ml-2">
-                            <a href=""><i className="fa fa-eye-slash" aria-hidden="true"></i></a>
+                          <a href="#" onClick={this.handlePaswordShow}><i className={`fa ${this.state.password ? "fa-eye-slash" : "fa-eye"}`} aria-hidden="true"></i></a>
                           </div>
                           <ErrorMessage name="password">{msg => <div className="invalid-feedback">{msg}</div>}</ErrorMessage>
                         </div>
                         <div className="col text-center mt-4">
-                          <Link to="">Olvidé la contraseña</Link>
+                          <Link to="/password-email" onClick={this.closeModal}>Olvidé la contraseña</Link>
                         </div>
                       </div>
                       <div className="col text-center mt-4">
-                        <Link to="/register" onClick={this.openRegister}>Registrarse</Link>
+                        <Link to="/register" onClick={this.closeModal}>Registrarse</Link>
                       </div>
                       <div className="col text-center">
                         <button type="submit" className="boton-secundario" id="logearse" disabled={(formik.isSubmitting)}>

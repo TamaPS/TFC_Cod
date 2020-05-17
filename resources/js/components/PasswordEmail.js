@@ -1,14 +1,16 @@
 import React from 'react';
-import BaseRegister from './register/BaseRegister';
 import Copyright from './footers/Copyright';
 import NavbarShown from './navbar/NavbarShown';
+import Email from './password/Email';
 import { userContext } from './login/userContext';
-class Register extends React.Component {
+
+class PasswordEmail extends React.Component {
     constructor(props) {
         super(props);
     }
 
     render() {
+        const { location } = this.props;
         return (
             <div>
                 <NavbarShown />
@@ -16,7 +18,7 @@ class Register extends React.Component {
                     {
                         function (userData) {
                             return (
-                                <BaseRegister userData={userData} />);
+                                <Email location={location} userData={userData} />);
                         }
                     }
                 </userContext.Consumer>
@@ -26,4 +28,4 @@ class Register extends React.Component {
     }
 }
 
-export default Register;
+export default PasswordEmail;
