@@ -14,7 +14,7 @@ class Card extends React.Component {
                 <div className="single-banner">
                     <img src={this.props.image} alt={this.props.alt} />
                     <div className="inner-text">
-                        <Link to="/retagers" className="btn btn-default" role="button">
+                        <Link to={this.props.route} className="btn btn-default" role="button">
                             <button className="boton">{this.props.text}</button>
                         </Link>
                     </div>

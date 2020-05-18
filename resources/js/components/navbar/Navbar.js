@@ -1,6 +1,7 @@
 import React from 'react';
 import NavbarProps from './NavbarProps'
 import { userContext } from '../login/userContext';
+
 class Navbar extends React.Component {
   constructor(props) {
     super(props);
