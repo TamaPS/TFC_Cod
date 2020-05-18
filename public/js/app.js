@@ -89698,18 +89698,21 @@ var BaseRetagers = /*#__PURE__*/function (_React$Component) {
         var retagerComponents = response.data.data.map(function (retager) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PropsRetagers__WEBPACK_IMPORTED_MODULE_1__["default"], {
             key: retager.id,
-            likes: 5,
+            id: retager.id,
+            likes: retager.count_favorites,
             image: retager.image,
-            nombre: retager.name
+            nombre: retager.name,
+            takeData: self.takeData,
+            heart: retager.liked
           });
         });
         self.setState({
           retagerComponents: retagerComponents,
-          current_page: response.data.current_page,
-          last_page: response.data.last_page,
-          per_page: response.data.per_page,
-          to: response.data.to,
-          total: response.data.total
+          current_page: response.data.meta.current_page,
+          last_page: response.data.meta.last_page,
+          per_page: response.data.meta.per_page,
+          to: response.data.meta.to,
+          total: response.data.meta.total
         });
       })["catch"](function (error) {});
     }
@@ -89796,25 +89799,42 @@ var PropsRetagers = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(PropsRetagers);
 
   function PropsRetagers(props) {
+    var _this;
+
     _classCallCheck(this, PropsRetagers);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.addFavorite = _this.addFavorite.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(PropsRetagers, [{
+    key: "addFavorite",
+    value: function addFavorite() {
+      var self = this;
+      axios.post('/api/favorites', {
+        id: self.props.id
+      }).then(function (response) {
+        self.props.takeData();
+      })["catch"](function (error) {});
+    }
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "column"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col retager d-flex justify-content-end"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "nav-link like",
-        href: "#"
+        onClick: this.addFavorite
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "likes"
       }, this.props.likes), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-        className: "fas fa-heart fa-lg"
+        className: "fas fa-heart fa-lg",
+        style: this.props.heart ? {
+          color: "rgb(249, 87, 255)"
+        } : {}
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: "#"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -90051,17 +90071,7 @@ $(function () {
       };
     }
   });
-}); //CORAZON RETAGERS
-
-function changeColor(x) {
-  if (x.style.color == "rgb(253, 200, 255)") {
-    x.style.color = "rgb(249, 87, 255)";
-  } else {
-    x.style.color = "rgb(253, 200, 255)";
-  }
-
-  return false;
-}
+});
 
 /***/ }),
 

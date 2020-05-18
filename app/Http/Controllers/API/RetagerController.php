@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
+use App\Http\Resources\User as UserResources;
 
 class RetagerController extends Controller
 {
@@ -15,9 +16,11 @@ class RetagerController extends Controller
         } else {
             $zip_code = $request->zip_code;
         }
-        return response()->json(User::select('id', 'name', 'zip_code', 'image')
+        return UserResources::collection(
+            User::select('id', 'name', 'zip_code', 'image')
             ->where('active', 1)
             ->where('zip_code', 'like', $zip_code)
-            ->paginate(15), 201);
+            ->paginate(15)
+        );
     }
 }

@@ -357,31 +357,27 @@ figure:hover::before {
 
 .like {
 	position: absolute;
-	background-color: black;
-	opacity: 0.2;
+	background-color: rgba(0, 0, 0, 0.226);
+	cursor: pointer;
 }
 
-.like .fas {
+ .like .fas {
 	color: $light_pink;
-	transition: color .7s;
+} 
+
+ .like .fas:hover {
+	color: $pink;
 }
 
-.like .fas:hover {
-	color: $pink;
+.likes {
+	font-weight: bold;
+	color: $light_pink;
 }
 
 .nombre {
 	color: rgb(58, 58, 58);
 	font-weight: bold;
 	font-size: 1.5rem;
-
-
-}
-
-.likes {
-	font-weight: bold;
-	color: $light_pink;
-
 }
 
 .contenido {

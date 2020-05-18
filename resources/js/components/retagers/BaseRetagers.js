@@ -36,11 +36,11 @@ class BaseRetagers extends React.Component {
             if (!this.props.userData.user.id) {
                 this.setState({ alert: true });
                 this.zip_code = '';
-            }else{
+            } else {
                 this.setState({ alert: false });
                 this.zip_code = this.props.userData.user.zip_code;
             }
-            
+
         }
     }
 
@@ -51,17 +51,20 @@ class BaseRetagers extends React.Component {
                 const retagerComponents = response.data.data.map(retager =>
                     <PropsRetagers
                         key={retager.id}
-                        likes={5}
+                        id={retager.id}
+                        likes={retager.count_favorites}
                         image={retager.image}
                         nombre={retager.name}
+                        takeData={self.takeData}
+                        heart={retager.liked}
                     />);
                 self.setState({
                     retagerComponents: retagerComponents,
-                    current_page: response.data.current_page,
-                    last_page: response.data.last_page,
-                    per_page: response.data.per_page,
-                    to: response.data.to,
-                    total: response.data.total,
+                    current_page: response.data.meta.current_page,
+                    last_page: response.data.meta.last_page,
+                    per_page: response.data.meta.per_page,
+                    to: response.data.meta.to,
+                    total: response.data.meta.total,
                 });
             })
             .catch(function (error) {

@@ -36,16 +36,3 @@ $(function () {
 
     });
 });
-
-//CORAZON RETAGERS
-
-function changeColor(x)
-{
-    if(x.style.color=="rgb(253, 200, 255)")
-    {
-        x.style.color="rgb(249, 87, 255)";
-    }else{
-        x.style.color="rgb(253, 200, 255)";
-    }
-    return false;
-}
