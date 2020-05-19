@@ -41,7 +41,7 @@ class CompraProducto extends React.Component {
             
             </div>
         <div className="row">
-            <div className="col-12 col-sm-3 vendedor mt-5">
+            <div className="col-12 col-sm-3 vendedor mt-5 text-center">
             <a href="#"><img src={this.props.vendedor} alt="" /></a>
             </div>
             <div className="col d-flex flex-column justify-content-center ml-4 mt-3">
