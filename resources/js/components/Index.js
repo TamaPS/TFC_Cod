@@ -22,6 +22,8 @@ import {
 } from "react-router-dom";
 import { userContext } from './login/userContext';
 import EditProfile from './EditProfile';
+import Favorites from './Favorites';
+import Top from './Top';
 
 
 class Index extends React.Component {
@@ -80,9 +82,11 @@ class Index extends React.Component {
                         <Route exact path="/retagers">
                             <Retagers from="" />
                         </Route>
+                        <Route exact path="/retagers-top" component={Top} />
                         <Route exact path="/retagers-cerca">
                             <Retagers from="cerca" />
                         </Route>
+                        <Route exact path="/favorites" component={Favorites} />
                         <Route exact path="/register" component={Register} />
                         <Route exact path="/verify" component={Verify} />
                         <Route exact path="/passwordemail" component={PasswordEmail} />

@@ -21,7 +21,7 @@ class Cards extends React.Component {
             <Card
               image="images/retager2.jpeg"
               alt="top"
-              route="/retagers"
+              route="/retagers-top"
               text="TOP RETAGERS"
             />
             <Card

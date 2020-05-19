@@ -10,7 +10,7 @@ class PropsRetagers extends React.Component {
     const self = this;
     axios.post('/api/favorites', { id: self.props.id })
       .then(function (response) {
-        self.props.takeData();
+        self.props.takeData(self.props.current_page);
       })
       .catch(function (error) {
       });

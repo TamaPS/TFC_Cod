@@ -35,7 +35,7 @@ class NavbarProps extends React.Component {
                             <div className="dropdown-menu dropdown-menu-right" aria-labelledby="user">
                                 {this.props.value.user.id && <Link className="dropdown-item" to="/" onClick={this.props.value.logoutUser}>Cerrar Sesión</Link>}
                                 {this.props.value.user.id && <Link className="dropdown-item" to="/edit-profile">Editar Perfil</Link>}
-                                {!this.props.value.user.id && <a className="dropdown-item" href="" data-toggle="modal" data-target="#loginModal">Iniciar Sesión</a>}
+                                {!this.props.value.user.id && <button className="dropdown-item" data-toggle="modal" data-target="#loginModal">Iniciar Sesión</button>}
                                 {!this.props.value.user.id && <Link className="dropdown-item" to="/register">Registro</Link>}
                             </div>
                         </div>
@@ -44,9 +44,9 @@ class NavbarProps extends React.Component {
                         {/*Favs*/}
                         {this.props.value.user.id &&
                             <li className="ml-2 nav-item">
-                                <a className="nav-link" href="/">
+                                <Link className="nav-link" to="/favorites">
                                     <i className="fas fa-heart fa-lg"></i>
-                                </a>
+                                </Link>
                             </li>
                         }
                         {/*Fin de Favs*/}

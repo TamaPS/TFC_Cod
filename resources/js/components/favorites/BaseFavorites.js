@@ -1,8 +1,8 @@
 import React from 'react';
-import PropsRetagers from './PropsRetagers';
+import PropsRetagers from '../retagers/PropsRetagers';
 import Pagination from '../Pagination';
 
-class BaseRetagers extends React.Component {
+class BaseFavorites extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -17,7 +17,6 @@ class BaseRetagers extends React.Component {
         }
         this.takeData = this.takeData.bind(this);
         this.zip_code = '';
-        this.top = false;
     }
 
     componentDidMount() {
@@ -43,15 +42,11 @@ class BaseRetagers extends React.Component {
             }
 
         }
-
-        if(this.props.from == 'top'){
-            this.top = true;
-        }
     }
 
     takeData(page) {
         const self = this;
-        axios.get('/api/retagers?page=' + page + '&zip_code=' + this.zip_code + '&top=' + this.top)
+        axios.get('/api/favorites?page=' + page)
             .then(function (response) {
                 const retagerComponents = response.data.data.map(retager =>
                     <PropsRetagers
@@ -116,4 +111,4 @@ class BaseRetagers extends React.Component {
     }
 }
 
-export default BaseRetagers;
+export default BaseFavorites;
