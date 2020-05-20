@@ -11,6 +11,7 @@ import Productos from './Productos';
 import Producto from './Producto';
 import Retagers from './Retagers';
 import Login from './login/Login';
+import NewProduct from './NewProduct';
 import Register from './Register';
 import Throw from './Throw';
 import Verify from './Verify';
@@ -91,6 +92,7 @@ class Index extends React.Component {
                         <Route exact path="/verify" component={Verify} />
                         <Route exact path="/passwordemail" component={PasswordEmail} />
                         <Route exact path="/edit-profile" component={EditProfile} />
+                        <Route exact path="/nuevo-producto" component={NewProduct} />
                         <Route exact path="/password-email">
                             <Throw to="/passwordemail" />
                         </Route>
