@@ -21,3 +21,6 @@ Route::middleware('auth:sanctum')->post('/user/name', 'Auth\UserController@check
 //Route::apiResource('/products', 'API\ProductController');
 Route::get('/products', 'API\ProductController@index');
 Route::get('/retagers', 'API\RetagerController@index');
+Route::get('/tops', 'API\RetagerController@top');
+Route::middleware('auth:sanctum')->get('/favorites', 'API\FavoriteController@index');
+Route::middleware('auth:sanctum')->post('/favorites', 'API\FavoriteController@store');

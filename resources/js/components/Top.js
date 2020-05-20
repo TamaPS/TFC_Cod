@@ -1,11 +1,11 @@
 import React from 'react';
 import Header from './header/Header'
 import Navbar from './navbar/Navbar'
-import BaseRetagers from './retagers/BaseRetagers'
+import BaseTop from './top/BaseTop'
 import Copyright from './footers/Copyright';
 import { userContext } from './login/userContext';
 
-class Retagers extends React.Component{
+class Top extends React.Component{
     constructor(props){
         super(props);
     }
@@ -20,7 +20,7 @@ class Retagers extends React.Component{
                     {
                         function (userData) {
                             return (
-                                <BaseRetagers userData={userData} from={from}/>
+                                <BaseTop userData={userData} from={from}/>
                             )
                         }
                     }
@@ -31,4 +31,4 @@ class Retagers extends React.Component{
     }
 }
 
-export default Retagers;
+export default Top;

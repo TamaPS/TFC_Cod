@@ -15772,28 +15772,27 @@ figure:hover::before {
 
 .like {
   position: absolute;
-  background-color: black;
-  opacity: 0.2;
+  background-color: rgba(0, 0, 0, 0.226);
+  cursor: pointer;
 }
 
 .like .fas {
   color: #fac3fa;
-  transition: color 0.7s;
 }
 
 .like .fas:hover {
   color: #ff81ff;
 }
 
+.likes {
+  font-weight: bold;
+  color: #fac3fa;
+}
+
 .nombre {
   color: #3a3a3a;
   font-weight: bold;
   font-size: 1.5rem;
-}
-
-.likes {
-  font-weight: bold;
-  color: #fac3fa;
 }
 
 .contenido {

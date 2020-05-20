@@ -1,18 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Principal from './Principal'
-import History from './History'
-import Condiciones from './Condiciones'
-import InformacionLegal from './InformacionLegal'
-import MedioAmbiente from './MedioAmbiente'
-import PoliticaDeCookies from './PoliticaDeCookies'
-import PoliticaDePrivacidad from './PoliticaDePrivacidad'
-import Productos from './Productos'
-import Producto from './Producto'
-import Retagers from './Retagers'
-import Login from './login/Login'
-import Register from './Register'
-import Throw from './Throw'
+import Principal from './Principal';
+import History from './History';
+import Condiciones from './Condiciones';
+import InformacionLegal from './InformacionLegal';
+import MedioAmbiente from './MedioAmbiente';
+import PoliticaDeCookies from './PoliticaDeCookies';
+import PoliticaDePrivacidad from './PoliticaDePrivacidad';
+import Productos from './Productos';
+import Producto from './Producto';
+import Retagers from './Retagers';
+import Login from './login/Login';
+import Register from './Register';
+import Throw from './Throw';
 import Verify from './Verify';
 import PasswordEmail from './PasswordEmail';
 import {
@@ -22,6 +22,8 @@ import {
 } from "react-router-dom";
 import { userContext } from './login/userContext';
 import EditProfile from './EditProfile';
+import Favorites from './Favorites';
+import Top from './Top';
 
 
 class Index extends React.Component {
@@ -77,7 +79,14 @@ class Index extends React.Component {
                         <Route exact path="/politica-de-privacidad" component={PoliticaDePrivacidad} />
                         <Route exact path="/productos" component={Productos} />
                         <Route exact path="/producto" component={Producto} />
-                        <Route exact path="/retagers" component={Retagers} />
+                        <Route exact path="/retagers">
+                            <Retagers from="" />
+                        </Route>
+                        <Route exact path="/retagers-top" component={Top} />
+                        <Route exact path="/retagers-cerca">
+                            <Retagers from="cerca" />
+                        </Route>
+                        <Route exact path="/favorites" component={Favorites} />
                         <Route exact path="/register" component={Register} />
                         <Route exact path="/verify" component={Verify} />
                         <Route exact path="/passwordemail" component={PasswordEmail} />

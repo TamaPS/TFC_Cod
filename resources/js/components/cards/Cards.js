@@ -15,13 +15,13 @@ class Cards extends React.Component {
             <Card
               image="images/retager1.jpeg"
               alt="cerca"
-              route="/retagers"
+              route="/retagers-cerca"
               text="RETAGERS CERCA"
             />
             <Card
               image="images/retager2.jpeg"
               alt="top"
-              route="/retagers"
+              route="/retagers-top"
               text="TOP RETAGERS"
             />
             <Card
