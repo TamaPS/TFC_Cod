@@ -25,7 +25,7 @@ $factory->define(User::class, function (Faker $faker) {
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         'remember_token' => null,
         'zip_code' => Str::random(5),
-        'image' => 'https://picsum.photos/id/'.rand(1, 50).'/350/490',
+        'image' => 'images/retagers/modelo'.rand(1, 4).'.jpg',
         'active' => true,
     ];
 });
