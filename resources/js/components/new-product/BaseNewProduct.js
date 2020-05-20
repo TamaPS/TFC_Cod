@@ -1,10 +1,11 @@
 import React from 'react';
-import { Formik, Form, ErrorMessage } from 'formik';
-
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 import AvatarEditor from 'react-avatar-editor';
 import {
     withRouter
 } from "react-router-dom";
+
 class BaseNewProduct extends React.Component {
     constructor(props) {
         super(props);
@@ -65,25 +66,20 @@ class BaseNewProduct extends React.Component {
         ];
         return (
             <Formik
-                initialValues={{ name: '', description: '', size: '', price: '', zip_code: '', image: undefined }}
+                initialValues={{ name: '', description: '', size: '', price: '', image: undefined }}
                 validationSchema={Yup.object({
                     name: Yup.string()
+                        .max(70, 'Nombre demasiado largo')
                         .required('Debes rellenar este campo.'),
                     description: Yup.string()
                         .required('Debes rellenar este campo.'),
                     size: Yup.string()
                         .max(15, 'Talla no valida')
                         .required('Debes rellenar este campo.'),
-                    price: Yup.number()
+                    price: Yup.string()
                     .matches(/^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$/,
                         'El precio solo puede contener números y un máximo de 2 decimales.')
                         .required('Debes rellenar este campo.'),
-                    zip_code: Yup.string()
-                        .min(5, 'El código postal debe tener 5 dígitos.')
-                        .max(5, 'El código postal debe tener 5 dígitos.')
-                        .required('Debes rellenar este campo.'),
-                    acepto_politica: Yup.boolean()
-                        .oneOf([true], 'Debes aceptar nuestra política para registrarte.'),
                 }).shape({
                     image: Yup.mixed()
                         .required('Debes rellenar este campo.')
@@ -97,20 +93,19 @@ class BaseNewProduct extends React.Component {
                     let self = this;
                     const imageURL = this.editor.current.getImageScaledToCanvas().toDataURL();
                     values.image = imageURL;
-                    console.log(values);
-                    axios.post('/api/register', values)
+                    console.log(values)
+                    /*axios.post('/api/register', values)*/
                         .then(function (response) {
-                            self.setState({ success: `${values.name} revisa tu email para confirmar tu registro.` });
+                            self.setState({ success: `${values.name} Producto añadido con éxito.` });
                             resetForm();
                             setSubmitting(false);
                         })
                         .catch(function (error) {
                             setErrors({
                                 name: error.response.data.errors.name,
-                                email: error.response.data.errors.email,
-                                password: error.response.data.errors.password,
-                                password_confirmation: error.response.data.errors.password_confirmation,
-                                zip_code: error.response.data.errors.zip_code,
+                                description: error.response.data.errors.description,
+                                size: error.response.data.errors.size,
+                                price: error.response.data.errors.price,
                             });
                             self.setState({ error: 'El formulario tiene errores.' });
                             setSubmitting(false);
@@ -123,9 +118,35 @@ class BaseNewProduct extends React.Component {
                     <Form>
                         <div className="container">
                             <div className="row form">
+                                <div className="col-lg-6 col-sm-12"> 
+                                    <div className="form-group">
+                                        <label htmlFor="name">Nombre del producto</label>
+                                        <Field type="text"  className={formik.errors.name ? "form-control is-invalid" : "form-control"} name="name" />
+                                        <ErrorMessage name="name">{msg => <div className="invalid-feedback">{msg}</div>}</ErrorMessage>
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="description">Descripción</label>
+                                        <Field component="textarea" 
+                                            placeholder="Procura utilizar palabras clave para que tu producto llegue a más gente."
+                                            rows="5" 
+                                            className={formik.errors.description ? "form-control is-invalid" : "form-control"} name="description" />
+                                        <ErrorMessage name="description">{msg => <div className="invalid-feedback">{msg}</div>}</ErrorMessage>
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="size">Talla</label>
+                                        <Field type="text" className={formik.errors.size ? "form-control is-invalid" : "form-control"} name="size" />
+                                        <ErrorMessage name="size">{msg => <div className="invalid-feedback">{msg}</div>}</ErrorMessage>
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="price">Precio</label>
+                                        <Field type="text" placeholder="0.00€" className={formik.errors.price ? "form-control is-invalid" : "form-control"} name="price" />
+                                        <ErrorMessage name="price">{msg => <div className="invalid-feedback">{msg}</div>}</ErrorMessage>
+                                    </div>
+                                </div>
+
                                 <div className="col-lg-6 col-sm-12">
                                     <br />
-                                    <div className="mx-auto" >
+                                    <div className="mx-auto text-center" >
                                         <AvatarEditor
                                             scale={parseFloat(this.state.scale)}
                                             width={this.state.width}
@@ -172,9 +193,9 @@ class BaseNewProduct extends React.Component {
                                             </button>
                                         </div>}
                                     <div className="col text-center">
-                                        <button type="submit" className="boton-secundario" id="registrarse" disabled={(formik.isSubmitting)}>
-                                            Registrarse
-                                                        <span className={formik.isSubmitting ? "spinner-border spinner-border-sm" : "spinner-border spinner-border-sm d-none"} role="status" aria-hidden="true"></span>
+                                        <button type="submit" className="boton-secundario" id="subir-producto" disabled={(formik.isSubmitting)}>
+                                            SUBIR PRODUCTO
+                                            <span className={formik.isSubmitting ? "spinner-border spinner-border-sm" : "spinner-border spinner-border-sm d-none"} role="status" aria-hidden="true"></span>
                                         </button>
                                     </div>
                                 </div>
