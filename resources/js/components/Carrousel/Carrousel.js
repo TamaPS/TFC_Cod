@@ -19,32 +19,35 @@ class Carrousel extends React.Component {
         {/*Slides*/}
         <div className="carousel-inner" role="listbox">
           <div className="carousel-item active">
-              <Background 
-                image = "images/carrousel1.jpeg"
-                alt = "First slide"
-              />
+            <Background
+              image="images/carrousel1.jpeg"
+              alt="First slide"
+              link="/productos-denim"
+            />
             <div className="carousel-caption">
-              <p>Vaqueros personalizados</p>
+              <p>Prendas denim</p>
             </div>
           </div>
           <div className="carousel-item">
             {/*Mask color*/}
-            <Background 
-                image = "images/carrousel2.jpeg"
-                alt = "Second slide"
-              />
+            <Background
+              image="images/carrousel2.jpeg"
+              alt="Second slide"
+              link="/productos-punto"
+            />
             <div className="carousel-caption">
-              <p>Tejido a mano</p>
+              <p>Prendas de punto</p>
             </div>
           </div>
           <div className="carousel-item">
             {/*Mask color*/}
-            <Background 
-                image = "images/carrousel3.jpeg"
-                alt = "Second slide"
-              />
+            <Background
+              image="images/carrousel3.jpeg"
+              alt="Second slide"
+              link="/productos-menos10"
+            />
             <div className="carousel-caption">
-              <p>¡¡Rebajado!!</p>
+              <p>¡Por menos de 10 euros!</p>
             </div>
           </div>
         </div>

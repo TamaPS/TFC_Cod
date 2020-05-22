@@ -78,7 +78,38 @@ class Index extends React.Component {
                         <Route exact path="/legal" component={InformacionLegal} />
                         <Route exact path="/politica-de-cookies" component={PoliticaDeCookies} />
                         <Route exact path="/politica-de-privacidad" component={PoliticaDePrivacidad} />
-                        <Route exact path="/productos" component={Productos} />
+                        <Route exact path="/productos">
+                            <Productos filters={{}} />
+                        </Route>
+                        <Route exact path="/productos-denim">
+                            <Productos
+                                filters={
+                                    {
+                                        name: 'denim',
+                                        description: 'denim',
+                                    }
+                                }
+                            />
+                        </Route>
+                        <Route exact path="/productos-punto">
+                            <Productos
+                                filters={
+                                    {
+                                        name: 'punto',
+                                        description: 'punto',
+                                    }
+                                }
+                            />
+                        </Route>
+                        <Route exact path="/productos-menos10">
+                            <Productos
+                                filters={
+                                    {
+                                        price: 10
+                                    }
+                                }
+                            />
+                        </Route>
                         <Route exact path="/producto" component={Producto} />
                         <Route exact path="/retagers">
                             <Retagers from="" />

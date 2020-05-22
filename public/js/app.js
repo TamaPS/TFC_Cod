@@ -85239,9 +85239,33 @@ var Index = /*#__PURE__*/function (_React$Component) {
         component: _PoliticaDePrivacidad__WEBPACK_IMPORTED_MODULE_8__["default"]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__["Route"], {
         exact: true,
-        path: "/productos",
-        component: _Productos__WEBPACK_IMPORTED_MODULE_9__["default"]
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__["Route"], {
+        path: "/productos"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Productos__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        filters: {}
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__["Route"], {
+        exact: true,
+        path: "/productos-denim"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Productos__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        filters: {
+          name: 'denim',
+          description: 'denim'
+        }
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__["Route"], {
+        exact: true,
+        path: "/productos-punto"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Productos__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        filters: {
+          name: 'punto',
+          description: 'punto'
+        }
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__["Route"], {
+        exact: true,
+        path: "/productos-menos10"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Productos__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        filters: {
+          price: 10
+        }
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__["Route"], {
         exact: true,
         path: "/producto",
         component: _Producto__WEBPACK_IMPORTED_MODULE_10__["default"]
@@ -86007,7 +86031,9 @@ var Productos = /*#__PURE__*/function (_React$Component) {
   _createClass(Productos, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_header_Header__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_navbar_Navbar__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_productos_RowProductos__WEBPACK_IMPORTED_MODULE_3__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_footers_Copyright__WEBPACK_IMPORTED_MODULE_4__["default"], null));
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_header_Header__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_navbar_Navbar__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_productos_RowProductos__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        filters: this.props.filters
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_footers_Copyright__WEBPACK_IMPORTED_MODULE_4__["default"], null));
     }
   }]);
 
@@ -86600,7 +86626,7 @@ var Background = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "view"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/productos"
+        to: this.props.link
       }, " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "d-block w-100",
         src: this.props.image,
@@ -86692,24 +86718,27 @@ var Carrousel = /*#__PURE__*/function (_React$Component) {
         className: "carousel-item active"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Background__WEBPACK_IMPORTED_MODULE_1__["default"], {
         image: "images/carrousel1.jpeg",
-        alt: "First slide"
+        alt: "First slide",
+        link: "/productos-denim"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "carousel-caption"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Vaqueros personalizados"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Prendas denim"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "carousel-item"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Background__WEBPACK_IMPORTED_MODULE_1__["default"], {
         image: "images/carrousel2.jpeg",
-        alt: "Second slide"
+        alt: "Second slide",
+        link: "/productos-punto"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "carousel-caption"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Tejido a mano"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Prendas de punto"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "carousel-item"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Background__WEBPACK_IMPORTED_MODULE_1__["default"], {
         image: "images/carrousel3.jpeg",
-        alt: "Second slide"
+        alt: "Second slide",
+        link: "/productos-menos10"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "carousel-caption"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\xA1\xA1Rebajado!!")))));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\xA1Por menos de 10 euros!")))));
     }
   }]);
 
@@ -89833,6 +89862,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _PropsProductos__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PropsProductos */ "./resources/js/components/productos/PropsProductos.js");
+/* harmony import */ var _Pagination__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Pagination */ "./resources/js/components/Pagination.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -89858,45 +89888,94 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var RowProductos = /*#__PURE__*/function (_React$Component) {
   _inherits(RowProductos, _React$Component);
 
   var _super = _createSuper(RowProductos);
 
   function RowProductos(props) {
+    var _this;
+
     _classCallCheck(this, RowProductos);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.state = {
+      productComponents: [],
+      current_page: 1,
+      last_page: null,
+      per_page: null,
+      to: null,
+      total: null
+    };
+    _this.takeData = _this.takeData.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(RowProductos, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.takeData(1);
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (this.props !== prevProps) {
+        this.takeData(this.props.current_page);
+      }
+    }
+  }, {
+    key: "takeData",
+    value: function takeData(page) {
+      var values = {
+        page: page,
+        filters: this.props.filters
+      };
+      var self = this;
+      axios.post('/api/products', values).then(function (response) {
+        console.log(response);
+        var productComponents = response.data.data.map(function (product) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PropsProductos__WEBPACK_IMPORTED_MODULE_1__["default"], {
+            key: product.id,
+            image: product.images[0].name,
+            nombre: product.name,
+            precio: product.price
+          });
+        });
+        self.setState({
+          productComponents: productComponents,
+          current_page: response.data.meta.current_page,
+          last_page: response.data.meta.last_page,
+          per_page: response.data.meta.per_page,
+          to: response.data.meta.to,
+          total: response.data.meta.total
+        });
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "container-fluid mt-5 d-flex justify-content-center "
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Pagination__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        current_page: this.state.current_page,
+        last_page: this.state.last_page,
+        per_page: this.state.per_page,
+        to: this.state.to,
+        total: this.state.total,
+        refresh: this.takeData
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "container-fluid d-flex justify-content-center mt-5"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "row"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PropsProductos__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        image: "images/productos/product-1.jpg",
-        nombre: "Camiseta",
-        precio: "49.99"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PropsProductos__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        image: "images/productos/product-2.jpg",
-        nombre: "Camiseta",
-        precio: "49.99"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PropsProductos__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        image: "images/productos/product-3.jpg",
-        nombre: "Camiseta",
-        precio: "49.99"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PropsProductos__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        image: "images/productos/product-4.jpg",
-        nombre: "Camiseta",
-        precio: "49.99"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PropsProductos__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        image: "images/productos/product-5.jpg",
-        nombre: "Camiseta",
-        precio: "49.99"
-      })));
+        className: "row "
+      }, this.state.productComponents)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Pagination__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        current_page: this.state.current_page,
+        last_page: this.state.last_page,
+        per_page: this.state.per_page,
+        to: this.state.to,
+        total: this.state.total,
+        refresh: this.takeData
+      }));
     }
   }]);
 

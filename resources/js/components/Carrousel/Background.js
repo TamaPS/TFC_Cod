@@ -12,7 +12,7 @@ class Background extends React.Component {
   render() {
     return (
       <div className="view">
-          <Link to="/productos"> <img className="d-block w-100" src={this.props.image} alt={this.props.alt} /></Link>
+          <Link to={this.props.link}> <img className="d-block w-100" src={this.props.image} alt={this.props.alt} /></Link>
           <div className="mask rgba-black-light"></div>
       </div>
     )

@@ -14,7 +14,7 @@ class Productos extends React.Component{
            <div>
                 <Header />
                 <Navbar />
-                <RowProductos />
+                <RowProductos filters={this.props.filters} />
                 <Copyright />
            </div>
         )
