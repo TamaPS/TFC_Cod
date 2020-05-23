@@ -1,6 +1,8 @@
 import React from 'react';
 import Background from './Background';
-
+import {
+  Link
+} from "react-router-dom";
 class Carrousel extends React.Component {
   constructor(props) {
     super(props);
@@ -25,7 +27,7 @@ class Carrousel extends React.Component {
               link="/productos-denim"
             />
             <div className="carousel-caption">
-              <p>Prendas denim</p>
+              <p><Link to="/productos-denim" style={{color: 'white'}}>Prendas denim</Link></p>
             </div>
           </div>
           <div className="carousel-item">
@@ -36,7 +38,7 @@ class Carrousel extends React.Component {
               link="/productos-punto"
             />
             <div className="carousel-caption">
-              <p>Prendas de punto</p>
+              <p><Link to="/productos-punto" style={{color: 'white'}}>Prendas de punto</Link></p>
             </div>
           </div>
           <div className="carousel-item">
@@ -47,7 +49,7 @@ class Carrousel extends React.Component {
               link="/productos-menos10"
             />
             <div className="carousel-caption">
-              <p>¡Por menos de 10 euros!</p>
+              <p><Link to="/productos-menos10" style={{color: 'white'}}>¡Por menos de 10 euros!</Link></p>
             </div>
           </div>
         </div>

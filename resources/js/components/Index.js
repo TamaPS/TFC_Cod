@@ -25,6 +25,7 @@ import { userContext } from './login/userContext';
 import EditProfile from './EditProfile';
 import Favorites from './Favorites';
 import Top from './Top';
+import Search from './Search';
 
 
 class Index extends React.Component {
@@ -130,6 +131,7 @@ class Index extends React.Component {
                         <Route exact path="/account-activation" >
                             <Throw to="/verify" />
                         </Route>
+                        <Route exact path="/busqueda" component={Search} />
                     </Switch>
                 </userContext.Provider>
             </Router>

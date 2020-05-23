@@ -22,6 +22,7 @@ class Product extends JsonResource
             'size' => $this->size,
             'price' => $this->price,
             'images' => $this->images()->get(),
+            'retager' => $this->user()->first(),
         ];
     }
 }

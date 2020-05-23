@@ -1,26 +1,24 @@
 import React from 'react';
 import Header from './header/Header'
 import Navbar from './navbar/Navbar'
-import BaseProducto from './producto/BaseProducto'
+import BaseSearch from './search/BaseSearch'
 import Copyright from './footers/Copyright';
-import { withRouter } from "react-router";
 
-class Producto extends React.Component{
+class Search extends React.Component{
     constructor(props){
         super(props);
     }
 
     render(){
-        const { location } = this.props;
         return(
            <div>
                 <Header />
                 <Navbar />
-                <BaseProducto id={location.search.slice(4)} />
+                <BaseSearch />
                 <Copyright />
            </div>
         )
     }
 }
 
-export default withRouter(Producto);
+export default Search;

@@ -10,19 +10,19 @@ class PropsProductos extends React.Component {
 
   render() {
     return (
-        <div className="col mr-5 d-flex justify-content-center mb-5">
-            <div className="producto">
-                <div className="foto d-flex justify-content-end mb-2">
-                    <Link to="/producto"><img src={this.props.image} alt={this.props.nombre} /></Link>
+      <div className="col mr-5 d-flex justify-content-center mb-5">
+        <div className="producto">
+          <div className="foto d-flex justify-content-end mb-2">
+            <Link to={`/producto?id=${this.props.id}`}><img src={this.props.image} alt={this.props.nombre} /></Link>
+          </div>
+          <div className="text-center nombre-producto">
+            <Link to="/producto">{this.props.nombre}</Link>
+          </div>
+          <div className="precio-producto text-center">
+            {this.props.precio}€
                 </div>
-                <div className="text-center nombre-producto">
-                    <Link to="/producto">{this.props.nombre}</Link> 
-                </div>
-                <div className="precio-producto text-center">
-                    {this.props.precio}€  
-                </div>
-            </div>
         </div>
+      </div>
     )
   }
 }

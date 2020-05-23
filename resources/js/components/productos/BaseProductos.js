@@ -1,7 +1,8 @@
 import React from 'react';
 import PropsProductos from './PropsProductos';
 import Pagination from '../Pagination';
-class RowProductos extends React.Component {
+
+class BaseProductos extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -33,10 +34,10 @@ class RowProductos extends React.Component {
         const self = this;
         axios.post('/api/products', values)
             .then(function (response) {
-                console.log(response)
                 const productComponents = response.data.data.map(product =>
                     <PropsProductos
                         key={product.id}
+                        id={product.id}
                         image={product.images[0].name}
                         nombre={product.name}
                         precio={product.price}
@@ -84,4 +85,4 @@ class RowProductos extends React.Component {
     }
 }
 
-export default RowProductos;
+export default BaseProductos;

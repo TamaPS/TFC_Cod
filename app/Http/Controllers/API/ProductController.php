@@ -18,14 +18,16 @@ class ProductController extends Controller
     {
         $query = Product::query();
 
-        foreach ($request->filters as $key => $filter) {
-            if ($key == 'price') {
-                if ($filter != '') {
-                    $query->where($key, '<=', $filter);
-                }
-            } else {
-                if ($filter != '') {
-                    $query->orWhere($key, 'like', '%' . $filter . '%');
+        if ($request->filters) {
+            foreach ($request->filters as $key => $filter) {
+                if ($key == 'price') {
+                    if ($filter != '') {
+                        $query->where($key, '<=', $filter);
+                    }
+                } else {
+                    if ($filter != '') {
+                        $query->orWhere($key, 'like', '%' . $filter . '%');
+                    }
                 }
             }
         }
@@ -56,7 +58,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        return new ProductResources(Product::find($id));
     }
 
     /**
