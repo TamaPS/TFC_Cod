@@ -20,14 +20,22 @@ class ProductController extends Controller
 
         if ($request->filters) {
             foreach ($request->filters as $key => $filter) {
-                if ($key == 'price') {
-                    if ($filter != '') {
-                        $query->where($key, '<=', $filter);
-                    }
-                } else {
-                    if ($filter != '') {
-                        $query->orWhere($key, 'like', '%' . $filter . '%');
-                    }
+                switch ($key) {
+                    case 'price':
+                        if ($filter != '') {
+                            $query->where($key, '<=', $filter);
+                        }
+                        break;
+                    case 'user_id':
+                        if ($filter != '') {
+                            $query->where($key, '=', $filter);
+                        }
+                        break;
+                    default:
+                        if ($filter != '') {
+                            $query->orWhere($key, 'like', '%' . $filter . '%');
+                        }
+                        break;
                 }
             }
         }

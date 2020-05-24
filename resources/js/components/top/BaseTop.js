@@ -24,7 +24,8 @@ class BaseTop extends React.Component {
         const self = this;
         axios.get('/api/tops')
             .then(function (response) {
-                const retagerComponents = response.data.map(retager =>
+                console.log(response);
+                const retagerComponents = response.data.data.map(retager =>
                     <PropsRetagers
                         key={retager.id}
                         id={retager.id}

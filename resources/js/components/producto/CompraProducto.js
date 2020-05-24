@@ -1,6 +1,7 @@
 import React from 'react';
 import FotosProducto from './FotosProducto';
 import FotoPortadaProducto from './FotoPortadaProducto';
+import { Link } from "react-router-dom";
 
 class CompraProducto extends React.Component {
   constructor(props) {
@@ -75,11 +76,10 @@ class CompraProducto extends React.Component {
           </div>
           <div className="row">
             <div className="col-12 col-sm-3 vendedor mt-5 text-center">
-              <a href="#"><img src={this.props.retager && this.props.retager.image} alt="" /></a>
+              <Link to={`/productos-retager?id=${this.props.retager && this.props.retager.id}`}><img src={this.props.retager && this.props.retager.image} alt="" /></Link>
             </div>
             <div className="col d-flex flex-column justify-content-center ml-4 mt-3">
-
-              <a href="#" className="boton-terciario ">Más productos de {this.props.retager && this.props.retager.name}</a>
+              <Link to={`/productos-retager?id=${this.props.retager && this.props.retager.id}`}>Más productos de {this.props.retager && this.props.retager.name}</Link>
             </div>
           </div>
         </div>

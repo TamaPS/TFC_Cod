@@ -111,6 +111,9 @@ class Index extends React.Component {
                                 }
                             />
                         </Route>
+                        <Route exact path="/productos-retager">
+                            <Productos filters={{}} />
+                        </Route>
                         <Route exact path="/producto" component={Producto} />
                         <Route exact path="/retagers">
                             <Retagers from="" />

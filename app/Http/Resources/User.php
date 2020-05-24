@@ -30,10 +30,9 @@ class User extends JsonResource
             'zip_code' => $this->zip_code,
             'image' => $this->image,
             'email_verified_at' => $this->email_verified_at,
+            'count_favorites' => $this->liked_by_count,
             'active' => $this->active,
-            'count_favorites' => $this->likedBy()->count(),
             'liked' => $liked,
-
         ];
     }
 }

@@ -3,7 +3,7 @@ import Header from './header/Header'
 import Navbar from './navbar/Navbar'
 import BaseProducto from './producto/BaseProducto'
 import Copyright from './footers/Copyright';
-import { withRouter } from "react-router";
+import { withRouter } from "react-router-dom";
 
 class Producto extends React.Component{
     constructor(props){

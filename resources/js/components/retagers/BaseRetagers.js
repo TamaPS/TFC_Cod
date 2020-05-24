@@ -53,6 +53,7 @@ class BaseRetagers extends React.Component {
         const self = this;
         axios.get('/api/retagers?page=' + page + '&zip_code=' + this.zip_code + '&top=' + this.top)
             .then(function (response) {
+                console.log(response);
                 const retagerComponents = response.data.data.map(retager =>
                     <PropsRetagers
                         key={retager.id}

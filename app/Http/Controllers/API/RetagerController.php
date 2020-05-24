@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Resources\User as UserResources;
-use App\Http\Resources\UserCollection;
 
 class RetagerController extends Controller
 {
@@ -23,6 +22,8 @@ class RetagerController extends Controller
                 ->where('active', 1)
                 ->where('zip_code', 'like', $zip_code)
                 ->orderBy('created_at', 'desc')
+                ->has('products', '>', 1)
+                ->withCount('likedBy')
                 ->paginate(15)
         );
     }
@@ -32,22 +33,12 @@ class RetagerController extends Controller
         $tops = UserResources::collection(
             User::select('id', 'name', 'zip_code', 'image')
                 ->where('active', 1)
-                ->inRandomOrder()
-                ->get()
+                ->has('products', '>', 1)
+                ->withCount('likedBy')
+                ->orderBy('liked_by_count', 'desc')
+                ->take(10)->get()
         );
 
-        $topsJson = $tops->toJson();
-
-        $topsArray = json_decode($topsJson, true);
-
-        $top = array();
-        foreach ($topsArray as $key => $row) {
-            $top[$key] = $row['count_favorites'];
-        }
-        array_multisort($top, SORT_DESC, $topsArray);
-
-        $topTen = array_slice($topsArray, 0, 10);
-
-        return $topTen;
+        return $tops;
     }
 }

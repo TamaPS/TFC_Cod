@@ -21,6 +21,7 @@ Route::view('/productos', 'index');
 Route::view('/productos-denim', 'index');
 Route::view('/productos-punto', 'index');
 Route::view('/productos-menos10', 'index');
+Route::view('/productos-retager', 'index');
 Route::view('/busqueda', 'index');
 Route::view('/producto', 'index');
 Route::view('/favorites', 'index');
