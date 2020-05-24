@@ -2,6 +2,7 @@ import React from 'react';
 import FotosProducto from './FotosProducto';
 import FotoPortadaProducto from './FotoPortadaProducto';
 import { Link } from "react-router-dom";
+import Contact from '../contact/Contact';
 
 class CompraProducto extends React.Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class CompraProducto extends React.Component {
       fotos: null
     }
     this.makeFotos = this.makeFotos.bind(this);
+    this.openContact = this.openContact.bind(this);
   }
 
   componentDidMount() {
@@ -48,6 +50,14 @@ class CompraProducto extends React.Component {
     }
   }
 
+  openContact() {
+    if (this.props.userData.user.id) {
+      $('#contactModal').modal('show');
+    } else {
+      $('#loginModal').modal('show');
+    }
+  }
+
   render() {
     return (
       <div className="row mb-3">
@@ -70,10 +80,7 @@ class CompraProducto extends React.Component {
         <div className="col d-flex flex-column justify-content-center">
           <div className="nombre-producto mb-4">{this.props.nombre}</div>
           <div className="precio-producto mb-5">{this.props.precio}€</div>
-          <div className="mt-4">
-            <button type="submit" className="boton-secundario" id="logearse">Contactar con el vendedor</button>
-
-          </div>
+          <Contact productId={this.props.id} />
           <div className="row">
             <div className="col-12 col-sm-3 vendedor mt-5 text-center">
               <Link to={`/productos-retager?id=${this.props.retager && this.props.retager.id}`}><img src={this.props.retager && this.props.retager.image} alt="" /></Link>
