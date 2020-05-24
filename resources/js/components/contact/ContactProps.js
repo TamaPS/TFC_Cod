@@ -6,6 +6,9 @@ import * as Yup from 'yup';
 class ContactProps extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            success: '',
+        }
     }
 
     render() {
@@ -20,12 +23,14 @@ class ContactProps extends React.Component {
                             .oneOf([true], 'Debes aceptar el envio de datos.'),
                     })}
                     onSubmit={(values, { setSubmitting, setErrors, resetForm }) => {
-                        axios.post('/api/', values)
+                        let self = this;
+                        Object.assign(values, { product_id: this.props.productId });
+                        axios.post('/api/contact', values)
                             .then(function (response) {
-                                console.log(response.data);
+                                console.log(response.data.success);
+                                self.setState({ success: response.data.success });
                                 resetForm();
                                 setSubmitting(false);
-                                value.loginUser();
                             })
                             .catch(function (error) {
                                 setErrors({
@@ -45,11 +50,17 @@ class ContactProps extends React.Component {
                                         <ErrorMessage name="message">{msg => <div className="invalid-feedback">{msg}</div>}</ErrorMessage>
                                     </div>
                                 </div>
+                                {this.state.success &&
+                                    <div className="alert alert-success alert-dismissible fade show" role="alert"><small>{this.state.success}</small>
+                                        <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>}
                                 <div className="form-check">
-                                        <Field name="acepto_envio" type="checkbox" className={formik.errors.acepto_envio ? "form-check-input is-invalid" : "form-check-input"} />
-                                        <label htmlFor="acepto_envio" className="form-check-label"><small>Acepto enviar mis datos de contacto (email) al retager.</small></label>
-                                        <ErrorMessage name="acepto_envio">{msg => <div className="invalid-feedback">{msg}</div>}</ErrorMessage>
-                                    </div>
+                                    <Field name="acepto_envio" type="checkbox" className={formik.errors.acepto_envio ? "form-check-input is-invalid" : "form-check-input"} />
+                                    <label htmlFor="acepto_envio" className="form-check-label"><small>Acepto enviar mis datos de contacto (email) al retager.</small></label>
+                                    <ErrorMessage name="acepto_envio">{msg => <div className="invalid-feedback">{msg}</div>}</ErrorMessage>
+                                </div>
                                 <div className="col text-center">
                                     <button type="submit" className="boton-secundario" disabled={(formik.isSubmitting)}>
                                         Enviar

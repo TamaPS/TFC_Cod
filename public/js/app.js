@@ -87068,14 +87068,22 @@ var ContactProps = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(ContactProps);
 
   function ContactProps(props) {
+    var _this;
+
     _classCallCheck(this, ContactProps);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.state = {
+      success: ''
+    };
+    return _this;
   }
 
   _createClass(ContactProps, [{
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       if (this.props.userData.user.id) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Formik"], {
           initialValues: {
@@ -87090,11 +87098,17 @@ var ContactProps = /*#__PURE__*/function (_React$Component) {
             var setSubmitting = _ref.setSubmitting,
                 setErrors = _ref.setErrors,
                 resetForm = _ref.resetForm;
-            axios.post('/api/', values).then(function (response) {
-              console.log(response.data);
+            var self = _this2;
+            Object.assign(values, {
+              product_id: _this2.props.productId
+            });
+            axios.post('/api/contact', values).then(function (response) {
+              console.log(response.data.success);
+              self.setState({
+                success: response.data.success
+              });
               resetForm();
               setSubmitting(false);
-              value.loginUser();
             })["catch"](function (error) {
               setErrors({
                 message: error.response.data.errors.message
@@ -87120,7 +87134,17 @@ var ContactProps = /*#__PURE__*/function (_React$Component) {
             return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
               className: "invalid-feedback"
             }, msg);
-          }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          }))), _this2.state.success && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "alert alert-success alert-dismissible fade show",
+            role: "alert"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, _this2.state.success), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+            type: "button",
+            className: "close",
+            "data-dismiss": "alert",
+            "aria-label": "Close"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+            "aria-hidden": "true"
+          }, "\xD7"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "form-check"
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
             name: "acepto_envio",
