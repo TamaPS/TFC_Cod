@@ -1,10 +1,10 @@
 import React from 'react';
-import BaseEditProfile from './editprofile/BaseEditProfile';
+import BaseEditProduct from './editproduct/BaseEditProduct';
 import Copyright from './footers/Copyright';
 import NavbarShown from './navbar/NavbarShown';
 import { userContext } from './login/userContext';
 
-class EditProfile extends React.Component {
+class EditProduct extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -17,7 +17,7 @@ class EditProfile extends React.Component {
                     {
                         function (userData) {
                             return (
-                                <BaseEditProfile userData={userData}/>
+                                <BaseEditProduct userData={userData}/>
                             )
                         }
                     }
@@ -28,4 +28,4 @@ class EditProfile extends React.Component {
     }
 }
 
-export default EditProfile;
+export default EditProduct;
