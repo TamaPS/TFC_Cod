@@ -15,37 +15,69 @@ class BaseNewProduct extends React.Component {
             position: { x: 0.5, y: 0.5 },
             scale: 1,
             preview: null,
-            width: 350,
-            height: 490,
+            width: 270,
+            height: 300,
             error: '',
-            success: ''
+            success: '',
+            images: [],
+            fileError: '',
+            fileAdd: false,
+            fileSelect: true,
         }
         this.editor = React.createRef();
         this.handleNewImage = this.handleNewImage.bind(this);
         this.handleScale = this.handleScale.bind(this);
         this.handlePositionChange = this.handlePositionChange.bind(this);
-
+        this.addProductImage = this.addProductImage.bind(this);
     }
 
     componentDidUpdate(prevProps) {
         const { history } = this.props;
         if (this.props !== prevProps) {
             if (this.props.userData) {
-                if (this.props.userData.user.id) {
+                if (!this.props.userData.user.id) {
                     history.push("/");
                 }
             }
         }
     }
 
-
-
     handleNewImage(e) {
+        const SUPPORTED_FORMATS = [
+            "image/jpg",
+            "image/jpeg",
+            "image/png"
+        ];
+
         if (e.target.files[0]) {
-            this.setState({ image: e.target.files[0] })
+            if (SUPPORTED_FORMATS.includes(e.target.files[0].type)) {
+                this.setState({ fileError: '', fileAdd: true });
+                if (e.target.files[0]) {
+                    this.setState({ image: e.target.files[0] })
+                }
+                else {
+                    this.setState({ image: 'images/retager2.jpeg' })
+                }
+            }
+            else {
+                this.setState({ fileError: 'Selecciona una imágen.', fileAdd: false, image: 'images/retager2.jpeg' });
+            }
         }
         else {
-            this.setState({ image: 'images/retager2.jpeg' })
+            this.setState({ fileError: 'Selecciona una imágen.', fileAdd: false, image: 'images/retager2.jpeg' });
+        }
+    }
+
+    addProductImage() {
+        var imageURL = this.editor.current.getImageScaledToCanvas().toDataURL();
+        var images = this.state.images;
+        images.push(imageURL);
+        this.setState({ images });
+
+        if(images.length >= 4){
+            this.setState({ fileSelect: false, fileAdd: false, image: 'images/retager2.jpeg' });
+        }else{
+            this.setState({ fileError: '', fileAdd: false, image: 'images/retager2.jpeg' });
         }
     }
 
@@ -59,14 +91,10 @@ class BaseNewProduct extends React.Component {
     }
 
     render() {
-        const SUPPORTED_FORMATS = [
-            "image/jpg",
-            "image/jpeg",
-            "image/png"
-        ];
+
         return (
             <Formik
-                initialValues={{ name: '', description: '', size: '', price: '', image: undefined }}
+                initialValues={{ name: '', description: '', size: '', price: '', image: '', filetype: undefined }}
                 validationSchema={Yup.object({
                     name: Yup.string()
                         .max(70, 'Nombre demasiado largo')
@@ -77,24 +105,18 @@ class BaseNewProduct extends React.Component {
                         .max(15, 'Talla no valida')
                         .required('Debes rellenar este campo.'),
                     price: Yup.string()
-                    .matches(/^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$/,
-                        'El precio solo puede contener números y un máximo de 2 decimales.')
+                        .matches(/^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$/,
+                            'El precio solo puede contener números y un máximo de 2 decimales.')
                         .required('Debes rellenar este campo.'),
-                }).shape({
-                    image: Yup.mixed()
-                        .required('Debes rellenar este campo.')
-                        .test(
-                            "fileFormat",
-                            "Selecciona una imágen.",
-                            value => value && SUPPORTED_FORMATS.includes(value.type)
-                        ),
+                    image: Yup.string()
+                        .required('Debes añadir una imagen.'),
                 })}
                 onSubmit={(values, { setSubmitting, setErrors, resetForm }) => {
                     let self = this;
                     const imageURL = this.editor.current.getImageScaledToCanvas().toDataURL();
                     values.image = imageURL;
                     console.log(values)
-                    /*axios.post('/api/register', values)*/
+                        /*axios.post('/api/register', values)*/
                         .then(function (response) {
                             self.setState({ success: `${values.name} Producto añadido con éxito.` });
                             resetForm();
@@ -112,23 +134,24 @@ class BaseNewProduct extends React.Component {
                         });
                 }}
             >
-            
-            
+
+
                 {formik => (
                     <Form>
+                        <br />
                         <div className="container">
-                            <div className="row form">
-                                <div className="col-lg-6 col-sm-12"> 
+                            <div className="row">
+                                <div className="col-lg-6 col-sm-12">
                                     <div className="form-group">
                                         <label htmlFor="name">Nombre del producto</label>
-                                        <Field type="text"  className={formik.errors.name ? "form-control is-invalid" : "form-control"} name="name" />
+                                        <Field type="text" className={formik.errors.name ? "form-control is-invalid" : "form-control"} name="name" />
                                         <ErrorMessage name="name">{msg => <div className="invalid-feedback">{msg}</div>}</ErrorMessage>
                                     </div>
                                     <div className="form-group">
                                         <label htmlFor="description">Descripción</label>
-                                        <Field component="textarea" 
+                                        <Field component="textarea"
                                             placeholder="Procura utilizar palabras clave para que tu producto llegue a más gente."
-                                            rows="5" 
+                                            rows="5"
                                             className={formik.errors.description ? "form-control is-invalid" : "form-control"} name="description" />
                                         <ErrorMessage name="description">{msg => <div className="invalid-feedback">{msg}</div>}</ErrorMessage>
                                     </div>
@@ -170,13 +193,25 @@ class BaseNewProduct extends React.Component {
                                             style={{ width: '352px', color: 'pink' }}
                                         />
                                     </div>
-                                    <br />
-                                    <input id="image" name="image" type="file" onChange={(event) => {
-                                        formik.setFieldValue("image", event.currentTarget.files[0]);
-                                        this.handleNewImage(event);
-                                    }} className={formik.errors.image ? "form-control is-invalid" : "form-control"} />
-                                    <ErrorMessage name="image">{msg => <div className="invalid-feedback">{msg}</div>}</ErrorMessage>
+                                    <div className="row d-flex justify-content-center">
+                                        <label className={this.state.fileError ? "boton-secundario custom-file-upload is-invalid" : "boton-secundario custom-file-upload"} >
+                                            Seleccionar imagen
+                                            <input name="filetype" type="file" onChange={(event) => { this.handleNewImage(event); }} disabled={this.state.fileSelect ? "" : "disabled"}/>
+                                        </label>
+                                        <button type="button" className="btn btn-link" onClick={this.addProductImage} disabled={this.state.fileAdd ? "" : "disabled"}>
+                                            <i className="fas fa-plus-circle fa-2x"></i>
+                                        </button>
+                                        <div className="invalid-feedback text-center">{this.state.fileError}</div>
+                                    </div>
 
+                                    <div className="row d-flex justify-content-center">
+                                        <div className="imgShow" style={{ backgroundImage: `url(${this.state.images[0]})` }}></div>
+                                        <div className="imgShow" style={{ backgroundImage: `url(${this.state.images[1]})` }}></div>
+                                        <div className="imgShow" style={{ backgroundImage: `url(${this.state.images[2]})` }}></div>
+                                        <div className="imgShow" style={{ backgroundImage: `url(${this.state.images[3]})` }}></div>
+                                    </div>
+                                    <Field name="image" as="textarea" className={formik.errors.image ? "form-control is-invalid" : "form-control"} />
+                                    <ErrorMessage name="image">{msg => <div className="invalid-feedback">{msg}</div>}</ErrorMessage>
                                 </div>
                                 <div className="col-12 mx-auto">
                                     <br />

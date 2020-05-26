@@ -89160,15 +89160,20 @@ var BaseNewProduct = /*#__PURE__*/function (_React$Component) {
       },
       scale: 1,
       preview: null,
-      width: 350,
-      height: 490,
+      width: 270,
+      height: 300,
       error: '',
-      success: ''
+      success: '',
+      images: [],
+      fileError: '',
+      fileAdd: false,
+      fileSelect: true
     };
     _this.editor = react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();
     _this.handleNewImage = _this.handleNewImage.bind(_assertThisInitialized(_this));
     _this.handleScale = _this.handleScale.bind(_assertThisInitialized(_this));
     _this.handlePositionChange = _this.handlePositionChange.bind(_assertThisInitialized(_this));
+    _this.addProductImage = _this.addProductImage.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -89179,7 +89184,7 @@ var BaseNewProduct = /*#__PURE__*/function (_React$Component) {
 
       if (this.props !== prevProps) {
         if (this.props.userData) {
-          if (this.props.userData.user.id) {
+          if (!this.props.userData.user.id) {
             history.push("/");
           }
         }
@@ -89188,12 +89193,59 @@ var BaseNewProduct = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleNewImage",
     value: function handleNewImage(e) {
+      var SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
+
       if (e.target.files[0]) {
+        if (SUPPORTED_FORMATS.includes(e.target.files[0].type)) {
+          this.setState({
+            fileError: '',
+            fileAdd: true
+          });
+
+          if (e.target.files[0]) {
+            this.setState({
+              image: e.target.files[0]
+            });
+          } else {
+            this.setState({
+              image: 'images/retager2.jpeg'
+            });
+          }
+        } else {
+          this.setState({
+            fileError: 'Selecciona una imágen.',
+            fileAdd: false,
+            image: 'images/retager2.jpeg'
+          });
+        }
+      } else {
         this.setState({
-          image: e.target.files[0]
+          fileError: 'Selecciona una imágen.',
+          fileAdd: false,
+          image: 'images/retager2.jpeg'
+        });
+      }
+    }
+  }, {
+    key: "addProductImage",
+    value: function addProductImage() {
+      var imageURL = this.editor.current.getImageScaledToCanvas().toDataURL();
+      var images = this.state.images;
+      images.push(imageURL);
+      this.setState({
+        images: images
+      });
+
+      if (images.length >= 4) {
+        this.setState({
+          fileSelect: false,
+          fileAdd: false,
+          image: 'images/retager2.jpeg'
         });
       } else {
         this.setState({
+          fileError: '',
+          fileAdd: false,
           image: 'images/retager2.jpeg'
         });
       }
@@ -89218,24 +89270,21 @@ var BaseNewProduct = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      var SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Formik"], {
         initialValues: {
           name: '',
           description: '',
           size: '',
           price: '',
-          image: undefined
+          image: '',
+          filetype: undefined
         },
         validationSchema: yup__WEBPACK_IMPORTED_MODULE_2__["object"]({
           name: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().max(70, 'Nombre demasiado largo').required('Debes rellenar este campo.'),
           description: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().required('Debes rellenar este campo.'),
           size: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().max(15, 'Talla no valida').required('Debes rellenar este campo.'),
-          price: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().matches(/^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$/, 'El precio solo puede contener números y un máximo de 2 decimales.').required('Debes rellenar este campo.')
-        }).shape({
-          image: yup__WEBPACK_IMPORTED_MODULE_2__["mixed"]().required('Debes rellenar este campo.').test("fileFormat", "Selecciona una imágen.", function (value) {
-            return value && SUPPORTED_FORMATS.includes(value.type);
-          })
+          price: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().matches(/^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$/, 'El precio solo puede contener números y un máximo de 2 decimales.').required('Debes rellenar este campo.'),
+          image: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().required('Debes añadir una imagen.')
         }),
         onSubmit: function onSubmit(values, _ref) {
           var setSubmitting = _ref.setSubmitting,
@@ -89268,10 +89317,10 @@ var BaseNewProduct = /*#__PURE__*/function (_React$Component) {
           });
         }
       }, function (formik) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Form"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Form"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "container"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "row form"
+          className: "row"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "col-lg-6 col-sm-12"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -89359,15 +89408,51 @@ var BaseNewProduct = /*#__PURE__*/function (_React$Component) {
             width: '352px',
             color: 'pink'
           }
-        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          id: "image",
-          name: "image",
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row d-flex justify-content-center"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          className: _this2.state.fileError ? "boton-secundario custom-file-upload is-invalid" : "boton-secundario custom-file-upload"
+        }, "Seleccionar imagen", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          name: "filetype",
           type: "file",
           onChange: function onChange(event) {
-            formik.setFieldValue("image", event.currentTarget.files[0]);
-
             _this2.handleNewImage(event);
           },
+          disabled: _this2.state.fileSelect ? "" : "disabled"
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          type: "button",
+          className: "btn btn-link",
+          onClick: _this2.addProductImage,
+          disabled: _this2.state.fileAdd ? "" : "disabled"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+          className: "fas fa-plus-circle fa-2x"
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "invalid-feedback text-center"
+        }, _this2.state.fileError)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row d-flex justify-content-center"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "imgShow",
+          style: {
+            backgroundImage: "url(".concat(_this2.state.images[0], ")")
+          }
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "imgShow",
+          style: {
+            backgroundImage: "url(".concat(_this2.state.images[1], ")")
+          }
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "imgShow",
+          style: {
+            backgroundImage: "url(".concat(_this2.state.images[2], ")")
+          }
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "imgShow",
+          style: {
+            backgroundImage: "url(".concat(_this2.state.images[3], ")")
+          }
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+          name: "image",
+          as: "textarea",
           className: formik.errors.image ? "form-control is-invalid" : "form-control"
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["ErrorMessage"], {
           name: "image"

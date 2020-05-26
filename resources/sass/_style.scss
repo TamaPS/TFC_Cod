@@ -565,3 +565,21 @@ input[type="text"]:focus,
 	background-size: 100% 2px;
 	color: $darker_gray;
 }
+
+/*---------------------
+Nuevo producto
+-----------------------*/
+.imgShow{
+	height: 70px;
+  	padding: 50px;
+  	border: 1px solid rgb(32, 32, 32);
+	background: rgb(209, 209, 209);
+	margin: 10px;
+	background-position: center; /* Center the image */
+  	background-repeat: no-repeat; /* Do not repeat the image */
+  	background-size: cover;
+}
+
+.custom-file-upload input{
+    display: none;
+}

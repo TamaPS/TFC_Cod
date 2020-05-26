@@ -15958,6 +15958,27 @@ input[type=text]:focus,
   color: #3a3a3a;
 }
 
+/*---------------------
+Nuevo producto
+-----------------------*/
+
+.imgShow {
+  height: 70px;
+  padding: 50px;
+  border: 1px solid #202020;
+  background: #d1d1d1;
+  margin: 10px;
+  background-position: center;
+  /* Center the image */
+  background-repeat: no-repeat;
+  /* Do not repeat the image */
+  background-size: cover;
+}
+
+.custom-file-upload input {
+  display: none;
+}
+
 input[type=range] {
   -webkit-appearance: none;
   margin: 10px 0;
