@@ -89174,6 +89174,7 @@ var BaseNewProduct = /*#__PURE__*/function (_React$Component) {
     _this.handleScale = _this.handleScale.bind(_assertThisInitialized(_this));
     _this.handlePositionChange = _this.handlePositionChange.bind(_assertThisInitialized(_this));
     _this.addProductImage = _this.addProductImage.bind(_assertThisInitialized(_this));
+    _this.handleDeleteImage = _this.handleDeleteImage.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -89206,6 +89207,7 @@ var BaseNewProduct = /*#__PURE__*/function (_React$Component) {
             this.setState({
               image: e.target.files[0]
             });
+            e.target.value = '';
           } else {
             this.setState({
               image: 'images/retager2.jpeg'
@@ -89227,14 +89229,17 @@ var BaseNewProduct = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
-    key: "addProductImage",
-    value: function addProductImage() {
-      var imageURL = this.editor.current.getImageScaledToCanvas().toDataURL();
+    key: "handleDeleteImage",
+    value: function handleDeleteImage(position) {
       var images = this.state.images;
-      images.push(imageURL);
+      images.splice(position, 1);
       this.setState({
         images: images
       });
+
+      if (!images[0]) {
+        this.formik.setFieldValue('image', '');
+      }
 
       if (images.length >= 4) {
         this.setState({
@@ -89244,6 +89249,33 @@ var BaseNewProduct = /*#__PURE__*/function (_React$Component) {
         });
       } else {
         this.setState({
+          fileSelect: true,
+          fileError: '',
+          fileAdd: false,
+          image: 'images/retager2.jpeg'
+        });
+      }
+    }
+  }, {
+    key: "addProductImage",
+    value: function addProductImage() {
+      var imageURL = this.editor.current.getImageScaledToCanvas().toDataURL();
+      var images = this.state.images;
+      images.push(imageURL);
+      this.setState({
+        images: images
+      });
+      this.formik.setFieldValue('image', this.state.images[0]);
+
+      if (images.length >= 4) {
+        this.setState({
+          fileSelect: false,
+          fileAdd: false,
+          image: 'images/retager2.jpeg'
+        });
+      } else {
+        this.setState({
+          fileSelect: true,
           fileError: '',
           fileAdd: false,
           image: 'images/retager2.jpeg'
@@ -89284,7 +89316,7 @@ var BaseNewProduct = /*#__PURE__*/function (_React$Component) {
           description: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().required('Debes rellenar este campo.'),
           size: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().max(15, 'Talla no valida').required('Debes rellenar este campo.'),
           price: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().matches(/^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$/, 'El precio solo puede contener números y un máximo de 2 decimales.').required('Debes rellenar este campo.'),
-          image: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().required('Debes añadir una imagen.')
+          image: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().required('Debes añadir al menos una imagen.')
         }),
         onSubmit: function onSubmit(values, _ref) {
           var setSubmitting = _ref.setSubmitting,
@@ -89295,9 +89327,8 @@ var BaseNewProduct = /*#__PURE__*/function (_React$Component) {
           var imageURL = _this2.editor.current.getImageScaledToCanvas().toDataURL();
 
           values.image = imageURL;
-          console.log(values)
-          /*axios.post('/api/register', values)*/
-          .then(function (response) {
+          console.log(values);
+          axios.post('/api/', values).then(function (response) {
             self.setState({
               success: "".concat(values.name, " Producto a\xF1adido con \xE9xito.")
             });
@@ -89317,6 +89348,7 @@ var BaseNewProduct = /*#__PURE__*/function (_React$Component) {
           });
         }
       }, function (formik) {
+        _this2.formik = formik;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Form"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "container"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -89435,24 +89467,50 @@ var BaseNewProduct = /*#__PURE__*/function (_React$Component) {
           style: {
             backgroundImage: "url(".concat(_this2.state.images[0], ")")
           }
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          className: "delete-imgShow",
+          hidden: _this2.state.images[0] ? false : true,
+          onClick: function onClick(event) {
+            _this2.handleDeleteImage(0);
+          }
+        }, "\u2716")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "imgShow",
           style: {
             backgroundImage: "url(".concat(_this2.state.images[1], ")")
           }
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          className: "delete-imgShow",
+          hidden: _this2.state.images[1] ? false : true,
+          onClick: function onClick(event) {
+            _this2.handleDeleteImage(1);
+          }
+        }, "\u2716")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "imgShow",
           style: {
             backgroundImage: "url(".concat(_this2.state.images[2], ")")
           }
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          className: "delete-imgShow",
+          hidden: _this2.state.images[2] ? false : true,
+          onClick: function onClick(event) {
+            _this2.handleDeleteImage(2);
+          }
+        }, "\u2716")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "imgShow",
           style: {
             backgroundImage: "url(".concat(_this2.state.images[3], ")")
           }
-        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          className: "delete-imgShow",
+          hidden: _this2.state.images[3] ? false : true,
+          onClick: function onClick(event) {
+            _this2.handleDeleteImage(3);
+          }
+        }, "\u2716"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row text-center"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
           name: "image",
-          as: "textarea",
+          type: "hidden",
           className: formik.errors.image ? "form-control is-invalid" : "form-control"
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["ErrorMessage"], {
           name: "image"
@@ -89460,7 +89518,7 @@ var BaseNewProduct = /*#__PURE__*/function (_React$Component) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "invalid-feedback"
           }, msg);
-        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "col-12 mx-auto"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), _this2.state.error && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "alert alert-danger alert-dismissible fade show",

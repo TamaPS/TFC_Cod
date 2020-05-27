@@ -570,16 +570,28 @@ input[type="text"]:focus,
 Nuevo producto
 -----------------------*/
 .imgShow{
-	height: 70px;
-  	padding: 50px;
   	border: 1px solid rgb(32, 32, 32);
 	background: rgb(209, 209, 209);
-	margin: 10px;
 	background-position: center; /* Center the image */
   	background-repeat: no-repeat; /* Do not repeat the image */
-  	background-size: cover;
+	background-size: cover;
+	position: relative;
+  	margin: 10px;
+	width: 100px;
+	height: 110px;
 }
 
 .custom-file-upload input{
     display: none;
 }
+
+.delete-imgShow {
+	display: block;
+	float: right;
+	margin-left: 10px;
+	text-align: center;
+	font-style: normal;
+	width: 12px;
+	height: 1px;
+	cursor: pointer;
+  }

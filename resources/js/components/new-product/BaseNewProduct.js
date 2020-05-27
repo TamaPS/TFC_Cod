@@ -29,6 +29,7 @@ class BaseNewProduct extends React.Component {
         this.handleScale = this.handleScale.bind(this);
         this.handlePositionChange = this.handlePositionChange.bind(this);
         this.addProductImage = this.addProductImage.bind(this);
+        this.handleDeleteImage = this.handleDeleteImage.bind(this);
     }
 
     componentDidUpdate(prevProps) {
@@ -54,6 +55,7 @@ class BaseNewProduct extends React.Component {
                 this.setState({ fileError: '', fileAdd: true });
                 if (e.target.files[0]) {
                     this.setState({ image: e.target.files[0] })
+                    e.target.value = '';
                 }
                 else {
                     this.setState({ image: 'images/retager2.jpeg' })
@@ -68,16 +70,33 @@ class BaseNewProduct extends React.Component {
         }
     }
 
+    handleDeleteImage(position) {
+        var images = this.state.images;
+        images.splice(position, 1);
+        this.setState({ images });
+
+        if (!images[0]) {
+            this.formik.setFieldValue('image', '');
+        }
+
+        if (images.length >= 4) {
+            this.setState({ fileSelect: false, fileAdd: false, image: 'images/retager2.jpeg' });
+        } else {
+            this.setState({ fileSelect: true, fileError: '', fileAdd: false, image: 'images/retager2.jpeg' });
+        }
+    }
+
     addProductImage() {
         var imageURL = this.editor.current.getImageScaledToCanvas().toDataURL();
         var images = this.state.images;
         images.push(imageURL);
         this.setState({ images });
+        this.formik.setFieldValue('image', this.state.images[0]);
 
-        if(images.length >= 4){
+        if (images.length >= 4) {
             this.setState({ fileSelect: false, fileAdd: false, image: 'images/retager2.jpeg' });
-        }else{
-            this.setState({ fileError: '', fileAdd: false, image: 'images/retager2.jpeg' });
+        } else {
+            this.setState({ fileSelect: true, fileError: '', fileAdd: false, image: 'images/retager2.jpeg' });
         }
     }
 
@@ -91,7 +110,6 @@ class BaseNewProduct extends React.Component {
     }
 
     render() {
-
         return (
             <Formik
                 initialValues={{ name: '', description: '', size: '', price: '', image: '', filetype: undefined }}
@@ -109,14 +127,14 @@ class BaseNewProduct extends React.Component {
                             'El precio solo puede contener números y un máximo de 2 decimales.')
                         .required('Debes rellenar este campo.'),
                     image: Yup.string()
-                        .required('Debes añadir una imagen.'),
+                        .required('Debes añadir al menos una imagen.'),
                 })}
                 onSubmit={(values, { setSubmitting, setErrors, resetForm }) => {
                     let self = this;
                     const imageURL = this.editor.current.getImageScaledToCanvas().toDataURL();
                     values.image = imageURL;
                     console.log(values)
-                        /*axios.post('/api/register', values)*/
+                    axios.post('/api/', values)
                         .then(function (response) {
                             self.setState({ success: `${values.name} Producto añadido con éxito.` });
                             resetForm();
@@ -134,110 +152,122 @@ class BaseNewProduct extends React.Component {
                         });
                 }}
             >
+                {formik => {
+                    this.formik = formik;
+                    return (
+                        <Form>
+                            <br />
+                            <div className="container">
+                                <div className="row">
+                                    <div className="col-lg-6 col-sm-12">
+                                        <div className="form-group">
+                                            <label htmlFor="name">Nombre del producto</label>
+                                            <Field type="text" className={formik.errors.name ? "form-control is-invalid" : "form-control"} name="name" />
+                                            <ErrorMessage name="name">{msg => <div className="invalid-feedback">{msg}</div>}</ErrorMessage>
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor="description">Descripción</label>
+                                            <Field component="textarea"
+                                                placeholder="Procura utilizar palabras clave para que tu producto llegue a más gente."
+                                                rows="5"
+                                                className={formik.errors.description ? "form-control is-invalid" : "form-control"} name="description" />
+                                            <ErrorMessage name="description">{msg => <div className="invalid-feedback">{msg}</div>}</ErrorMessage>
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor="size">Talla</label>
+                                            <Field type="text" className={formik.errors.size ? "form-control is-invalid" : "form-control"} name="size" />
+                                            <ErrorMessage name="size">{msg => <div className="invalid-feedback">{msg}</div>}</ErrorMessage>
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor="price">Precio</label>
+                                            <Field type="text" placeholder="0.00€" className={formik.errors.price ? "form-control is-invalid" : "form-control"} name="price" />
+                                            <ErrorMessage name="price">{msg => <div className="invalid-feedback">{msg}</div>}</ErrorMessage>
+                                        </div>
+                                    </div>
 
-
-                {formik => (
-                    <Form>
-                        <br />
-                        <div className="container">
-                            <div className="row">
-                                <div className="col-lg-6 col-sm-12">
-                                    <div className="form-group">
-                                        <label htmlFor="name">Nombre del producto</label>
-                                        <Field type="text" className={formik.errors.name ? "form-control is-invalid" : "form-control"} name="name" />
-                                        <ErrorMessage name="name">{msg => <div className="invalid-feedback">{msg}</div>}</ErrorMessage>
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="description">Descripción</label>
-                                        <Field component="textarea"
-                                            placeholder="Procura utilizar palabras clave para que tu producto llegue a más gente."
-                                            rows="5"
-                                            className={formik.errors.description ? "form-control is-invalid" : "form-control"} name="description" />
-                                        <ErrorMessage name="description">{msg => <div className="invalid-feedback">{msg}</div>}</ErrorMessage>
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="size">Talla</label>
-                                        <Field type="text" className={formik.errors.size ? "form-control is-invalid" : "form-control"} name="size" />
-                                        <ErrorMessage name="size">{msg => <div className="invalid-feedback">{msg}</div>}</ErrorMessage>
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="price">Precio</label>
-                                        <Field type="text" placeholder="0.00€" className={formik.errors.price ? "form-control is-invalid" : "form-control"} name="price" />
-                                        <ErrorMessage name="price">{msg => <div className="invalid-feedback">{msg}</div>}</ErrorMessage>
-                                    </div>
-                                </div>
-
-                                <div className="col-lg-6 col-sm-12">
-                                    <br />
-                                    <div className="mx-auto text-center" >
-                                        <AvatarEditor
-                                            scale={parseFloat(this.state.scale)}
-                                            width={this.state.width}
-                                            height={this.state.height}
-                                            position={this.state.position}
-                                            onPositionChange={this.handlePositionChange}
-                                            border={2}
-                                            image={this.state.image}
-                                            className="editor-canvas"
-                                            ref={this.editor}
-                                        />
+                                    <div className="col-lg-6 col-sm-12">
                                         <br />
-                                        <input
-                                            name="scale"
-                                            type="range"
-                                            onChange={this.handleScale}
-                                            min={this.state.allowZoomOut ? '0.1' : '1'}
-                                            max="4"
-                                            step="0.01"
-                                            defaultValue="0"
-                                            style={{ width: '352px', color: 'pink' }}
-                                        />
-                                    </div>
-                                    <div className="row d-flex justify-content-center">
-                                        <label className={this.state.fileError ? "boton-secundario custom-file-upload is-invalid" : "boton-secundario custom-file-upload"} >
-                                            Seleccionar imagen
-                                            <input name="filetype" type="file" onChange={(event) => { this.handleNewImage(event); }} disabled={this.state.fileSelect ? "" : "disabled"}/>
-                                        </label>
-                                        <button type="button" className="btn btn-link" onClick={this.addProductImage} disabled={this.state.fileAdd ? "" : "disabled"}>
-                                            <i className="fas fa-plus-circle fa-2x"></i>
-                                        </button>
-                                        <div className="invalid-feedback text-center">{this.state.fileError}</div>
-                                    </div>
+                                        <div className="mx-auto text-center" >
+                                            <AvatarEditor
+                                                scale={parseFloat(this.state.scale)}
+                                                width={this.state.width}
+                                                height={this.state.height}
+                                                position={this.state.position}
+                                                onPositionChange={this.handlePositionChange}
+                                                border={2}
+                                                image={this.state.image}
+                                                className="editor-canvas"
+                                                ref={this.editor}
+                                            />
+                                            <br />
+                                            <input
+                                                name="scale"
+                                                type="range"
+                                                onChange={this.handleScale}
+                                                min={this.state.allowZoomOut ? '0.1' : '1'}
+                                                max="4"
+                                                step="0.01"
+                                                defaultValue="0"
+                                                style={{ width: '352px', color: 'pink' }}
+                                            />
+                                        </div>
+                                        <div className="row d-flex justify-content-center">
+                                            <label className={this.state.fileError ? "boton-secundario custom-file-upload is-invalid" : "boton-secundario custom-file-upload"} >
+                                                Seleccionar imagen
+                                            <input name="filetype" type="file" onChange={(event) => { this.handleNewImage(event); }} disabled={this.state.fileSelect ? "" : "disabled"} />
+                                            </label>
+                                            <button type="button" className="btn btn-link" onClick={this.addProductImage} disabled={this.state.fileAdd ? "" : "disabled"}>
+                                                <i className="fas fa-plus-circle fa-2x"></i>
+                                            </button>
+                                            <div className="invalid-feedback text-center">{this.state.fileError}</div>
+                                        </div>
 
-                                    <div className="row d-flex justify-content-center">
-                                        <div className="imgShow" style={{ backgroundImage: `url(${this.state.images[0]})` }}></div>
-                                        <div className="imgShow" style={{ backgroundImage: `url(${this.state.images[1]})` }}></div>
-                                        <div className="imgShow" style={{ backgroundImage: `url(${this.state.images[2]})` }}></div>
-                                        <div className="imgShow" style={{ backgroundImage: `url(${this.state.images[3]})` }}></div>
+                                        <div className="row d-flex justify-content-center">
+                                            <div className="imgShow" style={{ backgroundImage: `url(${this.state.images[0]})` }}>
+                                                <a className="delete-imgShow" hidden={this.state.images[0] ? false : true} onClick={(event) => { this.handleDeleteImage(0); }}>&#10006;</a>
+                                            </div>
+                                            <div className="imgShow" style={{ backgroundImage: `url(${this.state.images[1]})` }}>
+                                                <a className="delete-imgShow" hidden={this.state.images[1] ? false : true} onClick={(event) => { this.handleDeleteImage(1); }}>&#10006;</a>
+                                            </div>
+                                            <div className="imgShow" style={{ backgroundImage: `url(${this.state.images[2]})` }}>
+                                                <a className="delete-imgShow" hidden={this.state.images[2] ? false : true} onClick={(event) => { this.handleDeleteImage(2); }}>&#10006;</a>
+                                            </div>
+                                            <div className="imgShow" style={{ backgroundImage: `url(${this.state.images[3]})` }}>
+                                                <a className="delete-imgShow" hidden={this.state.images[3] ? false : true} onClick={(event) => { this.handleDeleteImage(3); }}>&#10006;</a>
+                                            </div>
+                                        </div>
+                                        <div className="row text-center">
+                                            <Field name="image" type="hidden" className={formik.errors.image ? "form-control is-invalid" : "form-control"} />
+                                            <ErrorMessage name="image">{msg => <div className="invalid-feedback">{msg}</div>}</ErrorMessage>
+                                        </div>
                                     </div>
-                                    <Field name="image" as="textarea" className={formik.errors.image ? "form-control is-invalid" : "form-control"} />
-                                    <ErrorMessage name="image">{msg => <div className="invalid-feedback">{msg}</div>}</ErrorMessage>
-                                </div>
-                                <div className="col-12 mx-auto">
-                                    <br />
-                                    {this.state.error &&
-                                        <div className="alert alert-danger alert-dismissible fade show" role="alert">{this.state.error}
-                                            <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>}
-                                    {this.state.success &&
-                                        <div className="alert alert-success alert-dismissible fade show" role="alert">{this.state.success}
-                                            <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>}
-                                    <div className="col text-center">
-                                        <button type="submit" className="boton-secundario" id="subir-producto" disabled={(formik.isSubmitting)}>
-                                            SUBIR PRODUCTO
+                                    <div className="col-12 mx-auto">
+                                        <br />
+                                        {this.state.error &&
+                                            <div className="alert alert-danger alert-dismissible fade show" role="alert">{this.state.error}
+                                                <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>}
+                                        {this.state.success &&
+                                            <div className="alert alert-success alert-dismissible fade show" role="alert">{this.state.success}
+                                                <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>}
+                                        <div className="col text-center">
+                                            <button type="submit" className="boton-secundario" id="subir-producto" disabled={(formik.isSubmitting)}>
+                                                SUBIR PRODUCTO
                                             <span className={formik.isSubmitting ? "spinner-border spinner-border-sm" : "spinner-border spinner-border-sm d-none"} role="status" aria-hidden="true"></span>
-                                        </button>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </Form>
-                )}
+                        </Form>
+                    )
+                }
+                }
             </Formik>
         )
     }
