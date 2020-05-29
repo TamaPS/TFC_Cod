@@ -87595,6 +87595,7 @@ var BaseEditProfile = /*#__PURE__*/function (_React$Component) {
     _this.handleNewImage = _this.handleNewImage.bind(_assertThisInitialized(_this));
     _this.handleScale = _this.handleScale.bind(_assertThisInitialized(_this));
     _this.handlePositionChange = _this.handlePositionChange.bind(_assertThisInitialized(_this));
+    _this.handleSuccessErrorReset = _this.handleSuccessErrorReset.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -87627,6 +87628,14 @@ var BaseEditProfile = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "handleSuccessErrorReset",
+    value: function handleSuccessErrorReset() {
+      this.setState({
+        success: '',
+        error: ''
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
@@ -87650,6 +87659,9 @@ var BaseEditProfile = /*#__PURE__*/function (_React$Component) {
           var imageURL = _this2.editor.current.getImageScaledToCanvas().toDataURL();
 
           values.image = imageURL;
+
+          _this2.handleSuccessErrorReset();
+
           axios.put('/api/user/edit/image', values).then(function (response) {
             self.setState({
               success: "".concat(self.props.userData.user.name, ", tus datos han sido modificados.")
@@ -87699,7 +87711,11 @@ var BaseEditProfile = /*#__PURE__*/function (_React$Component) {
             width: '352px',
             color: 'pink'
           }
-        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row d-flex justify-content-center"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          className: "boton-imagen custom-file-upload"
+        }, "Nueva Im\xE1gen", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           id: "image",
           name: "image",
           type: "file",
@@ -87707,15 +87723,14 @@ var BaseEditProfile = /*#__PURE__*/function (_React$Component) {
             formik.setFieldValue("image", event.currentTarget.files[0]);
 
             _this2.handleNewImage(event);
-          },
-          className: formik.errors.image ? "form-control is-invalid" : "form-control"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["ErrorMessage"], {
-          name: "image"
-        }, function (msg) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "invalid-feedback"
-          }, msg);
-        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          }
+        }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row d-flex justify-content-center"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: {
+            color: 'rgb(228, 60, 55)'
+          }
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, formik.errors.image && formik.errors.image)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "col-12 mx-auto"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), _this2.state.error && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "alert alert-danger alert-dismissible fade show",
@@ -87724,7 +87739,8 @@ var BaseEditProfile = /*#__PURE__*/function (_React$Component) {
           type: "button",
           className: "close",
           "data-dismiss": "alert",
-          "aria-label": "Close"
+          "aria-label": "Close",
+          onClick: _this2.handleSuccessErrorReset
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           "aria-hidden": "true"
         }, "\xD7"))), _this2.state.success && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -87734,7 +87750,8 @@ var BaseEditProfile = /*#__PURE__*/function (_React$Component) {
           type: "button",
           className: "close",
           "data-dismiss": "alert",
-          "aria-label": "Close"
+          "aria-label": "Close",
+          onClick: _this2.handleSuccessErrorReset
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           "aria-hidden": "true"
         }, "\xD7"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -89441,9 +89458,9 @@ var BaseNewProduct = /*#__PURE__*/function (_React$Component) {
             color: 'pink'
           }
         })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "row d-flex justify-content-center"
+          className: "row d-flex justify-content-center mt-2"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-          className: _this2.state.fileError ? "boton-secundario custom-file-upload is-invalid" : "boton-secundario custom-file-upload"
+          className: "mt-2 custom-file-upload ".concat(_this2.state.fileError ? " is-invalid" : "", " ").concat(_this2.state.fileSelect ? "boton-imagen" : "boton-imagen-disabled")
         }, "Seleccionar imagen", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           name: "filetype",
           type: "file",
@@ -90709,7 +90726,7 @@ var BaseRegister = /*#__PURE__*/function (_React$Component) {
           password_confirmation: '',
           zip_code: '',
           acepto_politica: false,
-          image: undefined
+          image: ''
         },
         validationSchema: yup__WEBPACK_IMPORTED_MODULE_2__["object"]({
           name: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().max(20, 'Nombre demasiado largo.').required('Debes rellenar este campo.').test("checkName", "Ya existe un Retager con este nombre.", function (value) {
@@ -90754,10 +90771,10 @@ var BaseRegister = /*#__PURE__*/function (_React$Component) {
           var imageURL = _this2.editor.current.getImageScaledToCanvas().toDataURL();
 
           values.image = imageURL;
-          console.log(values);
           axios.post('/api/register', values).then(function (response) {
             self.setState({
-              success: "".concat(values.name, " revisa tu email para confirmar tu registro.")
+              success: "".concat(values.name, " revisa tu email para confirmar tu registro."),
+              image: 'images/retager2.jpeg'
             });
             resetForm();
             setSubmitting(false);
@@ -90885,7 +90902,9 @@ var BaseRegister = /*#__PURE__*/function (_React$Component) {
           }, msg);
         }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "col-lg-6 col-sm-12"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row d-flex justify-content-center"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "mx-auto",
           style: {
             width: '350px'
@@ -90912,7 +90931,9 @@ var BaseRegister = /*#__PURE__*/function (_React$Component) {
             width: '352px',
             color: 'pink'
           }
-        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          className: "boton-imagen custom-file-upload"
+        }, "Seleccionar imagen", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           id: "image",
           name: "image",
           type: "file",
@@ -90920,15 +90941,14 @@ var BaseRegister = /*#__PURE__*/function (_React$Component) {
             formik.setFieldValue("image", event.currentTarget.files[0]);
 
             _this2.handleNewImage(event);
-          },
-          className: formik.errors.image ? "form-control is-invalid" : "form-control"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["ErrorMessage"], {
-          name: "image"
-        }, function (msg) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "invalid-feedback"
-          }, msg);
-        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          }
+        }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row d-flex justify-content-center"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: {
+            color: 'rgb(228, 60, 55)'
+          }
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, formik.errors.image && formik.errors.image)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "col-12 mx-auto"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), _this2.state.error && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "alert alert-danger alert-dismissible fade show",
@@ -90952,7 +90972,11 @@ var BaseRegister = /*#__PURE__*/function (_React$Component) {
           "aria-hidden": "true"
         }, "\xD7"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "col text-center"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        }, Object.keys(formik.errors).length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: {
+            color: 'rgb(228, 60, 55)'
+          }
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Existen errores en el formulario.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           type: "submit",
           className: "boton-secundario",
           id: "registrarse",

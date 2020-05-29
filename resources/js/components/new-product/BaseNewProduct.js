@@ -211,10 +211,10 @@ class BaseNewProduct extends React.Component {
                                                 style={{ width: '352px', color: 'pink' }}
                                             />
                                         </div>
-                                        <div className="row d-flex justify-content-center">
-                                            <label className={this.state.fileError ? "boton-secundario custom-file-upload is-invalid" : "boton-secundario custom-file-upload"} >
+                                        <div className="row d-flex justify-content-center mt-2">
+                                            <label className={`mt-2 custom-file-upload ${this.state.fileError ? " is-invalid" : ""} ${this.state.fileSelect ? "boton-imagen" : "boton-imagen-disabled"}`}  >
                                                 Seleccionar imagen
-                                            <input name="filetype" type="file" onChange={(event) => { this.handleNewImage(event); }} disabled={this.state.fileSelect ? "" : "disabled"} />
+                                                <input name="filetype" type="file" onChange={(event) => { this.handleNewImage(event); }} disabled={this.state.fileSelect ? "" : "disabled"} />
                                             </label>
                                             <button type="button" className="btn btn-link" onClick={this.addProductImage} disabled={this.state.fileAdd ? "" : "disabled"}>
                                                 <i className="fas fa-plus-circle fa-2x"></i>

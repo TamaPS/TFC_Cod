@@ -23,6 +23,7 @@ class BaseEditProfile extends React.Component {
         this.handleNewImage = this.handleNewImage.bind(this);
         this.handleScale = this.handleScale.bind(this);
         this.handlePositionChange = this.handlePositionChange.bind(this);
+        this.handleSuccessErrorReset = this.handleSuccessErrorReset.bind(this);
     }
 
     handleNewImage(e) {
@@ -41,6 +42,10 @@ class BaseEditProfile extends React.Component {
 
     handlePositionChange(position) {
         this.setState({ position })
+    }
+
+    handleSuccessErrorReset(){
+        this.setState({ success: '', error: '' });
     }
 
     render() {
@@ -65,7 +70,7 @@ class BaseEditProfile extends React.Component {
                     let self = this;
                     const imageURL = this.editor.current.getImageScaledToCanvas().toDataURL();
                     values.image = imageURL;
-
+                    this.handleSuccessErrorReset();
                     axios.put('/api/user/edit/image', values)
                         .then(function (response) {
                             self.setState({ success: `${self.props.userData.user.name}, tus datos han sido modificados.` });
@@ -111,23 +116,30 @@ class BaseEditProfile extends React.Component {
                                         />
                                     </div>
                                     <br />
-                                    <input id="image" name="image" type="file" onChange={(event) => {
-                                        formik.setFieldValue("image", event.currentTarget.files[0]);
-                                        this.handleNewImage(event);
-                                    }} className={formik.errors.image ? "form-control is-invalid" : "form-control"} />
-                                    <ErrorMessage name="image">{msg => <div className="invalid-feedback">{msg}</div>}</ErrorMessage>
+                                    <div className="row d-flex justify-content-center">
+                                        <label className="boton-imagen custom-file-upload">
+                                            Nueva Imágen
+                                            <input id="image" name="image" type="file" onChange={(event) => {
+                                                formik.setFieldValue("image", event.currentTarget.files[0]);
+                                                this.handleNewImage(event);
+                                            }} />
+                                        </label>
+                                    </div>
+                                    <div className="row d-flex justify-content-center">
+                                        <div style={{ color: 'rgb(228, 60, 55)' }}><small>{formik.errors.image && formik.errors.image}</small></div>
+                                    </div>
                                 </div>
                                 <div className="col-12 mx-auto">
                                     <br />
                                     {this.state.error &&
                                         <div className="alert alert-danger alert-dismissible fade show" role="alert">{this.state.error}
-                                            <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                                            <button type="button" className="close" data-dismiss="alert" aria-label="Close" onClick={this.handleSuccessErrorReset}>
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>}
                                     {this.state.success &&
                                         <div className="alert alert-success alert-dismissible fade show" role="alert">{this.state.success}
-                                            <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                                            <button type="button" className="close" data-dismiss="alert" aria-label="Close" onClick={this.handleSuccessErrorReset}>
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>}
