@@ -87242,9 +87242,7 @@ var EditProfile = /*#__PURE__*/function (_React$Component) {
   _createClass(EditProfile, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "nav nav-tabs",
         id: "myTab",
         role: "tablist"
@@ -87289,14 +87287,14 @@ var EditProfile = /*#__PURE__*/function (_React$Component) {
         id: "home",
         role: "tabpanel",
         "aria-labelledby": "home-tab"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_BaseEditProfileData__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_BaseEditProfileData__WEBPACK_IMPORTED_MODULE_1__["default"], {
         userData: this.props.userData
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "tab-pane fade",
         id: "profile",
         role: "tabpanel",
         "aria-labelledby": "profile-tab"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_BaseEditProfilePassword__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_BaseEditProfilePassword__WEBPACK_IMPORTED_MODULE_2__["default"], {
         userData: this.props.userData
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "tab-pane fade",
@@ -89329,8 +89327,8 @@ var BaseNewProduct = /*#__PURE__*/function (_React$Component) {
           filetype: undefined
         },
         validationSchema: yup__WEBPACK_IMPORTED_MODULE_2__["object"]({
-          name: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().max(70, 'Nombre demasiado largo').required('Debes rellenar este campo.'),
-          description: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().required('Debes rellenar este campo.'),
+          name: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().max(70, 'Nombre demasiado largo.').required('Debes rellenar este campo.'),
+          description: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().max(500, 'Descripción demasiado larga.').required('Debes rellenar este campo.'),
           size: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().max(15, 'Talla no valida').required('Debes rellenar este campo.'),
           price: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().matches(/^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$/, 'El precio solo puede contener números y un máximo de 2 decimales.').required('Debes rellenar este campo.'),
           image: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().required('Debes añadir al menos una imagen.')
@@ -89340,14 +89338,11 @@ var BaseNewProduct = /*#__PURE__*/function (_React$Component) {
               setErrors = _ref.setErrors,
               resetForm = _ref.resetForm;
           var self = _this2;
-
-          var imageURL = _this2.editor.current.getImageScaledToCanvas().toDataURL();
-
-          values.image = imageURL;
-          console.log(values);
-          axios.post('/api/', values).then(function (response) {
+          values.images = _this2.state.images;
+          axios.post('/api/product', values).then(function (response) {
             self.setState({
-              success: "".concat(values.name, " Producto a\xF1adido con \xE9xito.")
+              success: "".concat(response.data.success),
+              images: []
             });
             resetForm();
             setSubmitting(false);
@@ -89421,7 +89416,8 @@ var BaseNewProduct = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
           htmlFor: "price"
         }, "Precio"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
-          type: "text",
+          type: "number",
+          step: "any",
           placeholder: "0.00\u20AC",
           className: formik.errors.price ? "form-control is-invalid" : "form-control",
           name: "price"
@@ -89564,7 +89560,7 @@ var BaseNewProduct = /*#__PURE__*/function (_React$Component) {
           className: "boton-secundario",
           id: "subir-producto",
           disabled: formik.isSubmitting
-        }, "SUBIR PRODUCTO", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        }, "A\xD1ADIR PRODUCTO", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           className: formik.isSubmitting ? "spinner-border spinner-border-sm" : "spinner-border spinner-border-sm d-none",
           role: "status",
           "aria-hidden": "true"

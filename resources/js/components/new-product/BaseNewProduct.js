@@ -115,9 +115,10 @@ class BaseNewProduct extends React.Component {
                 initialValues={{ name: '', description: '', size: '', price: '', image: '', filetype: undefined }}
                 validationSchema={Yup.object({
                     name: Yup.string()
-                        .max(70, 'Nombre demasiado largo')
+                        .max(70, 'Nombre demasiado largo.')
                         .required('Debes rellenar este campo.'),
                     description: Yup.string()
+                        .max(500, 'Descripción demasiado larga.')
                         .required('Debes rellenar este campo.'),
                     size: Yup.string()
                         .max(15, 'Talla no valida')
@@ -131,12 +132,10 @@ class BaseNewProduct extends React.Component {
                 })}
                 onSubmit={(values, { setSubmitting, setErrors, resetForm }) => {
                     let self = this;
-                    const imageURL = this.editor.current.getImageScaledToCanvas().toDataURL();
-                    values.image = imageURL;
-                    console.log(values)
-                    axios.post('/api/', values)
+                    values.images = this.state.images;
+                    axios.post('/api/product', values)
                         .then(function (response) {
-                            self.setState({ success: `${values.name} Producto añadido con éxito.` });
+                            self.setState({ success: `${response.data.success}`, images: [] });
                             resetForm();
                             setSubmitting(false);
                         })
@@ -180,7 +179,7 @@ class BaseNewProduct extends React.Component {
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="price">Precio</label>
-                                            <Field type="text" placeholder="0.00€" className={formik.errors.price ? "form-control is-invalid" : "form-control"} name="price" />
+                                            <Field type="number" step="any" placeholder="0.00€" className={formik.errors.price ? "form-control is-invalid" : "form-control"} name="price" />
                                             <ErrorMessage name="price">{msg => <div className="invalid-feedback">{msg}</div>}</ErrorMessage>
                                         </div>
                                     </div>
@@ -257,7 +256,7 @@ class BaseNewProduct extends React.Component {
                                             </div>}
                                         <div className="col text-center">
                                             <button type="submit" className="boton-secundario" id="subir-producto" disabled={(formik.isSubmitting)}>
-                                                SUBIR PRODUCTO
+                                                AÑADIR PRODUCTO
                                             <span className={formik.isSubmitting ? "spinner-border spinner-border-sm" : "spinner-border spinner-border-sm d-none"} role="status" aria-hidden="true"></span>
                                             </button>
                                         </div>

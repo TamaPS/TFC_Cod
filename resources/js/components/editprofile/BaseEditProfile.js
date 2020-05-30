@@ -13,7 +13,7 @@ class EditProfile extends React.Component {
             <div>
                 <br />
                 <br />
-                <div className="container">
+                <div >
                     <ul className="nav nav-tabs" id="myTab" role="tablist">
                         <li className="nav-item" role="presentation">
                             <a className="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Datos</a>
@@ -27,9 +27,11 @@ class EditProfile extends React.Component {
                     </ul>
                     <div className="tab-content" id="myTabContent">
                         <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <br />
                             <BaseEditProfileData userData={this.props.userData} />
                         </div>
                         <div className="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <br />
                             <BaseEditProfilePassword userData={this.props.userData} />
                         </div>
                         <div className="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
