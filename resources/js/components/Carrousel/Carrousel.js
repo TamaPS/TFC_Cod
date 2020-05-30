@@ -1,6 +1,8 @@
 import React from 'react';
 import Background from './Background';
-
+import {
+  Link
+} from "react-router-dom";
 class Carrousel extends React.Component {
   constructor(props) {
     super(props);
@@ -19,32 +21,35 @@ class Carrousel extends React.Component {
         {/*Slides*/}
         <div className="carousel-inner" role="listbox">
           <div className="carousel-item active">
-              <Background 
-                image = "images/carrousel1.jpeg"
-                alt = "First slide"
-              />
+            <Background
+              image="images/carrousel1.jpeg"
+              alt="First slide"
+              link="/productos-denim"
+            />
             <div className="carousel-caption">
-              <p>Vaqueros personalizados</p>
+              <p><Link to="/productos-denim" style={{color: 'white'}}>Prendas denim</Link></p>
             </div>
           </div>
           <div className="carousel-item">
             {/*Mask color*/}
-            <Background 
-                image = "images/carrousel2.jpeg"
-                alt = "Second slide"
-              />
+            <Background
+              image="images/carrousel2.jpeg"
+              alt="Second slide"
+              link="/productos-punto"
+            />
             <div className="carousel-caption">
-              <p>Tejido a mano</p>
+              <p><Link to="/productos-punto" style={{color: 'white'}}>Prendas de punto</Link></p>
             </div>
           </div>
           <div className="carousel-item">
             {/*Mask color*/}
-            <Background 
-                image = "images/carrousel3.jpeg"
-                alt = "Second slide"
-              />
+            <Background
+              image="images/carrousel3.jpeg"
+              alt="Second slide"
+              link="/productos-menos10"
+            />
             <div className="carousel-caption">
-              <p>¡¡Rebajado!!</p>
+              <p><Link to="/productos-menos10" style={{color: 'white'}}>¡Por menos de 10 euros!</Link></p>
             </div>
           </div>
         </div>

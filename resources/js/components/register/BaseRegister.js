@@ -9,7 +9,7 @@ class BaseRegister extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            image: 'images/retager2.jpeg',
+            image: 'images/plantilla.png',
             allowZoomOut: false,
             position: { x: 0.5, y: 0.5 },
             scale: 1,

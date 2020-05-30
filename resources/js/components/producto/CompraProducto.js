@@ -1,58 +1,91 @@
 import React from 'react';
-import FotosProducto from './FotosProducto'
-import FotoPortada from './FotoPortadaProducto'
+import FotosProducto from './FotosProducto';
+import FotoPortadaProducto from './FotoPortadaProducto';
 
 class CompraProducto extends React.Component {
-    constructor(props) {
-      super(props);
+  constructor(props) {
+    super(props);
+    this.state = {
+      fotoPortada: null,
+      fotos: null
     }
-  
-    render() {
-      return (
-          <div className="row mb-3">
-            <div className=" col-lg-6 col-12 p-3">
-            <div id="carouselExampleControls" className="carousel slide carrusel" data-ride="carousel">
-                <div className="carousel-inner cuadro contenido">
-                    <FotoPortada 
-                    image = "images/productos/product-1.jpg"
-                    />
-                    <FotosProducto 
-                    image = "images/productos/product-2.jpg"
-                    />
-                    <FotosProducto 
-                    image = "images/productos/product-3.jpg"
-                    />
-                </div>
-                <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span className="sr-only">Previous</span>
-                </a>
-                <a className="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                <span className="sr-only">Next</span>
-                </a>
-            </div>
-        </div>
-        <div className="col d-flex flex-column justify-content-center">
-            <div className="nombre-producto mb-4">{this.props.nombre}</div>
-            <div className="precio-producto mb-5">{this.props.precio}€</div>
-            <div className="mt-4">
-                <button type="submit" className="boton-secundario" id="logearse">Contactar al vendedor</button>
-            
-            </div>
-        <div className="row">
-            <div className="col-12 col-sm-3 vendedor mt-5 text-center">
-            <a href="#"><img src={this.props.vendedor} alt="" /></a>
-            </div>
-            <div className="col d-flex flex-column justify-content-center ml-4 mt-3">
-            
-            <a href="#" className="boton-terciario ">Más productos de {this.props.nombreVendedor}</a>
-            </div>
-            </div>
-        </div>
-      </div>
-      )
+    this.makeFotos = this.makeFotos.bind(this);
+  }
+
+  componentDidMount() {
+    this.makeFotos();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props !== prevProps) {
+      this.makeFotos();
     }
   }
-  
-  export default CompraProducto;
+
+  makeFotos() {
+    if (this.props.images) {
+      let fotos = this.props.images;
+      let foto = fotos.shift();
+
+      this.setState({
+        fotoPortada: <FotoPortadaProducto
+          key={foto.id}
+          image={foto.name}
+        />
+      });
+
+      this.setState({
+        fotos: fotos.map(
+          function (foto) {
+            return <FotosProducto
+              key={foto.id}
+              image={foto.name}
+            />;
+          }
+        )
+      });
+    }
+  }
+
+  render() {
+    return (
+      <div className="row mb-3">
+        <div className=" col-lg-6 col-12 p-3">
+          <div id="carouselExampleControls" className="carousel slide carrusel" data-ride="carousel">
+            <div className="carousel-inner cuadro contenido">
+              {this.state.fotoPortada}
+              {this.state.fotos}
+            </div>
+            <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+              <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span className="sr-only">Previous</span>
+            </a>
+            <a className="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+              <span className="carousel-control-next-icon" aria-hidden="true"></span>
+              <span className="sr-only">Next</span>
+            </a>
+          </div>
+        </div>
+        <div className="col d-flex flex-column justify-content-center">
+          <div className="nombre-producto mb-4">{this.props.nombre}</div>
+          <div className="precio-producto mb-5">{this.props.precio}€</div>
+          <div className="mt-4">
+            <button type="submit" className="boton-secundario" id="logearse">Contactar con el vendedor</button>
+
+          </div>
+          <div className="row">
+            <div className="col-12 col-sm-3 vendedor mt-5 text-center">
+              <a href="#"><img src={this.props.retager && this.props.retager.image} alt="" /></a>
+            </div>
+            <div className="col d-flex flex-column justify-content-center ml-4 mt-3">
+
+              <a href="#" className="boton-terciario ">Más productos de {this.props.retager && this.props.retager.name}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+}
+
+export default CompraProducto;

@@ -20,9 +20,9 @@ class NavbarProps extends React.Component {
                     <ul className="navbar-nav">
                         {/*Buscar*/}
                         <li className="nav-item">
-                            <a className="nav-link" href="">
+                            <Link className="nav-link" to="/busqueda">
                                 <i className="fas fa-search fa-lg"></i>
-                            </a>
+                            </Link>
                         </li>
                         {/*Fin de Buscar*/}
 

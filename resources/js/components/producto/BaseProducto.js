@@ -5,23 +5,49 @@ import DescripcionProducto from './DescripcionProducto';
 class BaseProducto extends React.Component {
   constructor(props) {
     super(props);
+    this.state ={
+      product: []
+    }
+  }
+
+  componentDidMount() {
+    this.takeProduct();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props !== prevProps) {
+      this.takeProduct();
+    }
+  }
+
+  takeProduct() {
+    const self = this;
+    axios.get('/api/product/'+this.props.id)
+      .then(function (response) {
+        self.setState({
+          product: response.data.data
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   render() {
     return (
-        <div className="container">
-          
-              <CompraProducto 
-                nombre = "Camiseta"
-                precio = "49.99"
-                vendedor = "images/retager2.jpeg"
-                nombreVendedor = "Vendedor 1"                
-              />
-    
-              <DescripcionProducto
-                descripcion = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit rerum suscipit illo, error sapiente, dicta architecto ad, quibusdam atque labore aut! Aut in praesentium, rerum quia fuga voluptas mollitia consectetur neque consequuntur corrupti blanditiis iusto officia repudiandae minus est dolore itaque! Nihil adipisci illum excepturi enim est tenetur! Et atque reiciendis non saepe, qui porro eligendi repudiandae totam cum nam, illum fugit, facilis enim laboriosam architecto. Vero accusamus odit beatae ut labore temporibus iste repudiandae ratione saepe, molestias tempora? Architecto et provident dolorem sed omnis voluptas sunt officia voluptatum? Laudantium fuga error quos accusantium. Repudiandae distinctio necessitatibus obcaecati fuga! Optio."
-                talla = "M"
-              />
+      <div className="container">
+
+        <CompraProducto
+          nombre={this.state.product.name}
+          precio={this.state.product.price}
+          retager={this.state.product.retager}
+          images={this.state.product.images}
+        />
+
+        <DescripcionProducto
+          descripcion={this.state.product.description}
+          talla={this.state.product.size}
+        />
 
       </div>
     )

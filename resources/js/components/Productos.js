@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './header/Header'
 import Navbar from './navbar/Navbar'
-import RowProductos from './productos/RowProductos'
+import BaseProductos from './productos/BaseProductos'
 import Copyright from './footers/Copyright';
 
 class Productos extends React.Component{
@@ -14,7 +14,7 @@ class Productos extends React.Component{
            <div>
                 <Header />
                 <Navbar />
-                <RowProductos />
+                <BaseProductos filters={this.props.filters} />
                 <Copyright />
            </div>
         )

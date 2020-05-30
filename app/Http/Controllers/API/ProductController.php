@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Product;
 use Illuminate\Http\Request;
+use App\Http\Resources\Product as ProductResources;
 
 class ProductController extends Controller
 {
@@ -13,9 +14,29 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return response() -> json(Product::all());
+        $query = Product::query();
+
+        if ($request->filters) {
+            foreach ($request->filters as $key => $filter) {
+                if ($key == 'price') {
+                    if ($filter != '') {
+                        $query->where($key, '<=', $filter);
+                    }
+                } else {
+                    if ($filter != '') {
+                        $query->orWhere($key, 'like', '%' . $filter . '%');
+                    }
+                }
+            }
+        }
+
+        $query->orderBy('price', 'asc');
+
+        return ProductResources::collection(
+            $query->paginate(15)
+        );
     }
 
     /**
@@ -37,7 +58,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        return new ProductResources(Product::find($id));
     }
 
     /**

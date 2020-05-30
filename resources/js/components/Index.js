@@ -25,6 +25,7 @@ import { userContext } from './login/userContext';
 import EditProfile from './EditProfile';
 import Favorites from './Favorites';
 import Top from './Top';
+import Search from './Search';
 
 
 class Index extends React.Component {
@@ -78,7 +79,38 @@ class Index extends React.Component {
                         <Route exact path="/legal" component={InformacionLegal} />
                         <Route exact path="/politica-de-cookies" component={PoliticaDeCookies} />
                         <Route exact path="/politica-de-privacidad" component={PoliticaDePrivacidad} />
-                        <Route exact path="/productos" component={Productos} />
+                        <Route exact path="/productos">
+                            <Productos filters={{}} />
+                        </Route>
+                        <Route exact path="/productos-denim">
+                            <Productos
+                                filters={
+                                    {
+                                        name: 'denim',
+                                        description: 'denim',
+                                    }
+                                }
+                            />
+                        </Route>
+                        <Route exact path="/productos-punto">
+                            <Productos
+                                filters={
+                                    {
+                                        name: 'punto',
+                                        description: 'punto',
+                                    }
+                                }
+                            />
+                        </Route>
+                        <Route exact path="/productos-menos10">
+                            <Productos
+                                filters={
+                                    {
+                                        price: 10
+                                    }
+                                }
+                            />
+                        </Route>
                         <Route exact path="/producto" component={Producto} />
                         <Route exact path="/retagers">
                             <Retagers from="" />
@@ -99,6 +131,7 @@ class Index extends React.Component {
                         <Route exact path="/account-activation" >
                             <Throw to="/verify" />
                         </Route>
+                        <Route exact path="/busqueda" component={Search} />
                     </Switch>
                 </userContext.Provider>
             </Router>
