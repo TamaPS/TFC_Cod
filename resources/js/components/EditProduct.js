@@ -25,6 +25,7 @@ class EditProduct extends React.Component {
     }
 
     takeProduct() {
+        console.log('takeProduct');
         const self = this;
         const { location } = this.props;
         axios.get('/api/product/' + location.search.slice(4))
@@ -40,21 +41,27 @@ class EditProduct extends React.Component {
 
     render() {
         var product = this.state.product;
-        return (
-            <div>
-                <NavbarShown />
-                <userContext.Consumer>
-                    {
-                        function (userData) {
-                            return (
-                                <BaseEditProduct userData={userData} product={product} />
-                            )
+        var takeProduct = this.takeProduct;
+        if (product.id) {
+            return (
+                <div>
+                    <NavbarShown />
+                    <userContext.Consumer>
+                        {
+                            function (userData) {
+                                return (
+                                    <BaseEditProduct userData={userData} product={product} takeProduct={takeProduct}/>
+                                )
+                            }
                         }
-                    }
-                </userContext.Consumer>
-                <Copyright />
-            </div>
-        )
+                    </userContext.Consumer>
+                    <Copyright />
+                </div>
+            )
+        }
+        else {
+            return (<div>Cargando...</div>);
+        }
     }
 }
 

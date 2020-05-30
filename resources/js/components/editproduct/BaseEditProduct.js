@@ -32,6 +32,11 @@ class BaseEditProduct extends React.Component {
         this.handleDeleteImage = this.handleDeleteImage.bind(this);
     }
 
+    componentDidMount() {
+        var images = this.props.product.images.map(image => image.name);
+        this.setState({ images: images });
+    }
+
     componentDidUpdate(prevProps) {
         if (this.props !== prevProps) {
             if (this.props.product.name) {
@@ -109,10 +114,9 @@ class BaseEditProduct extends React.Component {
 
     render() {
         if (this.props.product.name) {
-            //this.setState({images: this.props.product.images});
             return (
                 <Formik
-                    initialValues={{ name: this.props.product.name, description: this.props.product.description, size: this.props.product.size, price: this.props.product.price, image: '', filetype: undefined }}
+                    initialValues={{ name: this.props.product.name, description: this.props.product.description, size: this.props.product.size, price: this.props.product.price, image: this.props.product.images[0].name, filetype: undefined }}
                     validationSchema={Yup.object({
                         name: Yup.string()
                             .max(70, 'Nombre demasiado largo.')
@@ -130,13 +134,15 @@ class BaseEditProduct extends React.Component {
                         image: Yup.string()
                             .required('Debes añadir al menos una imagen.'),
                     })}
-                    onSubmit={(values, { setSubmitting, setErrors, resetForm }) => {
+                    onSubmit={(values, { setSubmitting, setErrors }) => {
                         let self = this;
+                        this.setState({ success: '' });
+                        values.id = this.props.product.id;
                         values.images = this.state.images;
-                        axios.post('/api/product', values)
+                        axios.put('/api/product/edit', values)
                             .then(function (response) {
-                                self.setState({ success: `${response.data.success}`, images: [] });
-                                resetForm();
+                                self.setState({ success: `${response.data.success}` });
+                                self.props.takeProduct();
                                 setSubmitting(false);
                             })
                             .catch(function (error) {
@@ -216,7 +222,7 @@ class BaseEditProduct extends React.Component {
                                                 <input name="filetype" type="file" onChange={(event) => { this.handleNewImage(event); }} disabled={this.state.fileSelect ? "" : "disabled"} />
                                                 </label>
                                                 <button type="button" className="btn btn-link" onClick={this.addProductImage} disabled={this.state.fileAdd ? "" : "disabled"}>
-                                                    <i className="fas fa-plus-circle fa-2x"></i>
+                                                    <i className="fas fa-plus-circle fa-2x" style={{color: 'rgb(255, 129, 255)'}}></i>
                                                 </button>
                                                 <div className="invalid-feedback text-center">{this.state.fileError}</div>
                                             </div>
@@ -256,7 +262,7 @@ class BaseEditProduct extends React.Component {
                                                 </div>}
                                             <div className="col text-center">
                                                 <button type="submit" className="boton-secundario" id="subir-producto" disabled={(formik.isSubmitting)}>
-                                                    AÑADIR PRODUCTO
+                                                    GUARDAR PRODUCTO
                                             <span className={formik.isSubmitting ? "spinner-border spinner-border-sm" : "spinner-border spinner-border-sm d-none"} role="status" aria-hidden="true"></span>
                                                 </button>
                                             </div>
