@@ -26,6 +26,7 @@ import EditProfile from './EditProfile';
 import Favorites from './Favorites';
 import Top from './Top';
 import Search from './Search';
+import EditProduct from './EditProduct';
 
 
 class Index extends React.Component {
@@ -128,6 +129,7 @@ class Index extends React.Component {
                         <Route exact path="/passwordemail" component={PasswordEmail} />
                         <Route exact path="/edit-profile" component={EditProfile} />
                         <Route exact path="/nuevo-producto" component={NewProduct} />
+                        <Route exact path="/editar-producto" component={EditProduct} />
                         <Route exact path="/password-email">
                             <Throw to="/passwordemail" />
                         </Route>

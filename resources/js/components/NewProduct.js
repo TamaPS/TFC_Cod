@@ -1,5 +1,5 @@
 import React from 'react';
-import BaseNewProduct from './new-product/BaseNewProduct';
+import BaseNewProduct from './newproduct/BaseNewProduct';
 import Copyright from './footers/Copyright';
 import NavbarShown from './navbar/NavbarShown';
 import { userContext } from './login/userContext';

@@ -59,8 +59,8 @@ class NavbarProps extends React.Component {
                                     <img className="ico" src="images/producto.svg" height="30px" />
                                 </a>
                                 <div className="dropdown-menu dropdown-menu-right" aria-labelledby="product">
-                                {this.props.value.user.id && <Link className="dropdown-item" to="/nuevo-producto">Añadir Producto</Link>}
-                                    <a className="dropdown-item" href="">Mis Productos</a>
+                                    {this.props.value.user.id && <Link className="dropdown-item" to="/nuevo-producto">Añadir Producto</Link>}
+                                    <Link className="dropdown-item" to={`/productos-retager?id=${this.props.value.user.id}`}>Mis Productos</Link>
                                 </div>
                             </li>
                         }

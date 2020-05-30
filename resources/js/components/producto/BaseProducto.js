@@ -38,7 +38,7 @@ class BaseProducto extends React.Component {
     var product = this.state.product;
     return (
       <div className="container">
-        
+        <br />
         <userContext.Consumer>
           {
             function (value) {
@@ -49,6 +49,7 @@ class BaseProducto extends React.Component {
                   precio={product.price}
                   retager={product.retager}
                   images={product.images}
+                  userId={product.user_id}
                   userData={value}
                 />);
             }

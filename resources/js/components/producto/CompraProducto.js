@@ -59,6 +59,12 @@ class CompraProducto extends React.Component {
   }
 
   render() {
+    var component = null;
+    if (this.props.userData.user.id == this.props.userId) {
+      component = <Link className='boton-secundario' to={`/editar-producto?id=${this.props.id}`} >Editar producto</Link>
+    } else {
+      component = <Contact productId={this.props.id} />
+    }
     return (
       <div className="row mb-3">
         <div className=" col-lg-6 col-12 p-3">
@@ -80,7 +86,7 @@ class CompraProducto extends React.Component {
         <div className="col d-flex flex-column justify-content-center">
           <div className="nombre-producto mb-4">{this.props.nombre}</div>
           <div className="precio-producto mb-5">{this.props.precio}€</div>
-          <Contact productId={this.props.id} />
+          {component}
           <div className="row">
             <div className="col-12 col-sm-3 vendedor mt-5 text-center">
               <Link to={`/productos-retager?id=${this.props.retager && this.props.retager.id}`}><img src={this.props.retager && this.props.retager.image} alt="" /></Link>
