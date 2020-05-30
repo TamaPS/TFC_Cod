@@ -13,6 +13,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+
 class ProductController extends Controller
 {
     /**
@@ -61,7 +62,8 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $data = Arr::only($request->all(), 
+        $data = Arr::only(
+            $request->all(),
             [
                 'name',
                 'description',
@@ -75,7 +77,7 @@ class ProductController extends Controller
 
         DB::beginTransaction();
 
-        try{
+        try {
             $user = Auth::user();
             $product = $user->products()->create([
                 'name' => $data['name'],
@@ -84,22 +86,21 @@ class ProductController extends Controller
                 'price' => $data['price'],
             ]);
 
-            foreach($data['images'] as $index => $image){
+            foreach ($data['images'] as $index => $image) {
                 $image = str_replace('data:image/png;base64,', '', $image);
                 $image = str_replace(' ', '+', $image);
-                $imageName = 'products/' . $product->id . $index . '.png';
-                Storage::put('public/'.$imageName, base64_decode($image));
+                $imageName = 'products/' . $product->id . '_' . md5(microtime()) . '.png';
+                Storage::put('public/' . $imageName, base64_decode($image));
                 $product->images()->create([
-                    'name' => 'storage/'.$imageName,
+                    'name' => 'storage/' . $imageName,
                 ]);
             }
 
             DB::commit();
-            return response()->json(['success' => 'Producto "' . $data['name'] . '" añadido con éxito.'], 201); 
-        }
-        catch(Exception $e){
+            return response()->json(['success' => 'Producto "' . $data['name'] . '" añadido con éxito.'], 201);
+        } catch (Exception $e) {
             DB::rollBack();
-            return response()->json(['error' => $e], 404); 
+            return response()->json(['error' => $e], 404);
         }
     }
 
@@ -121,9 +122,65 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $user = Auth::user();
+        $productData = $request->all();
+        $product = Product::find($productData['id']);
+
+        if ($user->id != $product->user_id) {
+            return response()->json(['error' => 'No estas autorizado.'], 401);
+        }
+
+        $data = Arr::only(
+            $productData,
+            [
+                'name',
+                'description',
+                'size',
+                'price',
+                'images',
+            ]
+        );
+
+        $this->validator($data)->validate();
+
+        DB::beginTransaction();
+
+        try {
+
+            $product->fill($productData);
+            $user->products()->save($product);
+
+            $images = $product->images()->get()->pluck('name');
+            $product->images()->delete();
+
+            foreach ($data['images'] as $index => $image) {
+                if (strpos($image, 'image/png;base64')) {
+                    $image = str_replace('data:image/png;base64,', '', $image);
+                    $image = str_replace(' ', '+', $image);
+                    $imageName = 'products/' . $product->id . '_' . md5(microtime()) . '.png';
+                    Storage::put('public/' . $imageName, base64_decode($image));
+                    $data['images'][$index] = 'storage/' . $imageName;
+                }
+                $product->images()->save(new Image(['name' => $data['images'][$index]]));
+            }
+
+            $imagesDelete = array_diff($images->toArray(), $data['images']);
+
+            foreach ($imagesDelete as $index => $image) {
+                $imageName = str_replace('storage/', 'public/', $image);
+                if (Storage::exists($imageName)) {
+                    Storage::delete($imageName);
+                }
+            }
+
+            DB::commit();
+            return response()->json(['success' => 'Producto "' . $data['name'] . '" editado con éxito.'], 201);
+        } catch (Exception $e) {
+            DB::rollBack();
+            return response()->json(['error' => $e], 404);
+        }
     }
 
     /**

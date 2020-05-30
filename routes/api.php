@@ -24,6 +24,7 @@ Route::middleware('auth:sanctum')->post('/contact', 'API\ContactController@send'
 Route::post('/products', 'API\ProductController@index');
 Route::get('/product/{id}', 'API\ProductController@show');
 Route::middleware('auth:sanctum')->post('/product', 'API\ProductController@store');
+Route::middleware('auth:sanctum')->put('/product/edit', 'API\ProductController@update');
 
 Route::get('/retagers', 'API\RetagerController@index');
 Route::get('/tops', 'API\RetagerController@top');

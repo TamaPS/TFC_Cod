@@ -216,7 +216,7 @@ class BaseNewProduct extends React.Component {
                                                 <input name="filetype" type="file" onChange={(event) => { this.handleNewImage(event); }} disabled={this.state.fileSelect ? "" : "disabled"} />
                                             </label>
                                             <button type="button" className="btn btn-link" onClick={this.addProductImage} disabled={this.state.fileAdd ? "" : "disabled"}>
-                                                <i className="fas fa-plus-circle fa-2x"></i>
+                                                <i className="fas fa-plus-circle fa-2x" style={{color: 'rgb(255, 129, 255)'}}></i>
                                             </button>
                                             <div className="invalid-feedback text-center">{this.state.fileError}</div>
                                         </div>
