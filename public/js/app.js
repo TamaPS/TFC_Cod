@@ -85269,6 +85269,11 @@ var Index = /*#__PURE__*/function (_React$Component) {
         }
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__["Route"], {
         exact: true,
+        path: "/productos-retager"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Productos__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        filters: {}
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__["Route"], {
+        exact: true,
         path: "/producto",
         component: _Producto__WEBPACK_IMPORTED_MODULE_10__["default"]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_18__["Route"], {
@@ -85927,7 +85932,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _navbar_Navbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./navbar/Navbar */ "./resources/js/components/navbar/Navbar.js");
 /* harmony import */ var _producto_BaseProducto__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./producto/BaseProducto */ "./resources/js/components/producto/BaseProducto.js");
 /* harmony import */ var _footers_Copyright__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./footers/Copyright */ "./resources/js/components/footers/Copyright.js");
-/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -85981,7 +85986,7 @@ var Producto = /*#__PURE__*/function (_React$Component) {
   return Producto;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router__WEBPACK_IMPORTED_MODULE_5__["withRouter"])(Producto));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["withRouter"])(Producto));
 
 /***/ }),
 
@@ -86000,6 +86005,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _navbar_Navbar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./navbar/Navbar */ "./resources/js/components/navbar/Navbar.js");
 /* harmony import */ var _productos_BaseProductos__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./productos/BaseProductos */ "./resources/js/components/productos/BaseProductos.js");
 /* harmony import */ var _footers_Copyright__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./footers/Copyright */ "./resources/js/components/footers/Copyright.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -86028,6 +86034,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var Productos = /*#__PURE__*/function (_React$Component) {
   _inherits(Productos, _React$Component);
 
@@ -86042,8 +86049,17 @@ var Productos = /*#__PURE__*/function (_React$Component) {
   _createClass(Productos, [{
     key: "render",
     value: function render() {
+      var location = this.props.location;
+      var filters = this.props.filters;
+
+      if (location.search.slice(0, 4) == '?id=') {
+        filters = {
+          user_id: location.search.slice(4)
+        };
+      }
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_header_Header__WEBPACK_IMPORTED_MODULE_1__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_navbar_Navbar__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_productos_BaseProductos__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        filters: this.props.filters
+        filters: filters
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_footers_Copyright__WEBPACK_IMPORTED_MODULE_4__["default"], null));
     }
   }]);
@@ -86051,7 +86067,7 @@ var Productos = /*#__PURE__*/function (_React$Component) {
   return Productos;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (Productos);
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["withRouter"])(Productos));
 
 /***/ }),
 
@@ -86937,6 +86953,240 @@ var Conditions = /*#__PURE__*/function (_React$Component) {
 
 /***/ }),
 
+/***/ "./resources/js/components/contact/Contact.js":
+/*!****************************************************!*\
+  !*** ./resources/js/components/contact/Contact.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _ContactProps__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ContactProps */ "./resources/js/components/contact/ContactProps.js");
+/* harmony import */ var _login_userContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../login/userContext */ "./resources/js/components/login/userContext.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+var Contact = /*#__PURE__*/function (_React$Component) {
+  _inherits(Contact, _React$Component);
+
+  var _super = _createSuper(Contact);
+
+  function Contact(props) {
+    _classCallCheck(this, Contact);
+
+    return _super.call(this, props);
+  }
+
+  _createClass(Contact, [{
+    key: "render",
+    value: function render() {
+      var productId = this.props.productId;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_login_userContext__WEBPACK_IMPORTED_MODULE_2__["userContext"].Consumer, null, function (value) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ContactProps__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          userData: value,
+          productId: productId
+        });
+      });
+    }
+  }]);
+
+  return Contact;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Contact);
+
+/***/ }),
+
+/***/ "./resources/js/components/contact/ContactProps.js":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/contact/ContactProps.js ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var formik__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! formik */ "./node_modules/formik/dist/formik.esm.js");
+/* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! yup */ "./node_modules/yup/es/index.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+var ContactProps = /*#__PURE__*/function (_React$Component) {
+  _inherits(ContactProps, _React$Component);
+
+  var _super = _createSuper(ContactProps);
+
+  function ContactProps(props) {
+    var _this;
+
+    _classCallCheck(this, ContactProps);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      success: ''
+    };
+    return _this;
+  }
+
+  _createClass(ContactProps, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      if (this.props.userData.user.id) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Formik"], {
+          initialValues: {
+            message: '',
+            acepto_envio: false
+          },
+          validationSchema: yup__WEBPACK_IMPORTED_MODULE_2__["object"]({
+            message: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().required('Debes rellenar este campo.'),
+            acepto_envio: yup__WEBPACK_IMPORTED_MODULE_2__["boolean"]().oneOf([true], 'Debes aceptar el envio de datos.')
+          }),
+          onSubmit: function onSubmit(values, _ref) {
+            var setSubmitting = _ref.setSubmitting,
+                setErrors = _ref.setErrors,
+                resetForm = _ref.resetForm;
+            var self = _this2;
+            Object.assign(values, {
+              product_id: _this2.props.productId
+            });
+            axios.post('/api/contact', values).then(function (response) {
+              console.log(response.data.success);
+              self.setState({
+                success: response.data.success
+              });
+              resetForm();
+              setSubmitting(false);
+            })["catch"](function (error) {
+              setErrors({
+                message: error.response.data.errors.message
+              });
+              setSubmitting(false);
+            });
+          }
+        }, function (formik) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "container justify-content-center"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Form"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "form-group"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "input-group"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+            name: "message",
+            className: formik.errors.message ? "form-control is-invalid" : "form-control",
+            as: "textarea",
+            placeholder: "Escribe aqu\xED tu mensaje para el vendedor."
+          }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["ErrorMessage"], {
+            name: "message"
+          }, function (msg) {
+            return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              className: "invalid-feedback"
+            }, msg);
+          }))), _this2.state.success && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "alert alert-success alert-dismissible fade show",
+            role: "alert"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, _this2.state.success), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+            type: "button",
+            className: "close",
+            "data-dismiss": "alert",
+            "aria-label": "Close"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+            "aria-hidden": "true"
+          }, "\xD7"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "form-check"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+            name: "acepto_envio",
+            type: "checkbox",
+            className: formik.errors.acepto_envio ? "form-check-input is-invalid" : "form-check-input"
+          }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+            htmlFor: "acepto_envio",
+            className: "form-check-label"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Acepto enviar mis datos de contacto (email) al retager.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["ErrorMessage"], {
+            name: "acepto_envio"
+          }, function (msg) {
+            return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+              className: "invalid-feedback"
+            }, msg);
+          })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "col text-center"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+            type: "submit",
+            className: "boton-secundario",
+            disabled: formik.isSubmitting
+          }, "Enviar", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+            className: formik.isSubmitting ? "spinner-border spinner-border-sm" : "spinner-border spinner-border-sm d-none",
+            role: "status",
+            "aria-hidden": "true"
+          })))));
+        });
+      } else {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "alert alert-danger",
+          role: "alert"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Si estas interesado en este producto. Inicia sesi\xF3n para enviar un mensaje a este retager."));
+      }
+    }
+  }]);
+
+  return ContactProps;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (ContactProps);
+
+/***/ }),
+
 /***/ "./resources/js/components/editprofile/BaseEditProfile.js":
 /*!****************************************************************!*\
   !*** ./resources/js/components/editprofile/BaseEditProfile.js ***!
@@ -86992,9 +87242,7 @@ var EditProfile = /*#__PURE__*/function (_React$Component) {
   _createClass(EditProfile, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "nav nav-tabs",
         id: "myTab",
         role: "tablist"
@@ -87039,14 +87287,14 @@ var EditProfile = /*#__PURE__*/function (_React$Component) {
         id: "home",
         role: "tabpanel",
         "aria-labelledby": "home-tab"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_BaseEditProfileData__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_BaseEditProfileData__WEBPACK_IMPORTED_MODULE_1__["default"], {
         userData: this.props.userData
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "tab-pane fade",
         id: "profile",
         role: "tabpanel",
         "aria-labelledby": "profile-tab"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_BaseEditProfilePassword__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_BaseEditProfilePassword__WEBPACK_IMPORTED_MODULE_2__["default"], {
         userData: this.props.userData
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "tab-pane fade",
@@ -87345,6 +87593,7 @@ var BaseEditProfile = /*#__PURE__*/function (_React$Component) {
     _this.handleNewImage = _this.handleNewImage.bind(_assertThisInitialized(_this));
     _this.handleScale = _this.handleScale.bind(_assertThisInitialized(_this));
     _this.handlePositionChange = _this.handlePositionChange.bind(_assertThisInitialized(_this));
+    _this.handleSuccessErrorReset = _this.handleSuccessErrorReset.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -87377,6 +87626,14 @@ var BaseEditProfile = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "handleSuccessErrorReset",
+    value: function handleSuccessErrorReset() {
+      this.setState({
+        success: '',
+        error: ''
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
@@ -87400,6 +87657,9 @@ var BaseEditProfile = /*#__PURE__*/function (_React$Component) {
           var imageURL = _this2.editor.current.getImageScaledToCanvas().toDataURL();
 
           values.image = imageURL;
+
+          _this2.handleSuccessErrorReset();
+
           axios.put('/api/user/edit/image', values).then(function (response) {
             self.setState({
               success: "".concat(self.props.userData.user.name, ", tus datos han sido modificados.")
@@ -87449,7 +87709,11 @@ var BaseEditProfile = /*#__PURE__*/function (_React$Component) {
             width: '352px',
             color: 'pink'
           }
-        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row d-flex justify-content-center"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          className: "boton-imagen custom-file-upload"
+        }, "Nueva Im\xE1gen", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           id: "image",
           name: "image",
           type: "file",
@@ -87457,15 +87721,14 @@ var BaseEditProfile = /*#__PURE__*/function (_React$Component) {
             formik.setFieldValue("image", event.currentTarget.files[0]);
 
             _this2.handleNewImage(event);
-          },
-          className: formik.errors.image ? "form-control is-invalid" : "form-control"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["ErrorMessage"], {
-          name: "image"
-        }, function (msg) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "invalid-feedback"
-          }, msg);
-        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          }
+        }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row d-flex justify-content-center"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: {
+            color: 'rgb(228, 60, 55)'
+          }
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, formik.errors.image && formik.errors.image)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "col-12 mx-auto"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), _this2.state.error && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "alert alert-danger alert-dismissible fade show",
@@ -87474,7 +87737,8 @@ var BaseEditProfile = /*#__PURE__*/function (_React$Component) {
           type: "button",
           className: "close",
           "data-dismiss": "alert",
-          "aria-label": "Close"
+          "aria-label": "Close",
+          onClick: _this2.handleSuccessErrorReset
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           "aria-hidden": "true"
         }, "\xD7"))), _this2.state.success && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -87484,7 +87748,8 @@ var BaseEditProfile = /*#__PURE__*/function (_React$Component) {
           type: "button",
           className: "close",
           "data-dismiss": "alert",
-          "aria-label": "Close"
+          "aria-label": "Close",
+          onClick: _this2.handleSuccessErrorReset
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           "aria-hidden": "true"
         }, "\xD7"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -88910,15 +89175,21 @@ var BaseNewProduct = /*#__PURE__*/function (_React$Component) {
       },
       scale: 1,
       preview: null,
-      width: 350,
-      height: 490,
+      width: 270,
+      height: 300,
       error: '',
-      success: ''
+      success: '',
+      images: [],
+      fileError: '',
+      fileAdd: false,
+      fileSelect: true
     };
     _this.editor = react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();
     _this.handleNewImage = _this.handleNewImage.bind(_assertThisInitialized(_this));
     _this.handleScale = _this.handleScale.bind(_assertThisInitialized(_this));
     _this.handlePositionChange = _this.handlePositionChange.bind(_assertThisInitialized(_this));
+    _this.addProductImage = _this.addProductImage.bind(_assertThisInitialized(_this));
+    _this.handleDeleteImage = _this.handleDeleteImage.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -88929,7 +89200,7 @@ var BaseNewProduct = /*#__PURE__*/function (_React$Component) {
 
       if (this.props !== prevProps) {
         if (this.props.userData) {
-          if (this.props.userData.user.id) {
+          if (!this.props.userData.user.id) {
             history.push("/");
           }
         }
@@ -88938,12 +89209,90 @@ var BaseNewProduct = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleNewImage",
     value: function handleNewImage(e) {
+      var SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
+
       if (e.target.files[0]) {
+        if (SUPPORTED_FORMATS.includes(e.target.files[0].type)) {
+          this.setState({
+            fileError: '',
+            fileAdd: true
+          });
+
+          if (e.target.files[0]) {
+            this.setState({
+              image: e.target.files[0]
+            });
+            e.target.value = '';
+          } else {
+            this.setState({
+              image: 'images/retager2.jpeg'
+            });
+          }
+        } else {
+          this.setState({
+            fileError: 'Selecciona una imágen.',
+            fileAdd: false,
+            image: 'images/retager2.jpeg'
+          });
+        }
+      } else {
         this.setState({
-          image: e.target.files[0]
+          fileError: 'Selecciona una imágen.',
+          fileAdd: false,
+          image: 'images/retager2.jpeg'
+        });
+      }
+    }
+  }, {
+    key: "handleDeleteImage",
+    value: function handleDeleteImage(position) {
+      var images = this.state.images;
+      images.splice(position, 1);
+      this.setState({
+        images: images
+      });
+
+      if (!images[0]) {
+        this.formik.setFieldValue('image', '');
+      }
+
+      if (images.length >= 4) {
+        this.setState({
+          fileSelect: false,
+          fileAdd: false,
+          image: 'images/retager2.jpeg'
         });
       } else {
         this.setState({
+          fileSelect: true,
+          fileError: '',
+          fileAdd: false,
+          image: 'images/retager2.jpeg'
+        });
+      }
+    }
+  }, {
+    key: "addProductImage",
+    value: function addProductImage() {
+      var imageURL = this.editor.current.getImageScaledToCanvas().toDataURL();
+      var images = this.state.images;
+      images.push(imageURL);
+      this.setState({
+        images: images
+      });
+      this.formik.setFieldValue('image', this.state.images[0]);
+
+      if (images.length >= 4) {
+        this.setState({
+          fileSelect: false,
+          fileAdd: false,
+          image: 'images/retager2.jpeg'
+        });
+      } else {
+        this.setState({
+          fileSelect: true,
+          fileError: '',
+          fileAdd: false,
           image: 'images/retager2.jpeg'
         });
       }
@@ -88968,39 +89317,32 @@ var BaseNewProduct = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      var SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Formik"], {
         initialValues: {
           name: '',
           description: '',
           size: '',
           price: '',
-          image: undefined
+          image: '',
+          filetype: undefined
         },
         validationSchema: yup__WEBPACK_IMPORTED_MODULE_2__["object"]({
-          name: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().max(70, 'Nombre demasiado largo').required('Debes rellenar este campo.'),
-          description: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().required('Debes rellenar este campo.'),
+          name: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().max(70, 'Nombre demasiado largo.').required('Debes rellenar este campo.'),
+          description: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().max(500, 'Descripción demasiado larga.').required('Debes rellenar este campo.'),
           size: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().max(15, 'Talla no valida').required('Debes rellenar este campo.'),
-          price: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().matches(/^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$/, 'El precio solo puede contener números y un máximo de 2 decimales.').required('Debes rellenar este campo.')
-        }).shape({
-          image: yup__WEBPACK_IMPORTED_MODULE_2__["mixed"]().required('Debes rellenar este campo.').test("fileFormat", "Selecciona una imágen.", function (value) {
-            return value && SUPPORTED_FORMATS.includes(value.type);
-          })
+          price: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().matches(/^\s*(?=.*[1-9])\d*(?:\.\d{1,2})?\s*$/, 'El precio solo puede contener números y un máximo de 2 decimales.').required('Debes rellenar este campo.'),
+          image: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().required('Debes añadir al menos una imagen.')
         }),
         onSubmit: function onSubmit(values, _ref) {
           var setSubmitting = _ref.setSubmitting,
               setErrors = _ref.setErrors,
               resetForm = _ref.resetForm;
           var self = _this2;
-
-          var imageURL = _this2.editor.current.getImageScaledToCanvas().toDataURL();
-
-          values.image = imageURL;
-          console.log(values)
-          /*axios.post('/api/register', values)*/
-          .then(function (response) {
+          values.images = _this2.state.images;
+          axios.post('/api/product', values).then(function (response) {
             self.setState({
-              success: "".concat(values.name, " Producto a\xF1adido con \xE9xito.")
+              success: "".concat(response.data.success),
+              images: []
             });
             resetForm();
             setSubmitting(false);
@@ -89018,10 +89360,11 @@ var BaseNewProduct = /*#__PURE__*/function (_React$Component) {
           });
         }
       }, function (formik) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Form"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        _this2.formik = formik;
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Form"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "container"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "row form"
+          className: "row"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "col-lg-6 col-sm-12"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -89073,7 +89416,8 @@ var BaseNewProduct = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
           htmlFor: "price"
         }, "Precio"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
-          type: "text",
+          type: "number",
+          step: "any",
           placeholder: "0.00\u20AC",
           className: formik.errors.price ? "form-control is-invalid" : "form-control",
           name: "price"
@@ -89109,15 +89453,77 @@ var BaseNewProduct = /*#__PURE__*/function (_React$Component) {
             width: '352px',
             color: 'pink'
           }
-        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-          id: "image",
-          name: "image",
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row d-flex justify-content-center mt-2"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          className: "mt-2 custom-file-upload ".concat(_this2.state.fileError ? " is-invalid" : "", " ").concat(_this2.state.fileSelect ? "boton-imagen" : "boton-imagen-disabled")
+        }, "Seleccionar imagen", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          name: "filetype",
           type: "file",
           onChange: function onChange(event) {
-            formik.setFieldValue("image", event.currentTarget.files[0]);
-
             _this2.handleNewImage(event);
           },
+          disabled: _this2.state.fileSelect ? "" : "disabled"
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          type: "button",
+          className: "btn btn-link",
+          onClick: _this2.addProductImage,
+          disabled: _this2.state.fileAdd ? "" : "disabled"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+          className: "fas fa-plus-circle fa-2x"
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "invalid-feedback text-center"
+        }, _this2.state.fileError)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row d-flex justify-content-center"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "imgShow",
+          style: {
+            backgroundImage: "url(".concat(_this2.state.images[0], ")")
+          }
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          className: "delete-imgShow",
+          hidden: _this2.state.images[0] ? false : true,
+          onClick: function onClick(event) {
+            _this2.handleDeleteImage(0);
+          }
+        }, "\u2716")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "imgShow",
+          style: {
+            backgroundImage: "url(".concat(_this2.state.images[1], ")")
+          }
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          className: "delete-imgShow",
+          hidden: _this2.state.images[1] ? false : true,
+          onClick: function onClick(event) {
+            _this2.handleDeleteImage(1);
+          }
+        }, "\u2716")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "imgShow",
+          style: {
+            backgroundImage: "url(".concat(_this2.state.images[2], ")")
+          }
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          className: "delete-imgShow",
+          hidden: _this2.state.images[2] ? false : true,
+          onClick: function onClick(event) {
+            _this2.handleDeleteImage(2);
+          }
+        }, "\u2716")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "imgShow",
+          style: {
+            backgroundImage: "url(".concat(_this2.state.images[3], ")")
+          }
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          className: "delete-imgShow",
+          hidden: _this2.state.images[3] ? false : true,
+          onClick: function onClick(event) {
+            _this2.handleDeleteImage(3);
+          }
+        }, "\u2716"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row text-center"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+          name: "image",
+          type: "hidden",
           className: formik.errors.image ? "form-control is-invalid" : "form-control"
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["ErrorMessage"], {
           name: "image"
@@ -89125,7 +89531,7 @@ var BaseNewProduct = /*#__PURE__*/function (_React$Component) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "invalid-feedback"
           }, msg);
-        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "col-12 mx-auto"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), _this2.state.error && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "alert alert-danger alert-dismissible fade show",
@@ -89154,7 +89560,7 @@ var BaseNewProduct = /*#__PURE__*/function (_React$Component) {
           className: "boton-secundario",
           id: "subir-producto",
           disabled: formik.isSubmitting
-        }, "SUBIR PRODUCTO", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        }, "A\xD1ADIR PRODUCTO", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           className: formik.isSubmitting ? "spinner-border spinner-border-sm" : "spinner-border spinner-border-sm d-none",
           role: "status",
           "aria-hidden": "true"
@@ -89476,6 +89882,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _CompraProducto__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CompraProducto */ "./resources/js/components/producto/CompraProducto.js");
 /* harmony import */ var _DescripcionProducto__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./DescripcionProducto */ "./resources/js/components/producto/DescripcionProducto.js");
+/* harmony import */ var _login_userContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../login/userContext */ "./resources/js/components/login/userContext.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -89497,6 +89904,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -89546,13 +89954,18 @@ var BaseProducto = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var product = this.state.product;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CompraProducto__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        nombre: this.state.product.name,
-        precio: this.state.product.price,
-        retager: this.state.product.retager,
-        images: this.state.product.images
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_login_userContext__WEBPACK_IMPORTED_MODULE_3__["userContext"].Consumer, null, function (value) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_CompraProducto__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          id: product.id,
+          nombre: product.name,
+          precio: product.price,
+          retager: product.retager,
+          images: product.images,
+          userData: value
+        });
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_DescripcionProducto__WEBPACK_IMPORTED_MODULE_2__["default"], {
         descripcion: this.state.product.description,
         talla: this.state.product.size
@@ -89580,6 +89993,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _FotosProducto__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FotosProducto */ "./resources/js/components/producto/FotosProducto.js");
 /* harmony import */ var _FotoPortadaProducto__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FotoPortadaProducto */ "./resources/js/components/producto/FotoPortadaProducto.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _contact_Contact__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../contact/Contact */ "./resources/js/components/contact/Contact.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -89606,6 +90021,8 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
+
 var CompraProducto = /*#__PURE__*/function (_React$Component) {
   _inherits(CompraProducto, _React$Component);
 
@@ -89622,6 +90039,7 @@ var CompraProducto = /*#__PURE__*/function (_React$Component) {
       fotos: null
     };
     _this.makeFotos = _this.makeFotos.bind(_assertThisInitialized(_this));
+    _this.openContact = _this.openContact.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -89657,6 +90075,15 @@ var CompraProducto = /*#__PURE__*/function (_React$Component) {
             });
           })
         });
+      }
+    }
+  }, {
+    key: "openContact",
+    value: function openContact() {
+      if (this.props.userData.user.id) {
+        $('#contactModal').modal('show');
+      } else {
+        $('#loginModal').modal('show');
       }
     }
   }, {
@@ -89698,26 +90125,21 @@ var CompraProducto = /*#__PURE__*/function (_React$Component) {
         className: "nombre-producto mb-4"
       }, this.props.nombre), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "precio-producto mb-5"
-      }, this.props.precio, "\u20AC"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "mt-4"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        type: "submit",
-        className: "boton-secundario",
-        id: "logearse"
-      }, "Contactar con el vendedor")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.props.precio, "\u20AC"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_contact_Contact__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        productId: this.props.id
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-12 col-sm-3 vendedor mt-5 text-center"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+        to: "/productos-retager?id=".concat(this.props.retager && this.props.retager.id)
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: this.props.retager && this.props.retager.image,
         alt: ""
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col d-flex flex-column justify-content-center ml-4 mt-3"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#",
-        className: "boton-terciario "
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+        to: "/productos-retager?id=".concat(this.props.retager && this.props.retager.id)
       }, "M\xE1s productos de ", this.props.retager && this.props.retager.name)))));
     }
   }]);
@@ -90300,7 +90722,7 @@ var BaseRegister = /*#__PURE__*/function (_React$Component) {
           password_confirmation: '',
           zip_code: '',
           acepto_politica: false,
-          image: undefined
+          image: ''
         },
         validationSchema: yup__WEBPACK_IMPORTED_MODULE_2__["object"]({
           name: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().max(20, 'Nombre demasiado largo.').required('Debes rellenar este campo.').test("checkName", "Ya existe un Retager con este nombre.", function (value) {
@@ -90345,10 +90767,10 @@ var BaseRegister = /*#__PURE__*/function (_React$Component) {
           var imageURL = _this2.editor.current.getImageScaledToCanvas().toDataURL();
 
           values.image = imageURL;
-          console.log(values);
           axios.post('/api/register', values).then(function (response) {
             self.setState({
-              success: "".concat(values.name, " revisa tu email para confirmar tu registro.")
+              success: "".concat(values.name, " revisa tu email para confirmar tu registro."),
+              image: 'images/retager2.jpeg'
             });
             resetForm();
             setSubmitting(false);
@@ -90476,7 +90898,9 @@ var BaseRegister = /*#__PURE__*/function (_React$Component) {
           }, msg);
         }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "col-lg-6 col-sm-12"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row d-flex justify-content-center"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "mx-auto",
           style: {
             width: '350px'
@@ -90503,7 +90927,9 @@ var BaseRegister = /*#__PURE__*/function (_React$Component) {
             width: '352px',
             color: 'pink'
           }
-        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          className: "boton-imagen custom-file-upload"
+        }, "Seleccionar imagen", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           id: "image",
           name: "image",
           type: "file",
@@ -90511,15 +90937,14 @@ var BaseRegister = /*#__PURE__*/function (_React$Component) {
             formik.setFieldValue("image", event.currentTarget.files[0]);
 
             _this2.handleNewImage(event);
-          },
-          className: formik.errors.image ? "form-control is-invalid" : "form-control"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["ErrorMessage"], {
-          name: "image"
-        }, function (msg) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "invalid-feedback"
-          }, msg);
-        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          }
+        }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row d-flex justify-content-center"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: {
+            color: 'rgb(228, 60, 55)'
+          }
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, formik.errors.image && formik.errors.image)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "col-12 mx-auto"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), _this2.state.error && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "alert alert-danger alert-dismissible fade show",
@@ -90543,7 +90968,11 @@ var BaseRegister = /*#__PURE__*/function (_React$Component) {
           "aria-hidden": "true"
         }, "\xD7"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "col text-center"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        }, Object.keys(formik.errors).length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: {
+            color: 'rgb(228, 60, 55)'
+          }
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, "Existen errores en el formulario.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           type: "submit",
           className: "boton-secundario",
           id: "registrarse",
@@ -90670,6 +91099,7 @@ var BaseRetagers = /*#__PURE__*/function (_React$Component) {
     value: function takeData(page) {
       var self = this;
       axios.get('/api/retagers?page=' + page + '&zip_code=' + this.zip_code + '&top=' + this.top).then(function (response) {
+        console.log(response);
         var retagerComponents = response.data.data.map(function (retager) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PropsRetagers__WEBPACK_IMPORTED_MODULE_1__["default"], {
             key: retager.id,
@@ -90745,6 +91175,7 @@ var BaseRetagers = /*#__PURE__*/function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -90766,6 +91197,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -90811,8 +91243,8 @@ var PropsRetagers = /*#__PURE__*/function (_React$Component) {
         style: this.props.heart ? {
           color: "rgb(249, 87, 255)"
         } : {}
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/productos-retager?id=".concat(this.props.id)
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: this.props.image,
         alt: this.props.nombre
@@ -91154,7 +91586,8 @@ var BaseTop = /*#__PURE__*/function (_React$Component) {
     value: function takeData(page) {
       var self = this;
       axios.get('/api/tops').then(function (response) {
-        var retagerComponents = response.data.map(function (retager) {
+        console.log(response);
+        var retagerComponents = response.data.data.map(function (retager) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_retagers_PropsRetagers__WEBPACK_IMPORTED_MODULE_1__["default"], {
             key: retager.id,
             id: retager.id,

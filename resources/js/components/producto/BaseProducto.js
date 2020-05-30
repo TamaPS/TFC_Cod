@@ -1,11 +1,12 @@
 import React from 'react';
 import CompraProducto from './CompraProducto';
 import DescripcionProducto from './DescripcionProducto';
+import { userContext } from '../login/userContext';
 
 class BaseProducto extends React.Component {
   constructor(props) {
     super(props);
-    this.state ={
+    this.state = {
       product: []
     }
   }
@@ -22,7 +23,7 @@ class BaseProducto extends React.Component {
 
   takeProduct() {
     const self = this;
-    axios.get('/api/product/'+this.props.id)
+    axios.get('/api/product/' + this.props.id)
       .then(function (response) {
         self.setState({
           product: response.data.data
@@ -34,15 +35,25 @@ class BaseProducto extends React.Component {
   }
 
   render() {
+    var product = this.state.product;
     return (
       <div className="container">
-
-        <CompraProducto
-          nombre={this.state.product.name}
-          precio={this.state.product.price}
-          retager={this.state.product.retager}
-          images={this.state.product.images}
-        />
+        
+        <userContext.Consumer>
+          {
+            function (value) {
+              return (
+                <CompraProducto
+                  id={product.id}
+                  nombre={product.name}
+                  precio={product.price}
+                  retager={product.retager}
+                  images={product.images}
+                  userData={value}
+                />);
+            }
+          }
+        </userContext.Consumer>
 
         <DescripcionProducto
           descripcion={this.state.product.description}

@@ -36,6 +36,7 @@ class FavoriteController extends Controller
             return UserResources::collection(
                 $user->favorites()->select('id', 'name', 'zip_code', 'image')
                     ->where('active', 1)
+                    ->withCount('likedBy')
                     ->orderBy('name')
                     ->paginate(15)
             );

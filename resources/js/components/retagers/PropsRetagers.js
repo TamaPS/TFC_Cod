@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 
 class PropsRetagers extends React.Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class PropsRetagers extends React.Component {
             <span className="likes">{this.props.likes}</span>
             <i className="fas fa-heart fa-lg" style={this.props.heart ? { color: "rgb(249, 87, 255)" } : {}}></i>
           </div>
-          <a href="#"><img src={this.props.image} alt={this.props.nombre} /></a>
+          <Link to={`/productos-retager?id=${this.props.id}`}><img src={this.props.image} alt={this.props.nombre} /></Link>
         </div>
         <div className="col mt-3 mb-3 nombre text-center"><a href="#">{this.props.nombre} </a></div>
       </div>
