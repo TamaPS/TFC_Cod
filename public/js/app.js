@@ -87647,7 +87647,7 @@ var BaseEditProduct = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      image: 'images/plantilla.png',
+      image: 'images/productexample.jpg',
       allowZoomOut: false,
       position: {
         x: 0.5,
@@ -87723,14 +87723,14 @@ var BaseEditProduct = /*#__PURE__*/function (_React$Component) {
           this.setState({
             fileError: 'Selecciona una imágen.',
             fileAdd: false,
-            image: 'images/retager2.jpeg'
+            image: 'images/productexample.jpg'
           });
         }
       } else {
         this.setState({
           fileError: 'Selecciona una imágen.',
           fileAdd: false,
-          image: 'images/retager2.jpeg'
+          image: 'images/productexample.jpg'
         });
       }
     }
@@ -87751,14 +87751,14 @@ var BaseEditProduct = /*#__PURE__*/function (_React$Component) {
         this.setState({
           fileSelect: false,
           fileAdd: false,
-          image: 'images/retager2.jpeg'
+          image: 'images/productexample.jpg'
         });
       } else {
         this.setState({
           fileSelect: true,
           fileError: '',
           fileAdd: false,
-          image: 'images/retager2.jpeg'
+          image: 'images/productexample.jpg'
         });
       }
     }
@@ -87777,14 +87777,14 @@ var BaseEditProduct = /*#__PURE__*/function (_React$Component) {
         this.setState({
           fileSelect: false,
           fileAdd: false,
-          image: 'images/retager2.jpeg'
+          image: 'images/productexample.jpg'
         });
       } else {
         this.setState({
           fileSelect: true,
           fileError: '',
           fileAdd: false,
-          image: 'images/retager2.jpeg'
+          image: 'images/productexample.jpg'
         });
       }
     }
@@ -88529,7 +88529,7 @@ var BaseEditProfile = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      var SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
+      var SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Formik"], {
         initialValues: {
           image: undefined
@@ -90058,7 +90058,7 @@ var BaseNewProduct = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      image: 'images/plantilla.png',
+      image: 'images/productexample.jpg',
       allowZoomOut: false,
       position: {
         x: 0.5,
@@ -90116,21 +90116,21 @@ var BaseNewProduct = /*#__PURE__*/function (_React$Component) {
             e.target.value = '';
           } else {
             this.setState({
-              image: 'images/retager2.jpeg'
+              image: 'images/productexample.jpg'
             });
           }
         } else {
           this.setState({
             fileError: 'Selecciona una imágen.',
             fileAdd: false,
-            image: 'images/retager2.jpeg'
+            image: 'images/productexample.jpg'
           });
         }
       } else {
         this.setState({
           fileError: 'Selecciona una imágen.',
           fileAdd: false,
-          image: 'images/retager2.jpeg'
+          image: 'images/productexample.jpg'
         });
       }
     }
@@ -90151,14 +90151,14 @@ var BaseNewProduct = /*#__PURE__*/function (_React$Component) {
         this.setState({
           fileSelect: false,
           fileAdd: false,
-          image: 'images/retager2.jpeg'
+          image: 'images/productexample.jpg'
         });
       } else {
         this.setState({
           fileSelect: true,
           fileError: '',
           fileAdd: false,
-          image: 'images/retager2.jpeg'
+          image: 'images/productexample.jpg'
         });
       }
     }
@@ -90177,14 +90177,14 @@ var BaseNewProduct = /*#__PURE__*/function (_React$Component) {
         this.setState({
           fileSelect: false,
           fileAdd: false,
-          image: 'images/retager2.jpeg'
+          image: 'images/productexample.jpg'
         });
       } else {
         this.setState({
           fileSelect: true,
           fileError: '',
           fileAdd: false,
-          image: 'images/retager2.jpeg'
+          image: 'images/productexample.jpg'
         });
       }
     }
@@ -91531,7 +91531,7 @@ var BaseRegister = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      image: 'images/plantilla.png',
+      image: 'images/retagerexample.png',
       allowZoomOut: false,
       position: {
         x: 0.5,
@@ -91595,7 +91595,7 @@ var BaseRegister = /*#__PURE__*/function (_React$Component) {
         });
       } else {
         this.setState({
-          image: 'images/retager2.jpeg'
+          image: 'images/retagerexample.png'
         });
       }
     }
@@ -91619,7 +91619,7 @@ var BaseRegister = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      var SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
+      var SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Formik"], {
         initialValues: {
           name: '',
@@ -91676,7 +91676,7 @@ var BaseRegister = /*#__PURE__*/function (_React$Component) {
           axios.post('/api/register', values).then(function (response) {
             self.setState({
               success: "".concat(values.name, " revisa tu email para confirmar tu registro."),
-              image: 'images/retager2.jpeg'
+              image: 'images/retagerexample.png'
             });
             resetForm();
             setSubmitting(false);

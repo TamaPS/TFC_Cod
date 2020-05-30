@@ -141,7 +141,7 @@ class BaseRegister extends React.Component {
                     values.image = imageURL;
                     axios.post('/api/register', values)
                         .then(function (response) {
-                            self.setState({ success: `${values.name} revisa tu email para confirmar tu registro.`, image: 'images/retager2.jpeg' });
+                            self.setState({ success: `${values.name} revisa tu email para confirmar tu registro.`, image: 'images/retagerexample.png' });
                             resetForm();
                             setSubmitting(false);
                         })

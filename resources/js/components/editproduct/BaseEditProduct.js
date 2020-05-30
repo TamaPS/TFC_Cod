@@ -10,7 +10,7 @@ class BaseEditProduct extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            image: 'images/plantilla.png',
+            image: 'images/productexample.jpg',
             allowZoomOut: false,
             position: { x: 0.5, y: 0.5 },
             scale: 1,
@@ -65,11 +65,11 @@ class BaseEditProduct extends React.Component {
                 }
             }
             else {
-                this.setState({ fileError: 'Selecciona una imágen.', fileAdd: false, image: 'images/retager2.jpeg' });
+                this.setState({ fileError: 'Selecciona una imágen.', fileAdd: false, image: 'images/productexample.jpg' });
             }
         }
         else {
-            this.setState({ fileError: 'Selecciona una imágen.', fileAdd: false, image: 'images/retager2.jpeg' });
+            this.setState({ fileError: 'Selecciona una imágen.', fileAdd: false, image: 'images/productexample.jpg' });
         }
     }
 
@@ -83,9 +83,9 @@ class BaseEditProduct extends React.Component {
         }
 
         if (images.length >= 4) {
-            this.setState({ fileSelect: false, fileAdd: false, image: 'images/retager2.jpeg' });
+            this.setState({ fileSelect: false, fileAdd: false, image: 'images/productexample.jpg' });
         } else {
-            this.setState({ fileSelect: true, fileError: '', fileAdd: false, image: 'images/retager2.jpeg' });
+            this.setState({ fileSelect: true, fileError: '', fileAdd: false, image: 'images/productexample.jpg' });
         }
     }
 
@@ -97,9 +97,9 @@ class BaseEditProduct extends React.Component {
         this.formik.setFieldValue('image', this.state.images[0]);
 
         if (images.length >= 4) {
-            this.setState({ fileSelect: false, fileAdd: false, image: 'images/retager2.jpeg' });
+            this.setState({ fileSelect: false, fileAdd: false, image: 'images/productexample.jpg' });
         } else {
-            this.setState({ fileSelect: true, fileError: '', fileAdd: false, image: 'images/retager2.jpeg' });
+            this.setState({ fileSelect: true, fileError: '', fileAdd: false, image: 'images/productexample.jpg' });
         }
     }
 
@@ -263,7 +263,7 @@ class BaseEditProduct extends React.Component {
                                             <div className="col text-center">
                                                 <button type="submit" className="boton-secundario" id="subir-producto" disabled={(formik.isSubmitting)}>
                                                     GUARDAR PRODUCTO
-                                            <span className={formik.isSubmitting ? "spinner-border spinner-border-sm" : "spinner-border spinner-border-sm d-none"} role="status" aria-hidden="true"></span>
+                                                    <span className={formik.isSubmitting ? "spinner-border spinner-border-sm" : "spinner-border spinner-border-sm d-none"} role="status" aria-hidden="true"></span>
                                                 </button>
                                             </div>
                                         </div>
