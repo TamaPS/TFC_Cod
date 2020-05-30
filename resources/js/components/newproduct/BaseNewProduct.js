@@ -10,7 +10,7 @@ class BaseNewProduct extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            image: 'images/plantilla.png',
+            image: 'images/productexample.png',
             allowZoomOut: false,
             position: { x: 0.5, y: 0.5 },
             scale: 1,
@@ -58,15 +58,15 @@ class BaseNewProduct extends React.Component {
                     e.target.value = '';
                 }
                 else {
-                    this.setState({ image: 'images/retager2.jpeg' })
+                    this.setState({ image: 'images/productexample.png' })
                 }
             }
             else {
-                this.setState({ fileError: 'Selecciona una imágen.', fileAdd: false, image: 'images/retager2.jpeg' });
+                this.setState({ fileError: 'Selecciona una imágen.', fileAdd: false, image: 'images/productexample.png' });
             }
         }
         else {
-            this.setState({ fileError: 'Selecciona una imágen.', fileAdd: false, image: 'images/retager2.jpeg' });
+            this.setState({ fileError: 'Selecciona una imágen.', fileAdd: false, image: 'images/productexample.png' });
         }
     }
 
@@ -80,9 +80,9 @@ class BaseNewProduct extends React.Component {
         }
 
         if (images.length >= 4) {
-            this.setState({ fileSelect: false, fileAdd: false, image: 'images/retager2.jpeg' });
+            this.setState({ fileSelect: false, fileAdd: false, image: 'images/productexample.png' });
         } else {
-            this.setState({ fileSelect: true, fileError: '', fileAdd: false, image: 'images/retager2.jpeg' });
+            this.setState({ fileSelect: true, fileError: '', fileAdd: false, image: 'images/productexample.png' });
         }
     }
 
@@ -94,9 +94,9 @@ class BaseNewProduct extends React.Component {
         this.formik.setFieldValue('image', this.state.images[0]);
 
         if (images.length >= 4) {
-            this.setState({ fileSelect: false, fileAdd: false, image: 'images/retager2.jpeg' });
+            this.setState({ fileSelect: false, fileAdd: false, image: 'images/productexample.png' });
         } else {
-            this.setState({ fileSelect: true, fileError: '', fileAdd: false, image: 'images/retager2.jpeg' });
+            this.setState({ fileSelect: true, fileError: '', fileAdd: false, image: 'images/productexample.png' });
         }
     }
 

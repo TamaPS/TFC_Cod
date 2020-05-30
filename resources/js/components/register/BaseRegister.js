@@ -9,7 +9,7 @@ class BaseRegister extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            image: 'images/plantilla.png',
+            image: 'images/retagerexample.png',
             allowZoomOut: false,
             position: { x: 0.5, y: 0.5 },
             scale: 1,
@@ -53,7 +53,7 @@ class BaseRegister extends React.Component {
             this.setState({ image: e.target.files[0] })
         }
         else {
-            this.setState({ image: 'images/retager2.jpeg' })
+            this.setState({ image: 'images/retagerexample.png' })
         }
     }
 
@@ -70,7 +70,6 @@ class BaseRegister extends React.Component {
         const SUPPORTED_FORMATS = [
             "image/jpg",
             "image/jpeg",
-            "image/gif",
             "image/png"
         ];
         return (
