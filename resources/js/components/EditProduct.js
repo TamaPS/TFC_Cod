@@ -5,6 +5,7 @@ import NavbarShown from './navbar/NavbarShown';
 import { userContext } from './login/userContext';
 import { withRouter } from "react-router-dom";
 import Loading from './Loading';
+import Unauthorized from './Unauthorized';
 
 class EditProduct extends React.Component {
     constructor(props) {
@@ -45,23 +46,33 @@ class EditProduct extends React.Component {
         var takeProduct = this.takeProduct;
         if (product.id) {
             return (
-                <div>
-                    <NavbarShown />
-                    <userContext.Consumer>
-                        {
-                            function (userData) {
+                <userContext.Consumer>
+                    {
+                        function (userData) {
+                            if (product.user_id == userData.user.id) {
                                 return (
-                                    <BaseEditProduct userData={userData} product={product} takeProduct={takeProduct}/>
-                                )
+                                    <div>
+                                        <NavbarShown />
+                                        <BaseEditProduct userData={userData} product={product} takeProduct={takeProduct} />
+                                        <Copyright />
+                                    </div>
+                                );
+                            } else {
+                                return (<Unauthorized />);
                             }
                         }
-                    </userContext.Consumer>
-                    <Copyright />
-                </div>
+                    }
+                </userContext.Consumer>
             )
         }
         else {
-            return (<Loading />);
+            return (
+                <div>
+                    <NavbarShown />
+                    <Loading />
+                    <Copyright />
+                </div>
+            );
         }
     }
 }

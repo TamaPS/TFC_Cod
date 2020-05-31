@@ -37,3 +37,4 @@ Route::view('/condiciones', 'index');
 
 Route::view('/edit-profile', 'index');
 Route::view('/nuevo-producto', 'index');
+Route::view('/editar-producto', 'index');
