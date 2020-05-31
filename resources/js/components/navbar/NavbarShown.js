@@ -11,7 +11,7 @@ class NavbarShown extends React.Component {
       <userContext.Consumer>
         {
           function (value) {
-            return(<NavbarProps value={value} class="scrolled" />);
+            return(<NavbarProps value={value} classProp="scrolled" />);
           }
         }
       </userContext.Consumer>

@@ -4,6 +4,7 @@ import Copyright from './footers/Copyright';
 import NavbarShown from './navbar/NavbarShown';
 import { userContext } from './login/userContext';
 import { withRouter } from "react-router-dom";
+import Loading from './Loading';
 
 class EditProduct extends React.Component {
     constructor(props) {
@@ -60,7 +61,7 @@ class EditProduct extends React.Component {
             )
         }
         else {
-            return (<div>Cargando...</div>);
+            return (<Loading />);
         }
     }
 }

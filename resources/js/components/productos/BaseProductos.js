@@ -1,6 +1,7 @@
 import React from 'react';
 import PropsProductos from './PropsProductos';
 import Pagination from '../Pagination';
+import Loading from '../Loading';
 
 class BaseProductos extends React.Component {
     constructor(props) {
@@ -12,6 +13,7 @@ class BaseProductos extends React.Component {
             per_page: null,
             to: null,
             total: null,
+            response: '',
         }
         this.takeData = this.takeData.bind(this);
     }
@@ -34,6 +36,7 @@ class BaseProductos extends React.Component {
         const self = this;
         axios.post('/api/products', values)
             .then(function (response) {
+                self.setState({ response });
                 const productComponents = response.data.data.map(product =>
                     <PropsProductos
                         key={product.id}
@@ -57,31 +60,36 @@ class BaseProductos extends React.Component {
     }
 
     render() {
-        return (
-            <div>
-                <Pagination
-                    current_page={this.state.current_page}
-                    last_page={this.state.last_page}
-                    per_page={this.state.per_page}
-                    to={this.state.to}
-                    total={this.state.total}
-                    refresh={this.takeData}
-                />
-                <div className="container-fluid d-flex justify-content-center mt-5">
-                    <div className="row ">
-                        {this.state.productComponents}
+        if (this.state.response) {
+            return (
+                <div>
+                    <Pagination
+                        current_page={this.state.current_page}
+                        last_page={this.state.last_page}
+                        per_page={this.state.per_page}
+                        to={this.state.to}
+                        total={this.state.total}
+                        refresh={this.takeData}
+                    />
+                    <div className="container-fluid d-flex justify-content-center mt-5">
+                        <div className="row ">
+                            {this.state.productComponents}
+                        </div>
                     </div>
+                    <Pagination
+                        current_page={this.state.current_page}
+                        last_page={this.state.last_page}
+                        per_page={this.state.per_page}
+                        to={this.state.to}
+                        total={this.state.total}
+                        refresh={this.takeData}
+                    />
                 </div>
-                <Pagination
-                    current_page={this.state.current_page}
-                    last_page={this.state.last_page}
-                    per_page={this.state.per_page}
-                    to={this.state.to}
-                    total={this.state.total}
-                    refresh={this.takeData}
-                />
-            </div>
-        )
+            )
+        }
+        else {
+            return (<Loading />);
+        }
     }
 }
 

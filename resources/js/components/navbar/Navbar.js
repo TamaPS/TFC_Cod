@@ -12,7 +12,7 @@ class Navbar extends React.Component {
       <userContext.Consumer>
         {
           function (value) {
-            return(<NavbarProps value={value} class="navScrolled" />);
+            return(<NavbarProps value={value} classProp="navScrolled" />);
           }
         }
       </userContext.Consumer>

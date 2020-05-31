@@ -6,6 +6,7 @@ import {
     withRouter
 } from "react-router-dom";
 import ReactModal from 'react-modal';
+import Loading from '../Loading';
 
 class BaseEditProduct extends React.Component {
     constructor(props) {
@@ -346,7 +347,7 @@ class BaseEditProduct extends React.Component {
             )
         }
         else {
-            return (<div>Cargando...</div>);
+            return (<Loading />);
         }
     }
 }

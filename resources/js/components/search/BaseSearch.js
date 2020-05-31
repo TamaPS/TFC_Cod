@@ -1,6 +1,7 @@
 import React from 'react';
 import PropsProductos from '../productos/PropsProductos';
 import Pagination from '../Pagination';
+import Loading from '../Loading';
 
 class BaseSearch extends React.Component {
     constructor(props) {
@@ -14,6 +15,7 @@ class BaseSearch extends React.Component {
             total: null,
             search: '',
             filters: null,
+            response: '',
         }
         this.takeData = this.takeData.bind(this);
         this.handleChangeSearch = this.handleChangeSearch.bind(this);
@@ -31,13 +33,13 @@ class BaseSearch extends React.Component {
     }
 
     handleChangeSearch(event) {
-        this.setState({ 
+        this.setState({
             search: event.target.value,
             filters: {
                 name: event.target.value,
                 description: event.target.value,
             }
-         });
+        });
     }
 
     handleSubmit(event) {
@@ -53,6 +55,7 @@ class BaseSearch extends React.Component {
         const self = this;
         axios.post('/api/products', values)
             .then(function (response) {
+                self.setState({ response });
                 const productComponents = response.data.data.map(product =>
                     <PropsProductos
                         key={product.id}
@@ -76,45 +79,50 @@ class BaseSearch extends React.Component {
     }
 
     render() {
-        return (
-            <div>
-                <br />
-                <div className="container">
-                    <form onSubmit={this.handleSubmit}>
-                        <div className="input-group">
-                            <div className="custom-file">
-                                <input type="text" className="form-control" value={this.state.search} onChange={this.handleChangeSearch} />
+        if (this.state.response) {
+            return (
+                <div>
+                    <br />
+                    <div className="container">
+                        <form onSubmit={this.handleSubmit}>
+                            <div className="input-group">
+                                <div className="custom-file">
+                                    <input type="text" className="form-control" value={this.state.search} onChange={this.handleChangeSearch} />
+                                </div>
+                                <div className="input-group-append">
+                                    <input type="submit" className="btn btn-outline" value="Buscar" />
+                                </div>
                             </div>
-                            <div className="input-group-append">
-                                <input type="submit" className="btn btn-outline" value="Buscar"/>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <br />
-                <Pagination
-                    current_page={this.state.current_page}
-                    last_page={this.state.last_page}
-                    per_page={this.state.per_page}
-                    to={this.state.to}
-                    total={this.state.total}
-                    refresh={this.takeData}
-                />
-                <div className="container-fluid d-flex justify-content-center mt-5">
-                    <div className="row ">
-                        {this.state.productComponents}
+                        </form>
                     </div>
+                    <br />
+                    <Pagination
+                        current_page={this.state.current_page}
+                        last_page={this.state.last_page}
+                        per_page={this.state.per_page}
+                        to={this.state.to}
+                        total={this.state.total}
+                        refresh={this.takeData}
+                    />
+                    <div className="container-fluid d-flex justify-content-center mt-5">
+                        <div className="row ">
+                            {this.state.productComponents}
+                        </div>
+                    </div>
+                    <Pagination
+                        current_page={this.state.current_page}
+                        last_page={this.state.last_page}
+                        per_page={this.state.per_page}
+                        to={this.state.to}
+                        total={this.state.total}
+                        refresh={this.takeData}
+                    />
                 </div>
-                <Pagination
-                    current_page={this.state.current_page}
-                    last_page={this.state.last_page}
-                    per_page={this.state.per_page}
-                    to={this.state.to}
-                    total={this.state.total}
-                    refresh={this.takeData}
-                />
-            </div>
-        )
+            )
+        }
+        else {
+            return (<Loading />);
+        }
     }
 }
 

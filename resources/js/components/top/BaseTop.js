@@ -1,11 +1,13 @@
 import React from 'react';
 import PropsRetagers from '../retagers/PropsRetagers';
+import Loading from '../Loading';
 
 class BaseTop extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             retagerComponents: [],
+            response: '',
         }
         this.takeData = this.takeData.bind(this);
     }
@@ -20,11 +22,11 @@ class BaseTop extends React.Component {
         }
     }
 
-    takeData(page) {
+    takeData() {
         const self = this;
         axios.get('/api/tops')
             .then(function (response) {
-                console.log(response);
+                self.setState({ response });
                 const retagerComponents = response.data.data.map(retager =>
                     <PropsRetagers
                         key={retager.id}
@@ -46,15 +48,20 @@ class BaseTop extends React.Component {
     }
 
     render() {
-        return (
-            <div>
-                <div className="container-fluid d-flex justify-content-center mt-5">
-                    <div className="row ">
-                        {this.state.retagerComponents}
+        if (this.state.response) {
+            return (
+                <div>
+                    <div className="container-fluid d-flex justify-content-center mt-5">
+                        <div className="row ">
+                            {this.state.retagerComponents}
+                        </div>
                     </div>
                 </div>
-            </div>
-        )
+            )
+        }
+        else {
+            return (<Loading />);
+        }
     }
 }
 

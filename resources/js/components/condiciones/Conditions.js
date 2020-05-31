@@ -7,18 +7,18 @@ class Conditions extends React.Component{
 
     render(){
         return(
-            <div class="container">
+            <div className="container">
             <br />
-            <p><img class="icoEnano" src="images/logo.svg" alt="logo2" id="icoEnano" /> es un escaparate virtual. <br />
+            <p><img className="icoEnano" src="images/logo.svg" alt="logo2" id="icoEnano" /> es un escaparate virtual. <br />
               ¡Queremos 
               dar una segunda vida a la ropa!
               </p>
         
-            <div class="text-center">
-              <img src="images/open.jpeg" class="rounded mx-auto d-block img-fluid" alt="us" />
+            <div className="text-center">
+              <img src="images/open.jpeg" className="rounded mx-auto d-block img-fluid" alt="us" />
             </div>
             <br />
-            <p class="pb-3">
+            <p className="pb-3">
               Hay 4 formas de ser retager:<br />
               <ul>
                 <li>Vendiendo prendas vintage, con encanto. Puedes darte una vuelta por
@@ -43,8 +43,8 @@ class Conditions extends React.Component{
                 aunque nosotros estaremos personalmente vigilando el contenido en la medida de lo posible.
               </p>
         
-              <div class="text-center">
-                <img src="images/shopping.jpeg" class="rounded mx-auto d-block img-fluid" alt="us" />
+              <div className="text-center">
+                <img src="images/shopping.jpeg" className="rounded mx-auto d-block img-fluid" alt="us" />
               </div>
               <br />
         
@@ -53,12 +53,12 @@ class Conditions extends React.Component{
               la persona interesada, por lo que es importante que uses una nomenclatura que puedas distinguir.
              </p>
              
-             <div class="text-center">
-               <img src="images/maniqui.jpeg" class="rounded mx-auto d-block img-fluid" alt="us" />
+             <div className="text-center">
+               <img src="images/maniqui.jpeg" className="rounded mx-auto d-block img-fluid" alt="us" />
              </div>
              <br />
         
-             <p><i><img class="icoEnano" src="images/logo.svg" alt="logo2" id="icoEnano" /> no se hace responsable de transacciones, métodos de envío ni devoluciones.</i> </p>
+             <p><i><img className="icoEnano" src="images/logo.svg" alt="logo2" id="icoEnano" /> no se hace responsable de transacciones, métodos de envío ni devoluciones.</i> </p>
         
             </p>
           </div>

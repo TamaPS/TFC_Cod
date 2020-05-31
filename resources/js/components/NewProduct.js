@@ -2,6 +2,7 @@ import React from 'react';
 import BaseNewProduct from './newproduct/BaseNewProduct';
 import Copyright from './footers/Copyright';
 import NavbarShown from './navbar/NavbarShown';
+import Unauthorized from './Unauthorized';
 import { userContext } from './login/userContext';
 
 class NewProduct extends React.Component {
@@ -11,18 +12,25 @@ class NewProduct extends React.Component {
 
     render() {
         return (
-            <div>
-                <NavbarShown />
-                <userContext.Consumer>
-                    {
-                        function (userData) {
+
+            <userContext.Consumer>
+                {
+                    function (userData) {
+                        if (userData.user.id) {
                             return (
-                                <BaseNewProduct userData={userData} />);
+                                <div>
+                                    <NavbarShown />
+                                    <BaseNewProduct userData={userData} />
+                                    <Copyright />
+                                </div>
+                            );
+                        } else {
+                            return (<Unauthorized />);
                         }
                     }
-                </userContext.Consumer>
-                <Copyright />
-            </div>
+                }
+            </userContext.Consumer>
+
         )
     }
 }

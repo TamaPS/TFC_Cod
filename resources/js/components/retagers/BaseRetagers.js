@@ -1,6 +1,7 @@
 import React from 'react';
 import PropsRetagers from './PropsRetagers';
 import Pagination from '../Pagination';
+import Loading from '../Loading';
 
 class BaseRetagers extends React.Component {
     constructor(props) {
@@ -14,6 +15,7 @@ class BaseRetagers extends React.Component {
             total: null,
             alert: false,
             zip_code: '',
+            response: '',
         }
         this.takeData = this.takeData.bind(this);
         this.zip_code = '';
@@ -44,7 +46,7 @@ class BaseRetagers extends React.Component {
 
         }
 
-        if(this.props.from == 'top'){
+        if (this.props.from == 'top') {
             this.top = true;
         }
     }
@@ -53,7 +55,7 @@ class BaseRetagers extends React.Component {
         const self = this;
         axios.get('/api/retagers?page=' + page + '&zip_code=' + this.zip_code + '&top=' + this.top)
             .then(function (response) {
-                console.log(response);
+                self.setState({ response });
                 const retagerComponents = response.data.data.map(retager =>
                     <PropsRetagers
                         key={retager.id}
@@ -80,40 +82,47 @@ class BaseRetagers extends React.Component {
     }
 
     render() {
-        return (
-            <div>
-                {this.state.alert &&
-                    <div className="alert alert-dark alert-dismissible fade show" role="alert">
-                        <p>Para ver los retagers cerca de ti, inicia sesión.</p>
-                        <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>}
-                <Pagination
-                    current_page={this.state.current_page}
-                    last_page={this.state.last_page}
-                    per_page={this.state.per_page}
-                    to={this.state.to}
-                    total={this.state.total}
-                    refresh={this.takeData}
-                />
-                <div className="container-fluid d-flex justify-content-center mt-5">
-                    <div className="row ">
-                        {this.state.retagerComponents}
+        if (this.state.response) {
+            return (
+                <div>
+                    {this.state.alert &&
+                        <div className="alert alert-dark alert-dismissible fade show" role="alert">
+                            <p>Para ver los retagers cerca de ti, inicia sesión.</p>
+                            <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>}
+                    <Pagination
+                        current_page={this.state.current_page}
+                        last_page={this.state.last_page}
+                        per_page={this.state.per_page}
+                        to={this.state.to}
+                        total={this.state.total}
+                        refresh={this.takeData}
+                    />
+                    <div className="container-fluid d-flex justify-content-center mt-5">
+                        <div className="row ">
+                            {(this.state.response.data.data.length > 0) ?
+                                this.state.retagerComponents : <div className="text-center"><br /><h4>No existen Retagers en esta sección.</h4><br /><br /></div>
+                            }
+                        </div>
                     </div>
+                    <br />
+                    <Pagination
+                        current_page={this.state.current_page}
+                        last_page={this.state.last_page}
+                        per_page={this.state.per_page}
+                        to={this.state.to}
+                        total={this.state.total}
+                        refresh={this.takeData}
+                    />
+                    <br />
                 </div>
-                <br />
-                <Pagination
-                    current_page={this.state.current_page}
-                    last_page={this.state.last_page}
-                    per_page={this.state.per_page}
-                    to={this.state.to}
-                    total={this.state.total}
-                    refresh={this.takeData}
-                />
-                <br />
-            </div>
-        )
+            )
+        }
+        else {
+            return (<Loading />);
+        }
     }
 }
 

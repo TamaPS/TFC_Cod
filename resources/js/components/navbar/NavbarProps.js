@@ -9,7 +9,7 @@ class NavbarProps extends React.Component {
 
     render() {
         return (
-            <nav id="navIndex" className={`navbar top-sticky navbar-expand-sm navbar-light ${this.props.class}`}>
+            <nav id="navIndex" className={`navbar top-sticky navbar-expand-sm navbar-light ${this.props.classProp}`}>
                 <Link className="navbar-brand" to="/">
                     <img className="ico" src="images/logo.svg" alt="logo2" id="brand" />
                 </Link>

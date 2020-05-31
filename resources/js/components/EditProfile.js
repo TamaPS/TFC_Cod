@@ -2,6 +2,7 @@ import React from 'react';
 import BaseEditProfile from './editprofile/BaseEditProfile';
 import Copyright from './footers/Copyright';
 import NavbarShown from './navbar/NavbarShown';
+import Unauthorized from './Unauthorized';
 import { userContext } from './login/userContext';
 
 class EditProfile extends React.Component {
@@ -11,19 +12,23 @@ class EditProfile extends React.Component {
 
     render() {
         return (
-            <div>
-                <NavbarShown />
-                <userContext.Consumer>
-                    {
-                        function (userData) {
+            <userContext.Consumer>
+                {
+                    function (userData) {
+                        if (userData.user.id) {
                             return (
-                                <BaseEditProfile userData={userData}/>
-                            )
+                                <div>
+                                    <NavbarShown />
+                                    <BaseEditProfile userData={userData} />
+                                    <Copyright />
+                                </div>
+                            );
+                        } else {
+                            return (<Unauthorized />);
                         }
                     }
-                </userContext.Consumer>
-                <Copyright />
-            </div>
+                }
+            </userContext.Consumer>
         )
     }
 }

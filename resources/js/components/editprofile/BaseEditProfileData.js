@@ -13,17 +13,6 @@ class BaseEditProfileData extends React.Component {
         }
     }
 
-    componentDidUpdate(prevProps) {
-        const { history } = this.props;
-        if (this.props !== prevProps) {
-            if (this.props.userData) {
-                if (!this.props.userData.user.id) {
-                    history.push("/");
-                }
-            }
-        }
-    }
-
     render() {
         return (
             <Formik

@@ -34,3 +34,6 @@ Route::view('/politica-de-privacidad', 'index');
 Route::view('/history', 'index');
 Route::view('/medio-ambiente', 'index');
 Route::view('/condiciones', 'index');
+
+Route::view('/edit-profile', 'index');
+Route::view('/nuevo-producto', 'index');
