@@ -1,8 +1,6 @@
 import React from 'react';
 import Header from './header/Header'
 import Navbar from './navbar/Navbar'
-import Carrousel from './carrousel/Carrousel'
-import Cards from './cards/Cards'
 import FooterAll from './footers/FooterAll'
 
 class Unauthorized extends React.Component {
