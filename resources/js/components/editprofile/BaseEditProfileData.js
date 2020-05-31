@@ -43,6 +43,7 @@ class BaseEditProfileData extends React.Component {
                 })}
                 onSubmit={(values, { setSubmitting, setErrors }) => {
                     let self = this;
+                    self.setState({ success: '', error: '' });
                     axios.put('/api/user/edit/data', values)
                         .then(function (response) {
                             self.setState({ success: `${values.name}, tus datos han sido modificados.` });

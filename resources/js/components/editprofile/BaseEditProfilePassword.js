@@ -40,6 +40,7 @@ class BaseEditProfilePassword extends React.Component {
                 })}
                 onSubmit={(values, { setSubmitting, setErrors, resetForm }) => {
                     let self = this;
+                    self.setState({ success: '', error: '' });
                     axios.put('/api/user/edit/password', values)
                         .then(function (response) {
                             self.setState({ success: `${self.props.userData.user.name}, tu contraseña ha sido modificada.` });

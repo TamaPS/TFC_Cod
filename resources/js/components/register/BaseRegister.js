@@ -137,6 +137,7 @@ class BaseRegister extends React.Component {
                 })}
                 onSubmit={(values, { setSubmitting, setErrors, resetForm }) => {
                     let self = this;
+                    self.setState({ success: '', error: '' });
                     const imageURL = this.editor.current.getImageScaledToCanvas().toDataURL();
                     values.image = imageURL;
                     axios.post('/api/register', values)
@@ -146,6 +147,7 @@ class BaseRegister extends React.Component {
                             setSubmitting(false);
                         })
                         .catch(function (error) {
+                            setSubmitting(false);
                             setErrors({
                                 name: error.response.data.errors.name,
                                 email: error.response.data.errors.email,
@@ -153,8 +155,7 @@ class BaseRegister extends React.Component {
                                 password_confirmation: error.response.data.errors.password_confirmation,
                                 zip_code: error.response.data.errors.zip_code,
                             });
-                            self.setState({ error: 'El formulario tiene errores.' });
-                            setSubmitting(false);
+                            self.setState({ error: 'El formulario tiene errores.' });                            
                         });
                 }}
             >

@@ -202,7 +202,7 @@ class BaseEditProduct extends React.Component {
                         })}
                         onSubmit={(values, { setSubmitting, setErrors }) => {
                             let self = this;
-                            this.setState({ success: '' });
+                            self.setState({ success: '', error: '' });
                             values.id = this.props.product.id;
                             values.images = this.state.images;
                             axios.put('/api/product/edit', values)

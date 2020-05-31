@@ -132,6 +132,7 @@ class BaseNewProduct extends React.Component {
                 })}
                 onSubmit={(values, { setSubmitting, setErrors, resetForm }) => {
                     let self = this;
+                    self.setState({ success: '', error: '' });
                     values.images = this.state.images;
                     axios.post('/api/product', values)
                         .then(function (response) {

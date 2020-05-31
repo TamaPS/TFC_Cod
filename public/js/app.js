@@ -89757,11 +89757,10 @@ var BaseEditProduct = /*#__PURE__*/function (_React$Component) {
             var setSubmitting = _ref.setSubmitting,
                 setErrors = _ref.setErrors;
             var self = _this2;
-
-            _this2.setState({
-              success: ''
+            self.setState({
+              success: '',
+              error: ''
             });
-
             values.id = _this2.props.product.id;
             values.images = _this2.state.images;
             axios.put('/api/product/edit', values).then(function (response) {
@@ -90225,6 +90224,10 @@ var BaseEditProfileData = /*#__PURE__*/function (_React$Component) {
           var setSubmitting = _ref.setSubmitting,
               setErrors = _ref.setErrors;
           var self = _this2;
+          self.setState({
+            success: '',
+            error: ''
+          });
           axios.put('/api/user/edit/data', values).then(function (response) {
             self.setState({
               success: "".concat(values.name, ", tus datos han sido modificados.")
@@ -90463,6 +90466,10 @@ var BaseEditProfile = /*#__PURE__*/function (_React$Component) {
               setErrors = _ref.setErrors,
               resetForm = _ref.resetForm;
           var self = _this2;
+          self.setState({
+            success: '',
+            error: ''
+          });
 
           var imageURL = _this2.editor.current.getImageScaledToCanvas().toDataURL();
 
@@ -90684,6 +90691,10 @@ var BaseEditProfilePassword = /*#__PURE__*/function (_React$Component) {
               setErrors = _ref.setErrors,
               resetForm = _ref.resetForm;
           var self = _this2;
+          self.setState({
+            success: '',
+            error: ''
+          });
           axios.put('/api/user/edit/password', values).then(function (response) {
             self.setState({
               success: "".concat(self.props.userData.user.name, ", tu contrase\xF1a ha sido modificada.")
@@ -92148,6 +92159,10 @@ var BaseNewProduct = /*#__PURE__*/function (_React$Component) {
               setErrors = _ref.setErrors,
               resetForm = _ref.resetForm;
           var self = _this2;
+          self.setState({
+            success: '',
+            error: ''
+          });
           values.images = _this2.state.images;
           axios.post('/api/product', values).then(function (response) {
             self.setState({
@@ -93598,6 +93613,10 @@ var BaseRegister = /*#__PURE__*/function (_React$Component) {
               setErrors = _ref.setErrors,
               resetForm = _ref.resetForm;
           var self = _this2;
+          self.setState({
+            success: '',
+            error: ''
+          });
 
           var imageURL = _this2.editor.current.getImageScaledToCanvas().toDataURL();
 
@@ -93610,6 +93629,7 @@ var BaseRegister = /*#__PURE__*/function (_React$Component) {
             resetForm();
             setSubmitting(false);
           })["catch"](function (error) {
+            setSubmitting(false);
             setErrors({
               name: error.response.data.errors.name,
               email: error.response.data.errors.email,
@@ -93620,7 +93640,6 @@ var BaseRegister = /*#__PURE__*/function (_React$Component) {
             self.setState({
               error: 'El formulario tiene errores.'
             });
-            setSubmitting(false);
           });
         }
       }, function (formik) {

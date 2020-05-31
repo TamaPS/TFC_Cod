@@ -67,6 +67,7 @@ class BaseEditProfile extends React.Component {
                 })}
                 onSubmit={(values, { setSubmitting, setErrors, resetForm }) => {
                     let self = this;
+                    self.setState({ success: '', error: '' });
                     const imageURL = this.editor.current.getImageScaledToCanvas().toDataURL();
                     values.image = imageURL;
                     this.handleSuccessErrorReset();
