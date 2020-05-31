@@ -91040,7 +91040,7 @@ var Header = /*#__PURE__*/function (_React$Component) {
   _createClass(Header, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container-fluid"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "d-flex justify-content-center"
@@ -91609,7 +91609,7 @@ var NavbarProps = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
         id: "navIndex",
-        className: "navbar sticky-top navbar-expand-sm navbar-light ".concat(this.props["class"])
+        className: "navbar top-sticky navbar-expand-sm navbar-light ".concat(this.props["class"])
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         className: "navbar-brand",
         to: "/"
@@ -94469,7 +94469,7 @@ checkCookie();
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-//ESCONDER EL BRAND AL HACER SCROLL
+//MOSTRAR EL BRAND AL HACER SCROLL
 $(window).scroll(function () {
   var $this = $(this);
 
@@ -94480,32 +94480,7 @@ $(window).scroll(function () {
   }
 
   ;
-}); //FOTO DE FORMULARIO
-
-/* $(".imgAdd").click(function () {
-    $(this).closest(".row").find('.imgAdd').before('<div class="col-12 imgUp"><div class="imagePreview"></div><label class="btn btn-primary">Upload<input type="file" class="uploadFile img" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;"></label><i class="fa fa-times del"></i></div>');
 });
-$(document).on("click", "i.del", function () {
-    $(this).parent().remove();
-});
-$(function () {
-    $(document).on("change", ".uploadFile", function () {
-        var uploadFile = $(this);
-        var files = !!this.files ? this.files : [];
-        if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
-
-        if (/^image/.test(files[0].type)) { // only image file
-            var reader = new FileReader(); // instance of the FileReader
-            reader.readAsDataURL(files[0]); // read the local file
-
-            reader.onloadend = function () { // set image data as background of div
-                //alert(uploadFile.closest(".upimage").find('.imagePreview').length);
-                uploadFile.closest(".imgUp").find('.imagePreview').css("background-image", "url(" + this.result + ")");
-            }
-        }
-
-    });
-}); */
 
 /***/ }),
 

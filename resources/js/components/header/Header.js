@@ -8,12 +8,12 @@ class Header extends React.Component {
 
   render() {
     return (
-      <section className="container-fluid">
+      <div className="container-fluid">
         <br />
         <div className="d-flex justify-content-center">
           <Link to="/"><figure><img src="images/logo.svg" id="logo" /></figure></Link>
         </div>
-      </section>
+      </div>
     )
   }
 }

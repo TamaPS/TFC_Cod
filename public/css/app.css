@@ -15449,6 +15449,21 @@ a.text-dark:focus {
   background-color: white;
 }
 
+.top-sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0px;
+  z-index: 1020;
+}
+
+@supports (-ms-ime-align: auto) {
+  .top-sticky {
+    position: inherit !important;
+    top: 0px;
+    z-index: 1020;
+  }
+}
+
 .navbar-brand {
   position: relative;
   transition: opacity 400ms ease 100ms;
