@@ -191,7 +191,39 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = Auth::user();
+        $product = Product::find($id);
+
+        if ($user->id != $product->user_id) {
+            return response()->json(['error' => 'No estas autorizado.'], 401);
+        }
+
+        DB::beginTransaction();
+
+        try {
+            $images = $product->images()->get()->pluck('name');
+
+            $product->delete();
+
+            foreach ($images as $index => $image) {
+                $imageName = str_replace('storage/', 'public/', $image);
+                if (Storage::exists($imageName)) {
+                    Storage::delete($imageName);
+                }
+            }
+
+            DB::commit();
+            return response()->json(['success' => 'Producto eliminado con éxito.'], 201);
+        } catch (Exception $e) {
+            DB::rollBack();
+            return response()->json(
+                [
+                    'error' => 'No se ha podido eliminar el producto.',
+                    'errorDetalles' => 'Error:(' . $e . ').'
+                ],
+                404
+            );
+        }
     }
 
     protected function validator(array $data)

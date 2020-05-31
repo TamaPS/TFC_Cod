@@ -1,0 +1,36 @@
+.cookies {
+    position: fixed;
+    left: 20px;
+    bottom: 0;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.76);
+    display: block;
+    font-size: small;
+    z-index: 9998;
+    color: rgb(255, 255, 255);
+    max-width: 400px;
+}
+
+@media (max-width: 599px) {
+    .cookies {
+        left: 0px;
+    }
+  }
+
+.cookies h1{
+    font-size: large;
+    padding-bottom: 10px;
+}
+
+.cookies p{
+    text-align: justify;
+}
+
+.cookies a{
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+.cookies a:hover{
+    color: $light_pink;
+}

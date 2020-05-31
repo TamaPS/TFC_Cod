@@ -16122,3 +16122,40 @@ input[type=range]:focus::-ms-fill-upper {
   background: #fac3fa;
 }
 
+.cookies {
+  position: fixed;
+  left: 20px;
+  bottom: 0;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.76);
+  display: block;
+  font-size: small;
+  z-index: 9998;
+  color: white;
+  max-width: 400px;
+}
+
+@media (max-width: 599px) {
+  .cookies {
+    left: 0px;
+  }
+}
+
+.cookies h1 {
+  font-size: large;
+  padding-bottom: 10px;
+}
+
+.cookies p {
+  text-align: justify;
+}
+
+.cookies a {
+  color: white;
+  text-decoration: none;
+}
+
+.cookies a:hover {
+  color: #fac3fa;
+}
+

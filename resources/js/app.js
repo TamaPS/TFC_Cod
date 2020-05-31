@@ -15,3 +15,5 @@ require('./bootstrap');
 require('./components/Index');
 
 require('./funciones');
+
+require('./cookie');

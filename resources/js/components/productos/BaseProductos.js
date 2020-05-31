@@ -8,7 +8,7 @@ class BaseProductos extends React.Component {
         this.state = {
             productComponents: [],
             current_page: 1,
-            last_page: null,
+            last_page: 1,
             per_page: null,
             to: null,
             total: null,
