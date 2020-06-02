@@ -11,6 +11,7 @@ class RetagerController extends Controller
 {
     public function index(Request $request)
     {
+        //COMPRUEBA SI MUESTRA TODOS O POR ZIP_CODE (SEGÚN SI SE ESTA LOGUEADO O NO)
         if (is_null($request->zip_code)) {
             $zip_code = '%';
         } else {
@@ -28,6 +29,7 @@ class RetagerController extends Controller
         );
     }
 
+    //MÉTODO PARA MOSTRAR 10 RETAGERS POR ORDEN DE LIKES
     public function top(Request $request)
     {
         $tops = UserResources::collection(

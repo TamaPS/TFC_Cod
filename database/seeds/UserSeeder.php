@@ -9,6 +9,8 @@ class UserSeeder extends Seeder
      *
      * @return void
      */
+
+     //SE CREAN 500 USUARIOS CON 2 PRODUCTOS CON 4 FOTOS CADA UNO EN BASE A LOS FAKERS
     public function run()
     {
         factory(App\User::class, 500)->create()->each(function ($user) {

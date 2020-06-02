@@ -12,11 +12,13 @@ class FavoriteController extends Controller
 {
     public function __construct()
     {
+        //PARA UTILIZAR LOS MÉTODOS DE ESTE CONTROLADOR DEBES ESTAR AUTENTICADO
         $this->middleware('auth');
     }
 
     public function store(Request $request)
     {
+        //MÉTODO PARA AÑADIR USUARIO A FAVORITO. TOGGLE LO QUITA O PONE DEPENDIENDO DE SI ESTÁ.
         $user = Auth::user();
 
         $user_favorite = User::find($request->id);
@@ -31,6 +33,7 @@ class FavoriteController extends Controller
 
     public function index(Request $request)
     {
+        //TE DEVUELVE LOS DATOS DE LOS FAVORITOS PAGINADOS. CON SUS LIKES Y ORDENADOS POR NOMBRE.
         $user = Auth::user();
         if ($user) {
             return UserResources::collection(

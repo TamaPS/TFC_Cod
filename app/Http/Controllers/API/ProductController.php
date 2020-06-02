@@ -23,6 +23,7 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
+        //QUERY PARA OBTENER PRODUCTOS SEGUN FILTRO.
         $query = Product::query();
 
         if ($request->filters) {
@@ -59,9 +60,11 @@ class ProductController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     * //MÉTODO PARA GUARDAR UN PRODUCTO EN LA BBDD CON TRANSACCIÓN
      */
     public function store(Request $request)
     {
+        //DE LOS DATOS DEL REQUEST SE RECOGEN LOS CAMPOS QUE SE NECESITAN PARA VALIDAR EL PRODUCTO.
         $data = Arr::only(
             $request->all(),
             [
@@ -73,11 +76,13 @@ class ProductController extends Controller
             ]
         );
 
+        //LLAMA AL MÉTODO VALIDATOR DE ESTA CLASE Y HACE QUE SE VALIDE (VALIDATE ES UN MÉTODO DE LARAVEL)
         $this->validator($data)->validate();
 
         DB::beginTransaction();
-
+        
         try {
+            //SE CREA EN LA BBDD EL PRODUCTO
             $user = Auth::user();
             $product = $user->products()->create([
                 'name' => $data['name'],
@@ -85,7 +90,7 @@ class ProductController extends Controller
                 'size' => $data['size'],
                 'price' => $data['price'],
             ]);
-
+            //Y TANTAS IMÁGENES COMO CONTENGA
             foreach ($data['images'] as $index => $image) {
                 $image = str_replace('data:image/png;base64,', '', $image);
                 $image = str_replace(' ', '+', $image);
@@ -128,6 +133,7 @@ class ProductController extends Controller
         $productData = $request->all();
         $product = Product::find($productData['id']);
 
+        //SE COMPRUEBA QUE EL PRODUCTO SEA DEL USUARIO
         if ($user->id != $product->user_id) {
             return response()->json(['error' => 'No estas autorizado.'], 401);
         }
@@ -225,7 +231,7 @@ class ProductController extends Controller
             );
         }
     }
-
+    //MÉTODO PARA VALIDACIÓN DEL PRODUCTO
     protected function validator(array $data)
     {
         return Validator::make($data, [

@@ -19,6 +19,7 @@ class AccountActivation extends Notification
         return ['mail'];
     }
 
+    //MÉTODO PARA ENVIAR LA VERIFICACIÓN DEL EMAIL
     public function toMail()
     {
         $url = url('/account-activation?token='.$this->user->remember_token);

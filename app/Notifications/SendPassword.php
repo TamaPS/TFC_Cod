@@ -24,6 +24,7 @@ class SendPassword extends Notification
         return ['mail'];
     }
 
+    //MÉTODO PARA ENVIAR LA PASSWORD GENERADA EN FORGOTPASSWORDCONTOLLER
     public function toMail()
     {
         return (new MailMessage)

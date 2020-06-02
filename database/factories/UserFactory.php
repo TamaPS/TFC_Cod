@@ -17,6 +17,7 @@ use Illuminate\Support\Str;
 |
 */
 
+//RELLENA USUARIOS RANDOM
 $factory->define(User::class, function (Faker $faker) {
     return [
         'name' => $faker->unique()->firstName,

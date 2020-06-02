@@ -17,9 +17,11 @@ class RegisterController extends Controller
 {
     public function __construct()
     {
+        //MIDDLEWARE PARA USUARIOS NO LOGUEADOS
         $this->middleware('guest');
     }
 
+    //MÉTODO PARA ENVIAR ACTIVACIÓN DE CUENTA DEL USUARIO
     public function register(Request $request)
     {
         $this->validator($request->all())->validate();
@@ -42,6 +44,7 @@ class RegisterController extends Controller
         //
     }
 
+    //VALIDACIÓN DE LOS CAMPOS DE REGISTRO
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -53,6 +56,7 @@ class RegisterController extends Controller
         ]);
     }
 
+    //MÉTODO PARA CREAR AL USUARIO
     protected function create(array $data)
     {
         $image = $data['image'];
@@ -73,6 +77,7 @@ class RegisterController extends Controller
         ]);
     }
     
+    //COMPRUEBA SI EXISTE EL NOMBRE EN LA BBDD
     protected function checkName(Request $request)
     {
         if (User::where('name', '=', $request["name"])->exists()) {
@@ -82,6 +87,7 @@ class RegisterController extends Controller
         return response()->json(['message' => 'Bien.'], 201);
     }
 
+    //COMPRUEBA SI EXISTE EL EMAIL EN LA BBDD
     protected function checkEmail(Request $request)
     {
         if (User::where('email', '=', $request["email"])->exists()) {

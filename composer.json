@@ -13,10 +13,10 @@
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "^7.0",
-        "laravel/sanctum": "^2.2",
+        "laravel/sanctum": "^2.2", //Paquete instalado para gestionar autenticación de forma segura
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
-        "laraveles/spanish": "^1.4"
+        "laraveles/spanish": "^1.4" //Paquete para que los mensajes de laravel salgan en español
     },
     "require-dev": {
         "facade/ignition": "^2.0",

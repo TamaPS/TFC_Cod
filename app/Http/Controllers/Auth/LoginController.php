@@ -51,6 +51,7 @@ class LoginController extends Controller
         return $this->sendFailedLoginResponse($request);
     }
 
+    //VALIDACIÓN DEL FORMULARIO DE LOGIN
     protected function validateLogin(Request $request)
     {
         $request->validate([
@@ -92,6 +93,7 @@ class LoginController extends Controller
         //
     }
 
+    //MÉTODO EN CASO DE QUE NO SE HAYA ACTIVADO EL EMAIL
     protected function sendFailedLoginResponse(Request $request)
     {
         $user = User::where('email', $request->email)->where('active', false)->first();
@@ -108,6 +110,7 @@ class LoginController extends Controller
         return 'email';
     }
 
+    //LOGOUT CON REDIRECCIÓN A INDEX
     public function logout(Request $request)
     {
         $this->guard()->logout();

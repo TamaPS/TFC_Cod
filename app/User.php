@@ -10,6 +10,7 @@ class User extends Authenticatable
     use Notifiable;
     /**
      * The attributes that are mass assignable.
+     * Atributos que son salvables
      *
      * @var array
      */
@@ -34,6 +35,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * 
+     *
+     * RELACIONES DEL MODELO USER
+     * 
+     */
 
     public function products()
     {

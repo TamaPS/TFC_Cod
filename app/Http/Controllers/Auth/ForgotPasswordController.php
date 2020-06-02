@@ -13,10 +13,12 @@ class ForgotPasswordController extends Controller
 {
     public function __construct()
     {
+        //OPCIÓN PARA USUARIOS NO LOGUEADOS Y LIMITACIÓN DE PETICIONES (6 por minuto)
         $this->middleware('guest');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
     }
 
+    //MÉTODO PARA VALIDAR EL MAIL AL QUE ENVIAR PASSWORD, GENERAR Y ENVIAR UNA NUEVA PASSWORD
     public function sendPassword(Request $request)
     {
         $this->validator($request->all())->validate();

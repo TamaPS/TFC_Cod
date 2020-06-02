@@ -10,6 +10,13 @@ class Image extends Model
         'name',
     ];
 
+    /**
+     * 
+     *
+     * RELACIONES DEL MODELO IMAGE
+     * 
+     */
+
     public function product()
     {
         return $this->belongsTo('App\Product');

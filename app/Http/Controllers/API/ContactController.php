@@ -13,9 +13,11 @@ class ContactController extends Controller
 {
     public function __construct()
     {
+        //PARA UTILIZAR LOS MÉTODOS DE ESTE CONTROLADOR DEBES ESTAR AUTENTICADO
         $this->middleware('auth');
     }
-
+ 
+    //MÉTODO PARA CONTACTAR CON EL RETAGER
     public function send(Request $request)
     {
         $this->validator($request->all())->validate();
@@ -29,6 +31,7 @@ class ContactController extends Controller
         return response()->json(['success' => 'Mensaje enviado correctamente.'], 201);
     }
 
+    //MÉTODO PARA VALIDAR QUE EL MENSAJE EXISTA Y SEA STRING
     protected function validator(array $data)
     {
         return Validator::make($data, [

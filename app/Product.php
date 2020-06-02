@@ -15,6 +15,13 @@ class Product extends Model
         'user_id',
     ];
 
+    /**
+     * 
+     *
+     * RELACIONES DEL MODELO PRODUCT
+     * 
+     */
+
     public function user()
     {
         return $this->belongsTo('App\User');

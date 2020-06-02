@@ -15,6 +15,7 @@ class UserController extends Controller
 {
     public function __construct()
     {
+        //MIDDLEWARE PARA USUARIOS AUTENTICADOS
         $this->middleware('auth');
     }
 
@@ -23,6 +24,7 @@ class UserController extends Controller
         return $request->user();
     }
 
+    //CAMPOS DE EDITAR PERFIL DE LA PRIMERA PESTAÑA
     public function updateData(Request $request)
     {
         $user = Auth::user();
@@ -33,6 +35,7 @@ class UserController extends Controller
         return $user;
     }
 
+    //CAMPOS DE EDITAR PERFIL DE LA SEGUNDA PESTAÑA
     public function updatePassword(Request $request)
     {
         $user = Auth::user();
@@ -42,6 +45,7 @@ class UserController extends Controller
         return $user;
     }
 
+    //CAMPOS DE EDITAR PERFIL DE LA TERCERA PESTAÑA
     public function updateImage(Request $request)
     {
         $user = Auth::user();
@@ -57,6 +61,7 @@ class UserController extends Controller
         return $user;
     }
 
+    //VALIDACIÓN DE CAMPOS DE USUARIO
     protected function validator(array $data, User $user)
     {
         return Validator::make($data, [
@@ -66,6 +71,8 @@ class UserController extends Controller
         ]);
     }
 
+
+    //COMPROBACIÓN DE DISPONIBILIDAD DE NOMBRE (EL EMAIL NO SE EDITA)
     protected function checkName(Request $request)
     {
         if ($request["name"] != $request->user()->name) {

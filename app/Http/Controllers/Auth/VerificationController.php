@@ -11,10 +11,12 @@ class VerificationController extends Controller
 
     public function __construct()
     {
+        //MIDDLEWARE PARA USUARIOS NO LOGUEADOS
         $this->middleware('guest');
         //$this->middleware('throttle:6,1')->only('verify', 'resend');
     }
 
+    //MÉTODO PARA CONTROLAR VERIFICACIÓN EL USUARIO
     public function verify(Request $request)
     {
         $token = substr($request->rememberToken, 7);

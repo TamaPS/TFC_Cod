@@ -28,6 +28,7 @@ class Contact extends Notification
         return ['mail'];
     }
 
+    //MÉTODO DE ENVÍO DE MENSAJES DE USUARIO A RETAGER
     public function toMail($notifiable)
     {
         return (new MailMessage)

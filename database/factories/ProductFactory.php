@@ -5,6 +5,7 @@
 use App\Product;
 use Faker\Generator as Faker;
 
+//RELLENA DE FORMA RANDOM LOS CAMPOS DEL PRODUCTO, SE HAN AÑADIDO PUNTO Y DENIM A ALGUNOS PARA PROBAR FILTROS
 $factory->define(Product::class, function (Faker $faker) {
     return [
         'name' =>  (rand(0, 6) == 4) ? 'Punto. ' . $faker->word : $faker->word,
