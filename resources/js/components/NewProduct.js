@@ -9,7 +9,8 @@ class NewProduct extends React.Component {
     constructor(props) {
         super(props);
     }
-
+    
+  //DEVUELVE EL COMPONENTE DE FAVORITOS DEL USUARIO SI HAY ID, Y SI NO UN COMPONENTE UNAUTHORIZED
     render() {
         return (
 

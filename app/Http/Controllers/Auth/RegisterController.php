@@ -21,7 +21,7 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-    //MÉTODO PARA ENVIAR ACTIVACIÓN DE CUENTA DEL USUARIO
+    //MÉTODO QUE LLAMA AL MÉTODO CREAR Y ENVIAR ACTIVACIÓN DE CUENTA DEL USUARIO
     public function register(Request $request)
     {
         $this->validator($request->all())->validate();

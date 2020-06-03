@@ -33,22 +33,21 @@ class LoginProps extends React.Component {
             .required('Debes rellenar este campo.'),
         })}
         onSubmit={(values, { setSubmitting, setErrors, resetForm }) => {
-          axios.get('/sanctum/csrf-cookie').then(response => {
-            axios.post('/api/login', values)
+          axios.get('/sanctum/csrf-cookie').then(response => {//GENERA LA COOKIE DE SESIÓN DE SANCTUM
+            axios.post('/api/login', values) //COMPRUEBA QUE EXISTE EN LA BBDD
               .then(function (response) {
-                console.log(response.data);
                 resetForm();
                 setSubmitting(false);
                 $('#loginModal').modal('hide');
                 value.loginUser();
               })
               .catch(function (error) {
-                setErrors({
+                setSubmitting(false);
+                setErrors({ //ERRORES DE VALIDACIÓN
                   email: error.response.data.errors.email,
                   password: error.response.data.errors.password,
                 });
                 values.password = '';
-                setSubmitting(false);
               });
           });
         }}

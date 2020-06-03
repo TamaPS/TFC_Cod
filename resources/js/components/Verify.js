@@ -11,6 +11,7 @@ class Verify extends React.Component {
         super(props);
     }
 
+    //DEVUELVE LOS COMPONENTES DE PRINCIPAL Y RECOGE LOCATION DE THROW PARA RECOGER EL TOKEN DEL USUARIO A VERIFICAR
     render() {
         const { location } = this.props;
         return (

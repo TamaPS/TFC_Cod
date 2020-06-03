@@ -10,6 +10,7 @@ class Retagers extends React.Component{
         super(props);
     }
 
+    //USERDATA Y FROM SE UTILIZA EN EL CASO DE QUERER VER LOS RETAGERS CERCA, FROM=SELECTOR DE 'CERCA'
     render(){
         var from = this.props.from;
         return(

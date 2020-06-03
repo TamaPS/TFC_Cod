@@ -10,6 +10,7 @@ class EditProfile extends React.Component {
         super(props);
     }
 
+    //DEVUELVE EL COMPONENTE DE EDITAR PERFIL CON LOS DATOS DEL USUARIO SI HAY ID, Y SI NO UN COMPONENTE UNAUTHORIZED
     render() {
         return (
             <userContext.Consumer>

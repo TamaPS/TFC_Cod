@@ -9,8 +9,8 @@ class PasswordEmail extends React.Component {
         super(props);
     }
 
+    //SE PASA EL USERDATA PARA COMPROBAR EN EL COMPONENTE EMAIL SI SE ESTA LOGUEADO
     render() {
-        const { location } = this.props;
         return (
             <div>
                 <NavbarShown />
@@ -18,7 +18,7 @@ class PasswordEmail extends React.Component {
                     {
                         function (userData) {
                             return (
-                                <Email location={location} userData={userData} />);
+                                <Email userData={userData} />);
                         }
                     }
                 </userContext.Consumer>

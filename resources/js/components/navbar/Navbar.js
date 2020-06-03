@@ -12,6 +12,7 @@ class Navbar extends React.Component {
       <userContext.Consumer>
         {
           function (value) {
+            //NAVBAR PARA PÁGINAS CON LOGO, CLASE DINÁMICA SEGÚN SCROLL
             return(<NavbarProps value={value} classProp="navScrolled" />);
           }
         }

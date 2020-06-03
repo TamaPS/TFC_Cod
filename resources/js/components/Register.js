@@ -8,6 +8,7 @@ class Register extends React.Component {
         super(props);
     }
 
+    //SE PASA EL USUARIO PARA COMPORBAR EN EL COMPONENTE BASEREGISTER SI ESTAS LOGUEADO (VA VACIO SI NO LO ESTÁS)
     render() {
         return (
             <div>

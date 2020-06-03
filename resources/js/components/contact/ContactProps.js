@@ -12,7 +12,7 @@ class ContactProps extends React.Component {
     }
 
     render() {
-        if (this.props.userData.user.id) {
+        if (this.props.userData.user.id) { //COMPRUEBA SI EL USUARIO ESTA LOGUEADO
             return (
                 <Formik
                     initialValues={{ message: '', acepto_envio: false }}
@@ -24,10 +24,11 @@ class ContactProps extends React.Component {
                     })}
                     onSubmit={(values, { setSubmitting, setErrors, resetForm }) => {
                         let self = this;
+                        self.setState({ success: '' });
                         Object.assign(values, { product_id: this.props.productId });
-                        axios.post('/api/contact', values)
+
+                        axios.post('/api/contact', values) //MANDA LOS VALORES AL BACK
                             .then(function (response) {
-                                console.log(response.data.success);
                                 self.setState({ success: response.data.success });
                                 resetForm();
                                 setSubmitting(false);

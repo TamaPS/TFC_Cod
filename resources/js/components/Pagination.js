@@ -5,15 +5,17 @@ class Pagination extends React.Component {
         super(props);
     }
 
+    //PARA IR A LA PÁGINA QUE SE PASA POR PAGE
     refresh(page) {
         let paginaInicial = this.props.current_page + page;
         if (paginaInicial < 1)
             paginaInicial = 1;
 
+        //MÉTODO DEL COMPONENTE PADRE QUE SE HA PASADO POR PROPS
         this.props.refresh(paginaInicial);
     }
 
-
+    //PAGINACIÓN COMPUESTA, LLAMA A REFRESH + o - 1
     render() {
         return (
             <nav aria-label="Page navigation example">

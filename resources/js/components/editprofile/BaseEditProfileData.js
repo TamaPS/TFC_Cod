@@ -27,7 +27,7 @@ class BaseEditProfileData extends React.Component {
                             value => {
                                 return new Promise((resolve, reject) => {
                                     let name = { name: value };
-                                    axios.post('/api/user/name', name)
+                                    axios.post('/api/user/name', name) //CONSULTA AL CONTROLADOR DE USER DEL BACK PARA COMPROBAR SI EXISTE EL NOMBRE
                                         .then(function (response) {
                                             resolve(true);
                                         }).catch(() => {

@@ -85,7 +85,7 @@ class BaseRegister extends React.Component {
                             value => {
                                 return new Promise((resolve, reject) => {
                                     let name = { name: value };
-                                    axios.post('/api/register/name', name)
+                                    axios.post('/api/register/name', name) //COMPRUEBAS QUE EXISTA EL NOMBRE (REGISTERCONTROLLER)
                                         .then(function (response) {
                                             resolve(true);
                                         }).catch(() => {
@@ -104,7 +104,7 @@ class BaseRegister extends React.Component {
                             value => {
                                 return new Promise((resolve, reject) => {
                                     let email = { email: value };
-                                    axios.post('/api/register/email', email)
+                                    axios.post('/api/register/email', email) //COMPRUEBAS QUE EXISTA EL MAIL EN REGISTERCONTROLLER
                                         .then(function (response) {
                                             resolve(true);
                                         }).catch(() => {
@@ -148,14 +148,14 @@ class BaseRegister extends React.Component {
                         })
                         .catch(function (error) {
                             setSubmitting(false);
+                            self.setState({ error: 'El formulario tiene errores.' });
                             setErrors({
                                 name: error.response.data.errors.name,
                                 email: error.response.data.errors.email,
                                 password: error.response.data.errors.password,
                                 password_confirmation: error.response.data.errors.password_confirmation,
                                 zip_code: error.response.data.errors.zip_code,
-                            });
-                            self.setState({ error: 'El formulario tiene errores.' });                            
+                            });                         
                         });
                 }}
             >

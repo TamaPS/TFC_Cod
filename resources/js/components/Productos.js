@@ -10,6 +10,7 @@ class Productos extends React.Component{
         super(props);
     }
 
+    //SI RECIBE UNA ID EN LA URL (LOCATION) AÑADE A LOS FILTROS QUE YA TRAE DEL INDEX EL FILTRO DE USER ID
     render(){
         const { location } = this.props;
         var filters = this.props.filters;

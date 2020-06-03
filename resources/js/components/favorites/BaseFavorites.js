@@ -19,11 +19,13 @@ class BaseFavorites extends React.Component {
         this.zip_code = '';
     }
 
+    //MÉTODO INICIAL
     componentDidMount() {
         this.alerta();
         this.takeData(1);
     }
 
+    //ACTUALIZA LA VISTA EN BASE A LA PÁGINA
     componentDidUpdate(prevProps) {
         if (this.props !== prevProps) {
             this.alerta();
@@ -31,6 +33,7 @@ class BaseFavorites extends React.Component {
         }
     }
 
+    //SI NO TIENES CÓDIGO POSTAL (NO ESTAS LOGUEADO) SALE UN MENSAJE
     alerta() {
         if (this.props.from == 'cerca') {
             if (!this.props.userData.user.id) {
@@ -48,6 +51,7 @@ class BaseFavorites extends React.Component {
         const self = this;
         axios.get('/api/favorites?page=' + page)
             .then(function (response) {
+                //SE RELLENA LA VARIABLE RETAGERCOMPONENTS MAPEANDO LOS RETAGERS
                 const retagerComponents = response.data.data.map(retager =>
                     <PropsRetagers
                         key={retager.id}

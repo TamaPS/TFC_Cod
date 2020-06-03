@@ -48,12 +48,12 @@ class BaseEditProfilePassword extends React.Component {
                             setSubmitting(false);
                         })
                         .catch(function (error) {
+                            self.setState({ error: 'El formulario tiene errores.' });
+                            setSubmitting(false);
                             setErrors({
                                 password: error.response.data.errors.password,
                                 password_confirmation: error.response.data.errors.password_confirmation,
                             });
-                            self.setState({ error: 'El formulario tiene errores.' });
-                            setSubmitting(false);
                         });
                 }}
             >

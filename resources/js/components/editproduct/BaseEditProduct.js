@@ -40,11 +40,13 @@ class BaseEditProduct extends React.Component {
         this.handleDeleteProduct = this.handleDeleteProduct.bind(this);
     }
 
+    //MÉTODO INICIAL, VARIABLE DE ESTADO DE IMAGES POR SER ELEMENTOS DINÁMICOS
     componentDidMount() {
         var images = this.props.product.images.map(image => image.name);
         this.setState({ images: images });
     }
 
+    //MÉTODO EN CASO DE ACTUALIZAR PROPS DE COMPONENTE
     componentDidUpdate(prevProps) {
         if (this.props !== prevProps) {
             if (this.props.product.name) {
@@ -54,7 +56,9 @@ class BaseEditProduct extends React.Component {
         }
     }
 
+    //MÉTODO DE AVATAR-EDITOR
     handleNewImage(e) {
+        //FORMATOS ACEPTADOS DE IMÁGENES
         const SUPPORTED_FORMATS = [
             "image/jpg",
             "image/jpeg",
@@ -69,7 +73,7 @@ class BaseEditProduct extends React.Component {
                     e.target.value = '';
                 }
                 else {
-                    this.setState({ image: 'images/retager2.jpeg' })
+                    this.setState({ image: 'images/productexample.jpeg' })
                 }
             }
             else {
@@ -81,13 +85,14 @@ class BaseEditProduct extends React.Component {
         }
     }
 
+    //AL CLIKAR LA X
     handleDeleteImage(position) {
         var images = this.state.images;
-        images.splice(position, 1);
-        this.setState({ images });
+        images.splice(position, 1); //ELIMINA EL ELEMENTO DEL ARRAY DE IMÁGENES
+        this.setState({ images }); //ACTUALIZA LA VARIABLE DE ESTADO
 
         if (!images[0]) {
-            this.formik.setFieldValue('image', '');
+            this.formik.setFieldValue('image', ''); //APARECE MENSAJE DE IMÁGEN REQUERIDA
         }
 
         if (images.length >= 4) {
@@ -131,16 +136,15 @@ class BaseEditProduct extends React.Component {
     handleDeleteProduct() {
         var self = this;
         self.setState({ successModal: '', errorModal: '' });
-        axios.delete('/api/product/delete/' + self.props.product.id)
+        axios.delete('/api/product/delete/' + self.props.product.id) //SE ENVÍA LA ID DEL PRODUCTO AL BACK PARA ELIMINARLO
             .then(function (response) {
-                self.setState({ successModal: `${response.data.success}` });
+                self.setState({ successModal: `${response.data.success}` }); //DEVUELVE MENSAJE SUCCESS
                 setTimeout(() => {
-                    self.props.history.push('productos-retager?id=' + self.props.userData.user.id);
+                    self.props.history.push('productos-retager?id=' + self.props.userData.user.id); //REDIRECCIONA A LOS PRODUCTOS DE RETAGER
                 }, 2000)
             })
             .catch(function (error) {
-                console.log(error.response.data.error);
-                self.setState({ errorModal: `${error.response.data.error}` });
+                self.setState({ errorModal: `${error.response.data.error}` }); //DEVUELVE MENSAJE DE ERROR
             });
     }
 
@@ -205,21 +209,21 @@ class BaseEditProduct extends React.Component {
                             self.setState({ success: '', error: '' });
                             values.id = this.props.product.id;
                             values.images = this.state.images;
-                            axios.put('/api/product/edit', values)
+                            axios.put('/api/product/edit', values) //ACTUALIZAR PRODUCTO EN BBDD
                                 .then(function (response) {
                                     self.setState({ success: `${response.data.success}` });
-                                    self.props.takeProduct();
-                                    setSubmitting(false);
+                                    self.props.takeProduct(); //DEVUELVE LOS DATOS ACTUALIZADOS DESDE EL PADRE QUE LOS RECIBE DEL BACK
+                                    setSubmitting(false); //DETIENE EL ESTADO DE ENVIANDO DATOS DEL FORMULARIO
                                 })
                                 .catch(function (error) {
-                                    setErrors({
+                                    setSubmitting(false);
+                                    self.setState({ error: 'El formulario tiene errores.' });
+                                    setErrors({ //ERRORES QUE DEVOLVERÍA EL BACK (SE CONTROLAN EN FRONT)
                                         name: error.response.data.errors.name,
                                         description: error.response.data.errors.description,
                                         size: error.response.data.errors.size,
                                         price: error.response.data.errors.price,
                                     });
-                                    self.setState({ error: 'El formulario tiene errores.' });
-                                    setSubmitting(false);
                                 });
                         }}
                     >
@@ -285,7 +289,7 @@ class BaseEditProduct extends React.Component {
                                                 <div className="row d-flex justify-content-center mt-2">
                                                     <label className={`mt-2 custom-file-upload ${this.state.fileError ? " is-invalid" : ""} ${this.state.fileSelect ? "boton-imagen" : "boton-imagen-disabled"}`}  >
                                                         Seleccionar imagen
-                                                <input name="filetype" type="file" onChange={(event) => { this.handleNewImage(event); }} disabled={this.state.fileSelect ? "" : "disabled"} />
+                                                        <input name="filetype" type="file" onChange={(event) => { this.handleNewImage(event); }} disabled={this.state.fileSelect ? "" : "disabled"} />
                                                     </label>
                                                     <button type="button" className="btn btn-link" onClick={this.addProductImage} disabled={this.state.fileAdd ? "" : "disabled"}>
                                                         <i className="fas fa-plus-circle fa-2x" style={{ color: 'rgb(255, 129, 255)' }}></i>

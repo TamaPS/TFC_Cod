@@ -13,6 +13,7 @@ class Email extends React.Component {
         }
     }
 
+    //SI ESTAS LOGUEADO TE MANDA A LA PRINCIPAL
     componentDidUpdate(prevProps) {
         const { history } = this.props;
         if (this.props !== prevProps) {
@@ -36,22 +37,21 @@ class Email extends React.Component {
                 })}
                 onSubmit={(values, { setSubmitting, setErrors, resetForm }) => {
                     let self = this;
-                    axios.post('/api/password-email', values)
+                    axios.post('/api/password-email', values) //ENVIAS EL EMAIL AL BACK PARA QUE ENVÍE LA CONTRASEÑA 
                         .then(function (response) {
                             self.setState({ success: `Se ha enviado un email a ${values.email}, en caso de no recibirlo pontente en contacto con nosotros en info@retaged.com` });
                             resetForm();
                             setSubmitting(false);
                         })
                         .catch(function (error) {
-                            console.log(error);
+                            resetForm();
+                            setSubmitting(false);
                             if (error.response.data.errors) {
                                 setErrors({
                                     email: error.response.data.errors.email,
                                 });
                             }
                             self.setState({ success: `Se ha enviado un email a ${values.email}, en caso de no recibirlo pontente en contacto con nosotros en info@retaged.com` });
-                            resetForm();
-                            setSubmitting(false);
                         });
                 }}
             >

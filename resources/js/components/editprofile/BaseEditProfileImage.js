@@ -68,7 +68,7 @@ class BaseEditProfile extends React.Component {
                 onSubmit={(values, { setSubmitting, setErrors, resetForm }) => {
                     let self = this;
                     self.setState({ success: '', error: '' });
-                    const imageURL = this.editor.current.getImageScaledToCanvas().toDataURL();
+                    const imageURL = this.editor.current.getImageScaledToCanvas().toDataURL(); //OBTIENE EL CONTENIDO DEL CANVAS EN BASE 64
                     values.image = imageURL;
                     this.handleSuccessErrorReset();
                     axios.put('/api/user/edit/image', values)

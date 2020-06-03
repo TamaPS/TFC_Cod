@@ -5,6 +5,7 @@ class Loading extends React.Component {
         super(props);
     }
 
+    //COMPONENTE LOADING CON SPINNER
     render() {
         return (
             <div>

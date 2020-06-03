@@ -12,7 +12,6 @@ class CompraProducto extends React.Component {
       fotos: null
     }
     this.makeFotos = this.makeFotos.bind(this);
-    this.openContact = this.openContact.bind(this);
   }
 
   componentDidMount() {
@@ -24,7 +23,7 @@ class CompraProducto extends React.Component {
       this.makeFotos();
     }
   }
-
+  //RELLENAR LAS FOTOS EN EL COMPONENTE
   makeFotos() {
     if (this.props.images) {
       let fotos = this.props.images;
@@ -47,14 +46,6 @@ class CompraProducto extends React.Component {
           }
         )
       });
-    }
-  }
-
-  openContact() {
-    if (this.props.userData.user.id) {
-      $('#contactModal').modal('show');
-    } else {
-      $('#loginModal').modal('show');
     }
   }
 

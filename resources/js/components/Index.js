@@ -39,6 +39,12 @@ class Index extends React.Component {
         this.handleLogin = this.handleLogin.bind(this);
     }
 
+    //MÉTODO INICIAL
+    componentDidMount() {
+        this.handleLogin();
+    }
+
+    //DESECHA LOS DATOS DEL USUARIO EN EL FRONT Y LO DESLOGUEA DEL BACK
     handleLogout() {
         let self = this;
         axios.post('/api/logout')
@@ -47,6 +53,7 @@ class Index extends React.Component {
             });
     }
 
+    //RECOGE DEL BACK DATOS DEL USUARIO (SI NO HAY LOGIN ES VACIO)
     handleLogin() {
         let self = this;
         axios.get('/api/user')
@@ -57,11 +64,7 @@ class Index extends React.Component {
                 console.log(error);
             });
     }
-
-    componentDidMount() {
-        this.handleLogin();
-    }
-
+    
     render() {
         const value = {
             user: this.state.user,
@@ -126,13 +129,10 @@ class Index extends React.Component {
                         <Route exact path="/favorites" component={Favorites} />
                         <Route exact path="/register" component={Register} />
                         <Route exact path="/verify" component={Verify} />
-                        <Route exact path="/passwordemail" component={PasswordEmail} />
+                        <Route exact path="/password-email" component={PasswordEmail} />
                         <Route exact path="/edit-profile" component={EditProfile} />
                         <Route exact path="/nuevo-producto" component={NewProduct} />
                         <Route exact path="/editar-producto" component={EditProduct} />
-                        <Route exact path="/password-email">
-                            <Throw to="/passwordemail" />
-                        </Route>
                         <Route exact path="/account-activation" >
                             <Throw to="/verify" />
                         </Route>
@@ -146,6 +146,7 @@ class Index extends React.Component {
 
 export default Index;
 
+//PARA QUE INDEX APAREZCA EN LA VIEW
 if (document.getElementById('index')) {
     ReactDOM.render(<Index />, document.getElementById('index'));
 }

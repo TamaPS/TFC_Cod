@@ -10,6 +10,7 @@ class Producto extends React.Component{
         super(props);
     }
 
+    //SE OBTIENE EL NÚMERO DE ID A PARTIR DE LA LOCATION (ELIMINA '?id=')
     render(){
         const { location } = this.props;
         return(

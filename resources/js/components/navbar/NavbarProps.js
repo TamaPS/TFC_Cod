@@ -10,6 +10,7 @@ class NavbarProps extends React.Component {
     render() {
         return (
             <nav id="navIndex" className={`navbar top-sticky navbar-expand-sm navbar-light ${this.props.classProp}`}>
+             {/*DEPENDIENDO DEL VALUE.USER DEVUELVE UNOS ENLACES U OTROS EN TODO EL NAVBAR*/}
                 <Link className="navbar-brand" to="/">
                     <img className="ico" src="images/logo.svg" alt="logo2" id="brand" />
                 </Link>
@@ -32,6 +33,7 @@ class NavbarProps extends React.Component {
                                 aria-haspopup="true" aria-expanded="false">
                                 <i className="far fa-user fa-lg"></i> {/* uses regular style */}
                             </a>
+                           
                             <div className="dropdown-menu dropdown-menu-right" aria-labelledby="user">
                                 {this.props.value.user.id && <Link className="dropdown-item" to="/" onClick={this.props.value.logoutUser}>Cerrar Sesión</Link>}
                                 {this.props.value.user.id && <Link className="dropdown-item" to="/edit-profile">Editar Perfil</Link>}

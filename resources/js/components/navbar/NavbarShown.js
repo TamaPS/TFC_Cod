@@ -11,6 +11,7 @@ class NavbarShown extends React.Component {
       <userContext.Consumer>
         {
           function (value) {
+            //NAVBAR PARA PÁGINAS SIN LOGO
             return(<NavbarProps value={value} classProp="scrolled" />);
           }
         }

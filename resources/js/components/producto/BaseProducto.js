@@ -21,7 +21,7 @@ class BaseProducto extends React.Component {
     }
   }
 
-  takeProduct() {
+  takeProduct() { //OBTIENE LOS DATOS DEL PRODUCTO DEL BACK
     const self = this;
     axios.get('/api/product/' + this.props.id)
       .then(function (response) {
@@ -41,7 +41,7 @@ class BaseProducto extends React.Component {
         <br />
         <userContext.Consumer>
           {
-            function (value) {
+            function (value) {//PASA LOS DATOS DEL PRODUCTO DEL BACK AL COMPONENTES
               return (
                 <CompraProducto
                   id={product.id}
