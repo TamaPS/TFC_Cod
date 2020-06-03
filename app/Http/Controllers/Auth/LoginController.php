@@ -110,7 +110,7 @@ class LoginController extends Controller
         return 'email';
     }
 
-    //LOGOUT CON REDIRECCIÓN A INDEX
+    //LOGOUT
     public function logout(Request $request)
     {
         $this->guard()->logout();

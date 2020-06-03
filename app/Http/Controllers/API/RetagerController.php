@@ -11,7 +11,7 @@ class RetagerController extends Controller
 {
     public function index(Request $request)
     {
-        //COMPRUEBA SI MUESTRA TODOS O POR ZIP_CODE (SEGÚN SI SE ESTA LOGUEADO O NO)
+        //COMPRUEBA SI MUESTRA TODOS O POR ZIP_CODE
         if (is_null($request->zip_code)) {
             $zip_code = '%';
         } else {
@@ -23,7 +23,7 @@ class RetagerController extends Controller
                 ->where('active', 1)
                 ->where('zip_code', 'like', $zip_code)
                 ->orderBy('created_at', 'desc')
-                ->has('products', '>', 1)
+                ->has('products', '>=', 1)
                 ->withCount('likedBy')
                 ->paginate(15)
         );

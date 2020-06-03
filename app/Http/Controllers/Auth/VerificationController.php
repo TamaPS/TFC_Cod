@@ -16,7 +16,7 @@ class VerificationController extends Controller
         //$this->middleware('throttle:6,1')->only('verify', 'resend');
     }
 
-    //MÉTODO PARA CONTROLAR VERIFICACIÓN EL USUARIO
+    //MÉTODO PARA CONTROLAR VERIFICACIÓN DEL USUARIO
     public function verify(Request $request)
     {
         $token = substr($request->rememberToken, 7);

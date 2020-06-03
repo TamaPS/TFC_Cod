@@ -11,6 +11,6 @@ $factory->define(Product::class, function (Faker $faker) {
         'name' =>  (rand(0, 6) == 4) ? 'Punto. ' . $faker->word : $faker->word,
         'description' => (rand(0, 6) == 3) ? 'Denim. ' . $faker->text : $faker->text,
         'size' => $faker->randomDigit,
-        'price' => $faker->randomNumber(2),
+        'price' => $faker->randomFloat(2, 2, 100),
     ];
 });

@@ -56,7 +56,7 @@ class RegisterController extends Controller
         ]);
     }
 
-    //MÉTODO PARA CREAR AL USUARIO
+    //MÉTODO PARA CREAR EL USUARIO
     protected function create(array $data)
     {
         $image = $data['image'];

@@ -8,6 +8,12 @@ class Carrousel extends React.Component {
     super(props);
   }
 
+  componentDidMount(){
+    $('.carousel').carousel({
+      interval: 3000
+    })
+  }
+
   render() {
     return (
       <div id="carousel-example-2" className="carousel slide carousel-fade" data-ride="carousel">

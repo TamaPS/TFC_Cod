@@ -21,5 +21,13 @@ class UserSeeder extends Seeder
                     }
                 );
         });
+
+        $favorites = App\User::all();
+
+        App\User::all()->each(function ($user) use ($favorites) { 
+            $user->favorites()->attach(
+                $favorites->random(rand(1, 100))->pluck('id')->toArray()
+            ); 
+        });
     }
 }
