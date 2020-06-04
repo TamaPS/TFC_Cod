@@ -48,6 +48,8 @@ class BaseEditProfile extends React.Component {
         this.setState({ success: '', error: '' });
     }
 
+    /*RENDERIZA FORMULARIO QUE PERMITE MODIFICAR LA IMAGEN DE PEFIL*/
+
     render() {
         const SUPPORTED_FORMATS = [
             "image/jpg",

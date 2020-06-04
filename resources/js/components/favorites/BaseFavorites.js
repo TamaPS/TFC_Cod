@@ -77,6 +77,8 @@ class BaseFavorites extends React.Component {
             });
     }
 
+    /*RENDERIZA LOS USUARIOS GUARDADOS EN FAVORITOS, ADEMÁS DE LLAMAR AL COMPONENTE DE PAGINACIÓN*/
+
     render() {
         return (
             <div>

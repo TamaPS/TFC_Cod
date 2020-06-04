@@ -25,6 +25,8 @@ class BaseEditProfilePassword extends React.Component {
         this.state.passwordConfirmation ? this.setState({ passwordConfirmation: false }) : this.setState({ passwordConfirmation: true })
     }
 
+    /*RENDERIZA FORMULARIO QUE PERMITE MODIFICAR LA CONTRASEÑA DEL USUARIO */
+
     render() {
         return (
             <Formik

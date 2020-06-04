@@ -5,6 +5,8 @@ class Conditions extends React.Component{
         super(props);
     }
 
+    /*RENDERIZA UN CONTAINER CON INFORMACIÓN SOBRE LAS CONDICIONES DE LA PÁGINA */
+
     render(){
         return(
             <div className="container">

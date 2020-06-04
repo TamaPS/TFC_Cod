@@ -8,6 +8,8 @@ class EditProfile extends React.Component {
         super(props);
     }
 
+    /*RENDERIZA UNA LISTA CON DIFERENTES VENTANAS, CADA UNA  LLAMA A UN COMPONENTE DIFERENTE, QUE MUESTRA UN FORMULARIO DISTINTO EN FUNCIÓN DE LO QUE SE DESEE VISUALIZAR*/
+
     render() {
         return (
             <div>

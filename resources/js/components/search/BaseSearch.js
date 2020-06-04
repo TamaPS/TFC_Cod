@@ -78,6 +78,8 @@ class BaseSearch extends React.Component {
             });
     }
 
+    /*COMPONENTEN QUE PERMISE BUSCAR POR NOMBRE UN PRODUCTO Y MOSTRAR TODOS LOS PRODUCTOS QUE COINCIDAN CON DICHA BUSQUEDA */
+
     render() {
         if (this.state.response) {
             return (

@@ -7,6 +7,8 @@ class Cards extends React.Component {
     super(props);
   }
 
+  /*RENDERIZA UN BANNER-SECTION DELTRO DE LA CUAL LLAMA AL COMPONENTE CARD PASANDOLE LAS PROPS NECESARIAS */
+
   render() {
     return (
       <div className="banner-section">

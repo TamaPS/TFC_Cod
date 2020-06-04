@@ -47,6 +47,8 @@ class BaseTop extends React.Component {
             });
     }
 
+    /*SE RENDERIZA LOS RETAGERS CON MÁS LIKES */
+
     render() {
         if (this.state.response) {
             return (

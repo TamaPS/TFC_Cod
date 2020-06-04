@@ -109,6 +109,8 @@ class BaseNewProduct extends React.Component {
         this.setState({ position })
     }
 
+    /*FORMULARIO PARA DAR DE ALTA UN NUEVO PRODUCTO */
+
     render() {
         return (
             <Formik

@@ -8,11 +8,13 @@ class Carrousel extends React.Component {
     super(props);
   }
 
-  componentDidMount(){
+  componentDidMount(){ /*CADA 3 SEGUNDOS EL CARROUSEL PASA AL SIGUIENTE CAROUSEL-ITEM*/
     $('.carousel').carousel({
       interval: 3000
     })
   }
+
+  /*RENDERIZA UN CAROUSEL CON DIFERENTES CAROUSEL-ITEMS QUE LLAMAN AL COMPONENTE BACKGROUND PASANDOLE LAS PROPS NECESARIAS PARA CONTENER LA IMAGEN PERTINENTE*/
 
   render() {
     return (

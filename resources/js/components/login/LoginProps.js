@@ -20,6 +20,8 @@ class LoginProps extends React.Component {
     $('#loginModal').modal('hide');
   }
 
+  /*RENDERIZA EN UNA VENTANA SUPERPUESTA UN FORMULARIO PARA LOGUEARSE */
+
   render() {
     const { value } = this.props;
     return (

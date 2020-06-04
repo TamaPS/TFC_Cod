@@ -5,6 +5,8 @@ class Cookies extends React.Component{
         super(props);
     }
 
+    /*RENDERIZA INFORMACIÓN SOBRE LA POLÍTICA DE COOKIES DE RETAGED*/
+
     render(){
         return(
             <div className="container my-5 ">

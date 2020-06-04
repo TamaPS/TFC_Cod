@@ -5,6 +5,8 @@ class Legal extends React.Component{
         super(props);
     }
 
+    /*RENDERIZA LA INFORMACION LEGAL DE RETAGED*/
+
     render(){
         return(
           <div className="container my-5 ">

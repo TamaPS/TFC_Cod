@@ -11,6 +11,8 @@ class ContactProps extends React.Component {
         }
     }
 
+    /*FORMULARIO PARA PONERSE EN CONTACTO CON EL USUARIO AL QUE SE DESEA COMPRAR UN PRODUCTO, EN CASO DE QUE NO SE ESTÉ LOGUEADO, MUESTRA AVISO EN LUGAR DEL FORMULARIO */
+
     render() {
         if (this.props.userData.user.id) { //COMPRUEBA SI EL USUARIO ESTA LOGUEADO
             return (

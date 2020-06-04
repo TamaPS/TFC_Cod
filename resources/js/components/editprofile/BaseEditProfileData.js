@@ -13,6 +13,8 @@ class BaseEditProfileData extends React.Component {
         }
     }
 
+    /*SE RENDERIZA FORMULARIO PARA MODIFICAR LOS DATOS DEL PERFIL*/
+
     render() {
         return (
             <Formik

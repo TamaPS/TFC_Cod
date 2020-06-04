@@ -5,7 +5,7 @@ class Header extends React.Component {
   constructor(props) {
     super(props);
   }
-
+/*RENDERIZA EL LOGOTIPO DE LA PÁGINA*/
   render() {
     return (
       <div className="container-fluid">

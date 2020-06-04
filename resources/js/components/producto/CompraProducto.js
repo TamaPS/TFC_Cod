@@ -49,6 +49,8 @@ class CompraProducto extends React.Component {
     }
   }
 
+  /*RENDERIZA TODA LA INFORMACIÓN DE EL PRODUCTO SELECCIONADO, LLAMANDO A TODOS LOS COMPONENTES NECESARIOS PARA CADA PARTE DE INFORMACIÓN*/
+
   render() {
     var component = null;
     if (this.props.userData.user.id == this.props.userId) {

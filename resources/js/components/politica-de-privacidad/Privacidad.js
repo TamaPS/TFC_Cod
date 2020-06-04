@@ -5,6 +5,8 @@ class Privacidad extends React.Component{
         super(props);
     }
 
+    /*RENDERIZA INFORMACIÓN SOBRE LA POLÍTICA DE PRIVACIDAD DE RETAGED*/
+
     render(){
         return(
             <div className="container my-5">

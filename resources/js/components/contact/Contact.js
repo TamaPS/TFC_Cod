@@ -7,6 +7,8 @@ class Contact extends React.Component {
     super(props);
   }
 
+  /*SE LLAMA AL COMPONENTE userContext Y DENTRO DE ESTE SE LLAMA AL COMPONENTE ContactProps PASÁNDOLE LOS DATOS DEL USUARIO Y LA ID DEL PRODUCTO */
+
   render() {
     var productId = this.props.productId;
     return (

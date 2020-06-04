@@ -8,6 +8,8 @@ class Card extends React.Component {
         super(props);
     }
 
+    /*RENDERIZA UNA CARD CON LAS PROPS QUE RECIBE DESDE EL COMPONENTE DESDE EL QUE SE LE LLAMA*/
+
     render() {
         return (
             <div className="col-lg-4 mt-5">

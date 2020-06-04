@@ -5,6 +5,8 @@ class Ambiente extends React.Component{
         super(props);
     }
 
+    /*RENDERIZA LA INFORMACIÓN SOBRE EL MEDIO AMBIENTE */
+
     render(){
         return(
             <div className="container my-5">

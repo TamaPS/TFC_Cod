@@ -6,6 +6,8 @@ class Login extends React.Component {
     super(props);
   }
 
+  /*LLAMA AL COMPONENTE LOGINPROPS*/
+
   render() {
     return (
       <userContext.Consumer>

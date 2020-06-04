@@ -9,6 +9,8 @@ class Background extends React.Component {
     super(props);
   }
 
+  /*RENDERIZA COMPONENTE QUE RECIBE PROPS QUE CONTIENEN LA INFORMACIÓN DE LA IMAGEN QUE SE DESEE MOSTRAR*/
+
   render() {
     return (
       <div className="view">
