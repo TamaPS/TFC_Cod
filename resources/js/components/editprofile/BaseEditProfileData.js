@@ -53,12 +53,12 @@ class BaseEditProfileData extends React.Component {
                             setSubmitting(false);
                         })
                         .catch(function (error) {
+                            self.setState({ error: 'El formulario tiene errores.' });
+                            setSubmitting(false);
                             setErrors({
                                 name: error.response.data.errors.name,
                                 zip_code: error.response.data.errors.zip_code,
                             });
-                            self.setState({ error: 'El formulario tiene errores.' });
-                            setSubmitting(false);
                         });
                 }}
             >

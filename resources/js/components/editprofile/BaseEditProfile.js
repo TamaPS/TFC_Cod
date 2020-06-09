@@ -2,7 +2,7 @@ import React from 'react';
 import BaseEditProfileData from './BaseEditProfileData';
 import BaseEditProfilePassword from './BaseEditProfilePassword';
 import BaseEditProfileImage from './BaseEditProfileImage';
-
+import BaseDeleteprofile from './BaseDeleteProfile';
 class EditProfile extends React.Component {
     constructor(props) {
         super(props);
@@ -18,26 +18,32 @@ class EditProfile extends React.Component {
                 <div >
                     <ul className="nav nav-tabs" id="myTab" role="tablist">
                         <li className="nav-item" role="presentation">
-                            <a className="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Datos</a>
+                            <a className="nav-link active" id="datprofile-tab" data-toggle="tab" href="#datprofile" role="tab" aria-controls="datprofile" aria-selected="true">Datos</a>
                         </li>
                         <li className="nav-item" role="presentation">
-                            <a className="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Contraseña</a>
+                            <a className="nav-link" id="passprofile-tab" data-toggle="tab" href="#passprofile" role="tab" aria-controls="passprofile" aria-selected="false">Contraseña</a>
                         </li>
                         <li className="nav-item" role="presentation">
-                            <a className="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Imágen de perfil</a>
+                            <a className="nav-link" id="imgprofile-tab" data-toggle="tab" href="#imgprofile" role="tab" aria-controls="imgprofile" aria-selected="false">Imágen de perfil</a>
+                        </li>
+                        <li className="nav-item" role="presentation">
+                            <a className="nav-link" id="delprofile-tab" data-toggle="tab" href="#delprofile" role="tab" aria-controls="delprofile" aria-selected="false">Eliminar cuenta</a>
                         </li>
                     </ul>
                     <div className="tab-content" id="myTabContent">
-                        <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div className="tab-pane fade show active" id="datprofile" role="tabpanel" aria-labelledby="datprofile-tab">
                             <br />
                             <BaseEditProfileData userData={this.props.userData} />
                         </div>
-                        <div className="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div className="tab-pane fade" id="passprofile" role="tabpanel" aria-labelledby="passprofile-tab">
                             <br />
                             <BaseEditProfilePassword userData={this.props.userData} />
                         </div>
-                        <div className="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                        <div className="tab-pane fade" id="imgprofile" role="tabpanel" aria-labelledby="imgprofile-tab">
                             <BaseEditProfileImage userData={this.props.userData} />
+                        </div>
+                        <div className="tab-pane fade" id="delprofile" role="tabpanel" aria-labelledby="delprofile-tab">
+                            <BaseDeleteprofile userData={this.props.userData} />
                         </div>
                     </div>
                 </div>

@@ -18,6 +18,7 @@ Route::middleware('auth:sanctum')->put('/user/edit/data', 'Auth\UserController@u
 Route::middleware('auth:sanctum')->put('/user/edit/password', 'Auth\UserController@updatePassword');
 Route::middleware('auth:sanctum')->put('/user/edit/image', 'Auth\UserController@updateImage');
 Route::middleware('auth:sanctum')->post('/user/name', 'Auth\UserController@checkName');
+Route::middleware('auth:sanctum')->delete('/user/delete/{id}/{email}', 'Auth\UserController@destroy');
 
 Route::middleware('auth:sanctum')->post('/contact', 'API\ContactController@send');
 

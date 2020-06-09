@@ -88814,6 +88814,8 @@ var Card = /*#__PURE__*/function (_React$Component) {
 
     return _super.call(this, props);
   }
+  /*RENDERIZA UNA CARD CON LAS PROPS QUE RECIBE DESDE EL COMPONENTE DESDE EL QUE SE LE LLAMA*/
+
 
   _createClass(Card, [{
     key: "render",
@@ -88891,6 +88893,8 @@ var Cards = /*#__PURE__*/function (_React$Component) {
 
     return _super.call(this, props);
   }
+  /*RENDERIZA UN BANNER-SECTION DELTRO DE LA CUAL LLAMA AL COMPONENTE CARD PASANDOLE LAS PROPS NECESARIAS */
+
 
   _createClass(Cards, [{
     key: "render",
@@ -88974,6 +88978,8 @@ var Background = /*#__PURE__*/function (_React$Component) {
 
     return _super.call(this, props);
   }
+  /*RENDERIZA COMPONENTE QUE RECIBE PROPS QUE CONTIENEN LA INFORMACIÓN DE LA IMAGEN QUE SE DESEE MOSTRAR*/
+
 
   _createClass(Background, [{
     key: "render",
@@ -89052,10 +89058,13 @@ var Carrousel = /*#__PURE__*/function (_React$Component) {
   _createClass(Carrousel, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      /*CADA 3 SEGUNDOS EL CARROUSEL PASA AL SIGUIENTE CAROUSEL-ITEM*/
       $('.carousel').carousel({
         interval: 3000
       });
     }
+    /*RENDERIZA UN CAROUSEL CON DIFERENTES CAROUSEL-ITEMS QUE LLAMAN AL COMPONENTE BACKGROUND PASANDOLE LAS PROPS NECESARIAS PARA CONTENER LA IMAGEN PERTINENTE*/
+
   }, {
     key: "render",
     value: function render() {
@@ -89173,6 +89182,8 @@ var Conditions = /*#__PURE__*/function (_React$Component) {
 
     return _super.call(this, props);
   }
+  /*RENDERIZA UN CONTAINER CON INFORMACIÓN SOBRE LAS CONDICIONES DE LA PÁGINA */
+
 
   _createClass(Conditions, [{
     key: "render",
@@ -89269,6 +89280,8 @@ var Contact = /*#__PURE__*/function (_React$Component) {
 
     return _super.call(this, props);
   }
+  /*SE LLAMA AL COMPONENTE userContext Y DENTRO DE ESTE SE LLAMA AL COMPONENTE ContactProps PASÁNDOLE LOS DATOS DEL USUARIO Y LA ID DEL PRODUCTO */
+
 
   _createClass(Contact, [{
     key: "render",
@@ -89345,6 +89358,8 @@ var ContactProps = /*#__PURE__*/function (_React$Component) {
     };
     return _this;
   }
+  /*FORMULARIO PARA PONERSE EN CONTACTO CON EL USUARIO AL QUE SE DESEA COMPRAR UN PRODUCTO, EN CASO DE QUE NO SE ESTÉ LOGUEADO, MUESTRA AVISO EN LUGAR DEL FORMULARIO */
+
 
   _createClass(ContactProps, [{
     key: "render",
@@ -89560,6 +89575,12 @@ var BaseEditProduct = /*#__PURE__*/function (_React$Component) {
       this.setState({
         images: images
       });
+
+      if (images.length >= 4) {
+        this.setState({
+          fileSelect: false
+        });
+      }
     } //MÉTODO EN CASO DE ACTUALIZAR PROPS DE COMPONENTE
 
   }, {
@@ -89573,6 +89594,12 @@ var BaseEditProduct = /*#__PURE__*/function (_React$Component) {
           this.setState({
             images: images
           });
+
+          if (images.length >= 4) {
+            this.setState({
+              fileSelect: false
+            });
+          }
         }
       }
     } //MÉTODO DE AVATAR-EDITOR
@@ -90045,10 +90072,10 @@ var BaseEditProduct = /*#__PURE__*/function (_React$Component) {
 
 /***/ }),
 
-/***/ "./resources/js/components/editprofile/BaseEditProfile.js":
-/*!****************************************************************!*\
-  !*** ./resources/js/components/editprofile/BaseEditProfile.js ***!
-  \****************************************************************/
+/***/ "./resources/js/components/editprofile/BaseDeleteProfile.js":
+/*!******************************************************************!*\
+  !*** ./resources/js/components/editprofile/BaseDeleteProfile.js ***!
+  \******************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -90056,9 +90083,9 @@ var BaseEditProduct = /*#__PURE__*/function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _BaseEditProfileData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BaseEditProfileData */ "./resources/js/components/editprofile/BaseEditProfileData.js");
-/* harmony import */ var _BaseEditProfilePassword__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./BaseEditProfilePassword */ "./resources/js/components/editprofile/BaseEditProfilePassword.js");
-/* harmony import */ var _BaseEditProfileImage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./BaseEditProfileImage */ "./resources/js/components/editprofile/BaseEditProfileImage.js");
+/* harmony import */ var formik__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! formik */ "./node_modules/formik/dist/formik.esm.js");
+/* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! yup */ "./node_modules/yup/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -90086,6 +90113,179 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+var BaseDeleteprofile = /*#__PURE__*/function (_React$Component) {
+  _inherits(BaseDeleteprofile, _React$Component);
+
+  var _super = _createSuper(BaseDeleteprofile);
+
+  function BaseDeleteprofile(props) {
+    var _this;
+
+    _classCallCheck(this, BaseDeleteprofile);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      error: '',
+      success: ''
+    };
+    return _this;
+  }
+
+  _createClass(BaseDeleteprofile, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Formik"], {
+        initialValues: {
+          email: ''
+        },
+        validationSchema: yup__WEBPACK_IMPORTED_MODULE_2__["object"]({
+          email: yup__WEBPACK_IMPORTED_MODULE_2__["string"]().email('Introduce un email válido.').required('Debes rellenar este campo.')
+        }),
+        onSubmit: function onSubmit(values, _ref) {
+          var setSubmitting = _ref.setSubmitting,
+              resetForm = _ref.resetForm;
+          var self = _this2;
+          self.setState({
+            success: '',
+            error: ''
+          });
+          axios["delete"]('/api/user/delete/' + _this2.props.userData.user.id + '/' + values.email) //ELIMINAR LA CUENTA EN BACK
+          .then(function (response) {
+            self.setState({
+              success: 'La cuenta se ha eliminado correctamente.'
+            });
+            resetForm();
+            setSubmitting(false);
+            setTimeout(function () {
+              self.props.userData.logoutUser(); //DESLOGUEA EL USUARIO
+
+              self.props.history.push('/'); //REDIRECCIONA A INDEX
+            }, 2000);
+          })["catch"](function (error) {
+            self.setState({
+              error: 'Introduce el email con el que te has logueado.'
+            });
+            setSubmitting(false);
+
+            if (error.response.data.errors) {
+              setErrors({
+                email: error.response.data.errors.email
+              });
+            }
+          });
+        }
+      }, function (formik) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Form"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "container"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "row form"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "col text-center"
+        }, "Al eliminar tu cuenta se eliminar\xE1n todos tus productos ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "\xBFDeseas continuar?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "col-12 mx-auto"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-group"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+          htmlFor: "email"
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["Field"], {
+          type: "text",
+          className: formik.errors.email ? "form-control is-invalid" : "form-control",
+          name: "email",
+          placeholder: "Introduce tu email para eliminar la cuenta"
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_1__["ErrorMessage"], {
+          name: "email"
+        }, function (msg) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "invalid-feedback"
+          }, msg);
+        }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "col-12 mx-auto text-center"
+        }, _this2.state.error && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "alert alert-danger alert-dismissible fade show",
+          role: "alert"
+        }, _this2.state.error, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          type: "button",
+          className: "close",
+          "data-dismiss": "alert",
+          "aria-label": "Close"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          "aria-hidden": "true"
+        }, "\xD7"))), _this2.state.success && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "alert alert-success alert-dismissible fade show",
+          role: "alert"
+        }, _this2.state.success, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          type: "button",
+          className: "close",
+          "data-dismiss": "alert",
+          "aria-label": "Close"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          "aria-hidden": "true"
+        }, "\xD7"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          type: "submit",
+          className: "boton-secundario",
+          id: "delcuenta",
+          disabled: formik.isSubmitting
+        }, "Eliminar cuenta", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: formik.isSubmitting ? "spinner-border spinner-border-sm" : "spinner-border spinner-border-sm d-none",
+          role: "status",
+          "aria-hidden": "true"
+        }))))));
+      });
+    }
+  }]);
+
+  return BaseDeleteprofile;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["withRouter"])(BaseDeleteprofile));
+
+/***/ }),
+
+/***/ "./resources/js/components/editprofile/BaseEditProfile.js":
+/*!****************************************************************!*\
+  !*** ./resources/js/components/editprofile/BaseEditProfile.js ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _BaseEditProfileData__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BaseEditProfileData */ "./resources/js/components/editprofile/BaseEditProfileData.js");
+/* harmony import */ var _BaseEditProfilePassword__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./BaseEditProfilePassword */ "./resources/js/components/editprofile/BaseEditProfilePassword.js");
+/* harmony import */ var _BaseEditProfileImage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./BaseEditProfileImage */ "./resources/js/components/editprofile/BaseEditProfileImage.js");
+/* harmony import */ var _BaseDeleteProfile__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./BaseDeleteProfile */ "./resources/js/components/editprofile/BaseDeleteProfile.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _createSuper(Derived) { return function () { var Super = _getPrototypeOf(Derived), result; if (_isNativeReflectConstruct()) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+
 var EditProfile = /*#__PURE__*/function (_React$Component) {
   _inherits(EditProfile, _React$Component);
 
@@ -90096,6 +90296,8 @@ var EditProfile = /*#__PURE__*/function (_React$Component) {
 
     return _super.call(this, props);
   }
+  /*RENDERIZA UNA LISTA CON DIFERENTES VENTANAS, CADA UNA  LLAMA A UN COMPONENTE DIFERENTE, QUE MUESTRA UN FORMULARIO DISTINTO EN FUNCIÓN DE LO QUE SE DESEE VISUALIZAR*/
+
 
   _createClass(EditProfile, [{
     key: "render",
@@ -90109,57 +90311,75 @@ var EditProfile = /*#__PURE__*/function (_React$Component) {
         role: "presentation"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "nav-link active",
-        id: "home-tab",
+        id: "datprofile-tab",
         "data-toggle": "tab",
-        href: "#home",
+        href: "#datprofile",
         role: "tab",
-        "aria-controls": "home",
+        "aria-controls": "datprofile",
         "aria-selected": "true"
       }, "Datos")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "nav-item",
         role: "presentation"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "nav-link",
-        id: "profile-tab",
+        id: "passprofile-tab",
         "data-toggle": "tab",
-        href: "#profile",
+        href: "#passprofile",
         role: "tab",
-        "aria-controls": "profile",
+        "aria-controls": "passprofile",
         "aria-selected": "false"
       }, "Contrase\xF1a")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "nav-item",
         role: "presentation"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         className: "nav-link",
-        id: "contact-tab",
+        id: "imgprofile-tab",
         "data-toggle": "tab",
-        href: "#contact",
+        href: "#imgprofile",
         role: "tab",
-        "aria-controls": "contact",
+        "aria-controls": "imgprofile",
         "aria-selected": "false"
-      }, "Im\xE1gen de perfil"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Im\xE1gen de perfil")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "nav-item",
+        role: "presentation"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        className: "nav-link",
+        id: "delprofile-tab",
+        "data-toggle": "tab",
+        href: "#delprofile",
+        role: "tab",
+        "aria-controls": "delprofile",
+        "aria-selected": "false"
+      }, "Eliminar cuenta"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "tab-content",
         id: "myTabContent"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "tab-pane fade show active",
-        id: "home",
+        id: "datprofile",
         role: "tabpanel",
-        "aria-labelledby": "home-tab"
+        "aria-labelledby": "datprofile-tab"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_BaseEditProfileData__WEBPACK_IMPORTED_MODULE_1__["default"], {
         userData: this.props.userData
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "tab-pane fade",
-        id: "profile",
+        id: "passprofile",
         role: "tabpanel",
-        "aria-labelledby": "profile-tab"
+        "aria-labelledby": "passprofile-tab"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_BaseEditProfilePassword__WEBPACK_IMPORTED_MODULE_2__["default"], {
         userData: this.props.userData
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "tab-pane fade",
-        id: "contact",
+        id: "imgprofile",
         role: "tabpanel",
-        "aria-labelledby": "contact-tab"
+        "aria-labelledby": "imgprofile-tab"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_BaseEditProfileImage__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        userData: this.props.userData
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "tab-pane fade",
+        id: "delprofile",
+        role: "tabpanel",
+        "aria-labelledby": "delprofile-tab"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_BaseDeleteProfile__WEBPACK_IMPORTED_MODULE_4__["default"], {
         userData: this.props.userData
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null));
     }
@@ -90230,6 +90450,8 @@ var BaseEditProfileData = /*#__PURE__*/function (_React$Component) {
     };
     return _this;
   }
+  /*SE RENDERIZA FORMULARIO PARA MODIFICAR LOS DATOS DEL PERFIL*/
+
 
   _createClass(BaseEditProfileData, [{
     key: "render",
@@ -90272,14 +90494,14 @@ var BaseEditProfileData = /*#__PURE__*/function (_React$Component) {
             self.props.userData.loginUser();
             setSubmitting(false);
           })["catch"](function (error) {
-            setErrors({
-              name: error.response.data.errors.name,
-              zip_code: error.response.data.errors.zip_code
-            });
             self.setState({
               error: 'El formulario tiene errores.'
             });
             setSubmitting(false);
+            setErrors({
+              name: error.response.data.errors.name,
+              zip_code: error.response.data.errors.zip_code
+            });
           });
         }
       }, function (formik) {
@@ -90483,6 +90705,8 @@ var BaseEditProfile = /*#__PURE__*/function (_React$Component) {
         error: ''
       });
     }
+    /*RENDERIZA FORMULARIO QUE PERMITE MODIFICAR LA IMAGEN DE PEFIL*/
+
   }, {
     key: "render",
     value: function render() {
@@ -90710,6 +90934,8 @@ var BaseEditProfilePassword = /*#__PURE__*/function (_React$Component) {
         passwordConfirmation: true
       });
     }
+    /*RENDERIZA FORMULARIO QUE PERMITE MODIFICAR LA CONTRASEÑA DEL USUARIO */
+
   }, {
     key: "render",
     value: function render() {
@@ -90970,6 +91196,8 @@ var BaseFavorites = /*#__PURE__*/function (_React$Component) {
         });
       })["catch"](function (error) {});
     }
+    /*RENDERIZA LOS USUARIOS GUARDADOS EN FAVORITOS, ADEMÁS DE LLAMAR AL COMPONENTE DE PAGINACIÓN*/
+
   }, {
     key: "render",
     value: function render() {
@@ -91235,6 +91463,8 @@ var Header = /*#__PURE__*/function (_React$Component) {
 
     return _super.call(this, props);
   }
+  /*RENDERIZA EL LOGOTIPO DE LA PÁGINA*/
+
 
   _createClass(Header, [{
     key: "render",
@@ -91304,6 +91534,8 @@ var Legal = /*#__PURE__*/function (_React$Component) {
 
     return _super.call(this, props);
   }
+  /*RENDERIZA LA INFORMACION LEGAL DE RETAGED*/
+
 
   _createClass(Legal, [{
     key: "render",
@@ -91370,6 +91602,8 @@ var Login = /*#__PURE__*/function (_React$Component) {
 
     return _super.call(this, props);
   }
+  /*LLAMA AL COMPONENTE LOGINPROPS*/
+
 
   _createClass(Login, [{
     key: "render",
@@ -91462,6 +91696,8 @@ var LoginProps = /*#__PURE__*/function (_React$Component) {
     value: function closeModal() {
       $('#loginModal').modal('hide');
     }
+    /*RENDERIZA EN UNA VENTANA SUPERPUESTA UN FORMULARIO PARA LOGUEARSE */
+
   }, {
     key: "render",
     value: function render() {
@@ -91657,6 +91893,8 @@ var Ambiente = /*#__PURE__*/function (_React$Component) {
 
     return _super.call(this, props);
   }
+  /*RENDERIZA LA INFORMACIÓN SOBRE EL MEDIO AMBIENTE */
+
 
   _createClass(Ambiente, [{
     key: "render",
@@ -92180,6 +92418,8 @@ var BaseNewProduct = /*#__PURE__*/function (_React$Component) {
         position: position
       });
     }
+    /*FORMULARIO PARA DAR DE ALTA UN NUEVO PRODUCTO */
+
   }, {
     key: "render",
     value: function render() {
@@ -92543,7 +92783,7 @@ var Email = /*#__PURE__*/function (_React$Component) {
           axios.post('/api/password-email', values) //ENVIAS EL EMAIL AL BACK PARA QUE ENVÍE LA CONTRASEÑA 
           .then(function (response) {
             self.setState({
-              success: "Se ha enviado un email a ".concat(values.email, ", en caso de no recibirlo pontente en contacto con nosotros en info@retaged.com")
+              success: "Comprueba tu bandeja de entrada, en caso de no recibir la nueva contrase\xF1a pontente en contacto con nosotros en info@retaged.com"
             });
             resetForm();
             setSubmitting(false);
@@ -92558,7 +92798,7 @@ var Email = /*#__PURE__*/function (_React$Component) {
             }
 
             self.setState({
-              success: "Se ha enviado un email a ".concat(values.email, ", en caso de no recibirlo pontente en contacto con nosotros en info@retaged.com")
+              success: "Comprueba tu bandeja de entrada, en caso de no recibir la nueva contrase\xF1a pontente en contacto con nosotros en info@retaged.com"
             });
           });
         }
@@ -92666,6 +92906,8 @@ var Cookies = /*#__PURE__*/function (_React$Component) {
 
     return _super.call(this, props);
   }
+  /*RENDERIZA INFORMACIÓN SOBRE LA POLÍTICA DE COOKIES DE RETAGED*/
+
 
   _createClass(Cookies, [{
     key: "render",
@@ -92728,6 +92970,8 @@ var Privacidad = /*#__PURE__*/function (_React$Component) {
 
     return _super.call(this, props);
   }
+  /*RENDERIZA INFORMACIÓN SOBRE LA POLÍTICA DE PRIVACIDAD DE RETAGED*/
+
 
   _createClass(Privacidad, [{
     key: "render",
@@ -92956,6 +93200,8 @@ var CompraProducto = /*#__PURE__*/function (_React$Component) {
         });
       }
     }
+    /*RENDERIZA TODA LA INFORMACIÓN DE EL PRODUCTO SELECCIONADO, LLAMANDO A TODOS LOS COMPONENTES NECESARIOS PARA CADA PARTE DE INFORMACIÓN*/
+
   }, {
     key: "render",
     value: function render() {
@@ -94302,6 +94548,8 @@ var BaseSearch = /*#__PURE__*/function (_React$Component) {
         console.log(error);
       });
     }
+    /*COMPONENTEN QUE PERMISE BUSCAR POR NOMBRE UN PRODUCTO Y MOSTRAR TODOS LOS PRODUCTOS QUE COINCIDAN CON DICHA BUSQUEDA */
+
   }, {
     key: "render",
     value: function render() {
@@ -94527,6 +94775,8 @@ var BaseTop = /*#__PURE__*/function (_React$Component) {
         });
       })["catch"](function (error) {});
     }
+    /*SE RENDERIZA LOS RETAGERS CON MÁS LIKES */
+
   }, {
     key: "render",
     value: function render() {

@@ -44,6 +44,9 @@ class BaseEditProduct extends React.Component {
     componentDidMount() {
         var images = this.props.product.images.map(image => image.name);
         this.setState({ images: images });
+        if(images.length >= 4){
+            this.setState({ fileSelect: false });
+        }
     }
 
     //MÉTODO EN CASO DE ACTUALIZAR PROPS DE COMPONENTE
@@ -52,6 +55,9 @@ class BaseEditProduct extends React.Component {
             if (this.props.product.name) {
                 var images = this.props.product.images.map(image => image.name);
                 this.setState({ images: images });
+                if(images.length >= 4){
+                    this.setState({ fileSelect: false });
+                }
             }
         }
     }

@@ -83,4 +83,20 @@ class UserController extends Controller
 
         return response()->json(['message' => 'Bien.'], 201);
     }
+
+    //ELIMINAR EL USUARIO
+    public function destroy($id, $email)
+    {
+        $user = Auth::user();
+
+        if ($user->id != $id || $user->email != $email) {
+            return response()->json(['error' => 'No estas autorizado.'], 401);
+        }
+
+        if ($user->delete()) {
+            return response()->json(['message' => 'Bien.'], 201);
+        }
+
+        return response()->json(['error' => 'No se ha podido eliminar el usuario.'], 401);
+    }
 }
